@@ -1,0 +1,162 @@
+﻿Imports TTMS
+
+Public Class NCRDetailsForm
+	Private ncrId As Integer
+	Private user As User
+	Private curNcr As NCR
+	
+	Public Sub New(id As Integer)
+		InitializeComponent()
+		'
+		Me.ncrId = id
+		curNcr = DB.LoadNcr(id)
+		curNcr.RaisedByUser = DB.LoadUser(curNcr.raised_by_id)
+		Me.ActionCmb.DataSource = DB.LoadStatus
+		Me.ActionCmb.DisplayMember = "short_description"
+		Me.ActionCmb.ValueMember = "id"
+
+		Me.CurStatusCmb.DataSource = DB.LoadStatus
+		Me.CurStatusCmb.DisplayMember = "short_description"
+		Me.CurStatusCmb.ValueMember = "id"
+		Me.CurStatusCmb.SelectedIndex = curNcr.status_id
+
+		Me.RaisedToCmb.DataSource = DB.LoadUsers
+		Me.RaisedToCmb.DisplayMember = "fullname"
+		Me.RaisedToCmb.ValueMember = "id"
+		If (Not IsNothing(curNcr.raised_to_id)) Then
+			Me.RaisedToCmb.SelectedValue = curNcr.raised_to_id
+		Else
+			Me.RaisedToCmb.SelectedItem = Nothing
+		End If
+		Me.IdTb.Text = curNcr.Id
+		Me.DescriptionTB.Text = curNcr.Description
+
+		Me.TitleTb.Text = curNcr.title
+		Me.DescriptionTB.Text = curNcr.Description
+		Me.RaisedDatePicker.Value = curNcr.raised_date
+		Me.RaisedByTb.Text = curNcr.RaisedByUser.Surname + ", " + curNcr.RaisedByUser.Firstname
+
+		'enable/disable objects according to the status
+		Select Case curNcr.status_id
+			Case Status.NewNCR
+				StatusNewNCR()
+			Case Status.NewNcrSubmit
+				StatusNewNcrSubmited()
+		End Select
+
+		' display the log info for this ncr
+		Me.NcrLog1.RefreshLog(Me.ncrId)
+
+
+	End Sub
+
+	Public Sub SetCurrentUser(user As User)
+		Me.user = user
+		curNcr.RaisedByUser = user
+	End Sub
+	''' <summary>
+	''' Perform action depending on new status
+	''' </summary>
+	''' <param name="stat"></param>
+	''' <remarks></remarks>
+	Private Sub SelectStatus(stat As Integer)
+		Select Case stat
+			Case Status.NewNCR
+				StatusNewNCR()
+			Case Status.NewNcrSubmit
+				StatusSubmitAndWaitingApprovalNCR()
+			Case Else
+
+		End Select
+	End Sub
+
+	Private Sub StatusNewNcrSubmited()
+		Me.TitleTb.Enabled = False
+		Me.DescriptionTB.Enabled = False
+		Me.RaisedToCmb.Enabled = False
+		'
+		Me.RaisedByTb.Enabled = False
+		NCRTabControl.TabPages(1).Enabled = False
+		NCRTabControl.TabPages(2).Enabled = False
+		NCRTabControl.TabPages(3).Enabled = False
+		NCRTabControl.TabPages(4).Enabled = False
+		NCRTabControl.TabPages(5).Enabled = False
+	End Sub
+	Private Sub StatusNewNCR()
+		Me.RaisedByTb.Enabled = False
+		NCRTabControl.TabPages(1).Enabled = False
+		NCRTabControl.TabPages(2).Enabled = False
+		NCRTabControl.TabPages(3).Enabled = False
+		NCRTabControl.TabPages(4).Enabled = False
+		NCRTabControl.TabPages(5).Enabled = False
+		Me.ActionCmb.DataSource = CatsForm.NewNcrActions
+
+	End Sub
+
+	Private Sub StatusSubmitAndWaitingApprovalNCR()
+
+	End Sub
+
+	Private Sub CloseBtn_Click(sender As System.Object, e As System.EventArgs) Handles CloseBtn.Click
+		Me.Close()
+	End Sub
+
+	Private Sub SubmitBtn_Click(sender As System.Object, e As System.EventArgs) Handles SubmitBtn.Click
+
+		Dim action As Integer = Me.ActionCmb.SelectedIndex
+
+		If (Not IsNothing(RaisedToCmb.SelectedValue)) Then
+			curNcr.raised_to_id = RaisedToCmb.SelectedValue
+
+			Dim raisedToUser As TTMS.User = New TTMS.User()
+			curNcr.RaisedToUser = DB.LoadUser(curNcr.raised_to_id)
+
+		End If
+
+		Select Case action
+			Case NewNcrAction.Submit
+				If (Not NewNcrSubmitValidate()) Then
+					StatusStrip1.Items.Clear()
+					StatusStrip1.Items.Add("Invalid combination")
+				Else
+					NewNcrSubmit(Status.NewNcrSubmit)
+				End If
+			Case NewNcrAction.Accept
+				StatusStrip1.Items.Clear()
+				StatusStrip1.Items.Add("New NCR Accepted not yet implemented")
+			Case NewNcrAction.Reject
+				StatusStrip1.Items.Clear()
+				StatusStrip1.Items.Add("New NCR Rejected not yet implemented")
+			Case Else
+				StatusStrip1.Items.Clear()
+				StatusStrip1.Items.Add("Invalid command")
+		End Select
+	End Sub
+
+	Private Function NewNcrSubmitValidate() As Boolean
+		' check if current status is newncr
+		If (curNcr.status_id <> Status.NewNCR) Then Return False
+		'check if ncr is assigned to someone
+		If (IsNothing(curNcr.raised_to_id)) Then Return False
+		Return True
+	End Function
+
+	Private Sub NewNcrSubmit(newStat As Integer)
+		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+
+		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.raised_to_id, curNcr.Id)
+		Dim statusResult = ncrAdapt.UpdateStatus(newStat, curNcr.Id)
+		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
+		Dim message As String = "New NCR Submitted to " + curNcr.RaisedToUser.Fullname
+		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.Id)
+		'refresh the log tab
+		NcrLog1.RefreshLog(curNcr.Id)
+		StatusStrip1.Items.Clear()
+		StatusStrip1.Items.Add(message)
+	End Sub
+
+	Private Sub TableLayoutPanel2_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles TableLayoutPanel2.Paint
+
+	End Sub
+
+End Class

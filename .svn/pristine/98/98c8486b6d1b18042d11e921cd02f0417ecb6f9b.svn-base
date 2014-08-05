@@ -1,0 +1,117 @@
+﻿Imports TTMS.TTMS
+Public Class DB
+
+	Public Shared Function LoadNcr(ncrId As Integer) As NCR
+		Dim ncrAdapt = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+		Dim datatable = ncrAdapt.GetDataBy(ncrId)
+		If datatable.Rows.Count <> 1 Then
+			Return Nothing
+		Else
+			Dim dr = datatable.Rows(0)
+			Dim id As Integer = CType(dr.Item("id"), Integer)
+			Dim raised_by_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("raised_by_id")) Then
+				raised_by_id = CType(dr.Item("raised_by_id"), Integer)
+			End If
+			Dim raised_date = CType(dr.Item("raised_date"), DateTime)
+			Dim raised_to_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("raised_to_id")) Then
+				raised_to_id = CType(dr.Item("raised_to_id"), Integer)
+			End If
+			Dim status_id = CType(dr.Item("status_id"), Integer)
+			Dim CC_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("CC_id")) Then
+				CC_id = CType(dr.Item("CC_id"), Integer)
+			End If
+			Dim RCP_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("RCP_id")) Then
+				RCP_id = CType(dr.Item("RCP_id"), Integer)
+			End If
+			Dim description As String = Nothing
+			If Not IsDBNull(dr.Item("Description")) Then
+				description = CType(dr.Item("Description"), String)
+			End If
+			Dim title = CType(dr.Item("title"), String)
+			'Dim thisNcr As NCR = NCR.CreateNCR(id, raised_by_id, raised_date, raised_to_id, status_id, description, title)
+			Dim thisNcr As NCR = New NCR()
+			thisNcr.Id = id
+			thisNcr.raised_by_id = raised_by_id
+			thisNcr.raised_date = raised_date
+			thisNcr.raised_to_id = raised_to_id
+			thisNcr.status_id = status_id
+			thisNcr.CC_id = CC_id
+			thisNcr.RCP_id = RCP_id
+			thisNcr.Description = description
+			thisNcr.title = title
+			Return thisNcr
+		End If
+
+	End Function
+
+	Public Shared Function StoreNcr(ncr As NCR) As Boolean
+
+	End Function
+
+	Public Shared Function UpdateNcr(ncr As NCR) As Boolean
+		Dim ncrAdapt = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+		Dim result As Integer = ncrAdapt.Update(ncr.raised_by_id, ncr.raised_date, ncr.raised_to_id, ncr.status_id, ncr.CC_id, ncr.RCP_id, ncr.Description, ncr.title, ncr.Id, ncr.raised_by_id, ncr.raised_date, ncr.raised_to_id, ncr.status_id, ncr.CC_id, ncr.RCP_id)
+
+
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+
+	End Function
+
+	Public Shared Function LoadUser(id As Integer) As User
+		Dim userAdapt = New TTMS.TTMSDataSetTableAdapters.UsersTableAdapter()
+		Dim dataTable = userAdapt.GetDataById(id)
+		If (dataTable.Rows.Count <> 1) Then
+			Return Nothing
+		Else
+			Dim dr = dataTable.Rows(0)
+			Dim userid As Integer = CType(dr.Item("id"), Integer)
+			Dim firstname As String = CType(dr.Item("firstname"), String)
+			Dim surname As String = CType(dr.Item("surname"), String)
+
+			Dim user As Global.TTMS.User = New Global.TTMS.User()
+
+			user.Id = userid
+			user.Firstname = firstname
+			user.Surname = surname
+			user.Fullname = surname + ", " + firstname
+			Return user
+		End If
+
+	End Function
+
+	''' <summary>
+	''' Load datatable with all users from the database
+	''' </summary>
+	''' <returns></returns>
+	''' <remarks></remarks>
+	Public Shared Function LoadUsers() As TTMS.TTMSDataSet.UsersDataTable
+		Dim userAdapt = New TTMS.TTMSDataSetTableAdapters.UsersTableAdapter()
+		Dim dt = userAdapt.GetData()
+		Return dt
+	End Function
+
+	''' <summary>
+	''' Load datatable with all status from database
+	''' </summary>
+	''' <returns></returns>
+	''' <remarks></remarks>
+	Public Shared Function LoadStatus() As TTMS.TTMSDataSet.NCR_StatusDataTable
+		Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_StatusTableAdapter()
+		Dim dt = statusAdapt.GetData()
+		Return dt
+	End Function
+
+	Public Shared Function LoadActions(statusId As Integer) As TTMS.TTMSDataSet.ActionsDataTable
+		Dim actionsAdapt = New TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter()
+		Dim dt = actionsAdapt.GetDataByStatusId(statusId)
+		Return dt
+	End Function
+End Class

@@ -1,0 +1,8 @@
+﻿Partial Class TTMSDataSet
+End Class
+
+Namespace TTMSDataSetTableAdapters
+    
+    Partial Public Class LogsTableAdapter
+    End Class
+End Namespace

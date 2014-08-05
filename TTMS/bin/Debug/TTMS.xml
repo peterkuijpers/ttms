@@ -1,0 +1,945 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TTMS
+</name>
+</assembly>
+<members>
+<member name="T:TTMS.PluginManager.Program">
+	<summary>
+ plugin 
+ </summary>
+	<remarks></remarks>
+</member><member name="T:TTMS.TTMSDataSet.UsersDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.DepartmentsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.LevelsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NCRsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.LogsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NotificationsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.ActionsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.CCsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.CC_ItemDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NCR_Status1DataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.UsersRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.DepartmentsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.LevelsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NCRsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.LogsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NotificationsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.ActionsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.CCsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.CC_ItemRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NCR_Status1Row">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.UsersRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.DepartmentsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.LevelsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NCRsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.LogsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NotificationsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.ActionsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.CCsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.CC_ItemRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet.NCR_Status1RowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.TTMSDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.UsersTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.DepartmentsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.LevelsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.LogsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.NotificationsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.CCsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.CC_ItemTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(TTMS.TTMSDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(TTMS.TTMSDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(TTMS.TTMSDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateAll(TTMS.TTMSDataSet)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:TTMS.TTMSDataSetTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="M:TTMS.Model1Container.#ctor">
+	<summary>
+ Initializes a new Model1Container object using the connection string found in the 'Model1Container' section of the application configuration file.
+ </summary>
+</member><member name="M:TTMS.Model1Container.#ctor(System.String)">
+	<summary>
+ Initialize a new Model1Container object.
+ </summary>
+</member><member name="M:TTMS.Model1Container.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new Model1Container object.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Users">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Levels">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.NCR_Status">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Permissions1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.NCRs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.CCs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.CC_Item">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Departments">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.RCPs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Logs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Notifications">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Model1Container.Actions">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToUsers(TTMS.User)">
+	<summary>
+ Deprecated Method for adding a new object to the Users EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToLevels(TTMS.Level)">
+	<summary>
+ Deprecated Method for adding a new object to the Levels EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToNCR_Status(TTMS.NCR_Status)">
+	<summary>
+ Deprecated Method for adding a new object to the NCR_Status EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToPermissions1(TTMS.Permission)">
+	<summary>
+ Deprecated Method for adding a new object to the Permissions1 EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToNCRs(TTMS.NCR)">
+	<summary>
+ Deprecated Method for adding a new object to the NCRs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToCCs(TTMS.CC)">
+	<summary>
+ Deprecated Method for adding a new object to the CCs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToCC_Item(TTMS.CC_Item)">
+	<summary>
+ Deprecated Method for adding a new object to the CC_Item EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToDepartments(TTMS.Department)">
+	<summary>
+ Deprecated Method for adding a new object to the Departments EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToRCPs(TTMS.RCP)">
+	<summary>
+ Deprecated Method for adding a new object to the RCPs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToLogs(TTMS.Log)">
+	<summary>
+ Deprecated Method for adding a new object to the Logs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToNotifications(TTMS.Notification)">
+	<summary>
+ Deprecated Method for adding a new object to the Notifications EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:TTMS.Model1Container.AddToActions(TTMS.Action)">
+	<summary>
+ Deprecated Method for adding a new object to the Actions EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:TTMS.Model1Container">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Action.CreateAction(System.Int32,System.Int32,System.String,System.String)">
+	<summary>
+ Create a new Action object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="ncr_status_id">Initial value of the ncr_status_id property.</param>
+	<param name="description">Initial value of the description property.</param>
+	<param name="code">Initial value of the Code property.</param>
+</member><member name="P:TTMS.Action.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Action.ncr_status_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Action.description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Action.Code">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Action.NCR_Status">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Action.NCR_StatusReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.Action">
+	<summary>
+ Action available for a status
+ </summary>
+	<LongDescription>
+ Action table contains the list of actions that are available for a specific status
+ </LongDescription>
+</member><member name="M:TTMS.CC.CreateCC(System.Int32,System.Boolean,System.Int32)">
+	<summary>
+ Create a new CC object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="cCDone">Initial value of the CCDone property.</param>
+	<param name="ncr_id">Initial value of the ncr_id property.</param>
+</member><member name="P:TTMS.CC.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC.CCDone">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC.ncr_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC.CC_Item">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC.NCR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC.NCRReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.CC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.CC_Item.CreateCC_Item(System.Int32,System.Int32,System.DateTime,System.String,System.Int32,System.String)">
+	<summary>
+ Create a new CC_Item object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="action_by_id">Initial value of the Action_by_id property.</param>
+	<param name="due_date">Initial value of the due_date property.</param>
+	<param name="status">Initial value of the status property.</param>
+	<param name="cC_Id">Initial value of the CC_Id property.</param>
+	<param name="corrective">Initial value of the Corrective property.</param>
+</member><member name="P:TTMS.CC_Item.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Action">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Action_by_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.due_date">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.completion_Date">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.status">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.CC_Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Passed">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Failed">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Reviewer_Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Review_Date">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Review_Comment">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.Corrective">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.CC">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.CCReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.User">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.CC_Item.UserReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.CC_Item">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Department.CreateDepartment(System.Int32,System.String)">
+	<summary>
+ Create a new Department object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="description">Initial value of the Description property.</param>
+</member><member name="P:TTMS.Department.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Department.Description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Department.Users">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.Department">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Level.CreateLevel(System.Int32,System.String,System.String)">
+	<summary>
+ Create a new Level object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="full_description">Initial value of the full_description property.</param>
+	<param name="short_description">Initial value of the short_description property.</param>
+</member><member name="P:TTMS.Level.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Level.full_description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Level.short_description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Level.User">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Level.Permission">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.Level">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Log.CreateLog(System.Int32,System.DateTime,System.String,System.Int32)">
+	<summary>
+ Create a new Log object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="timestamp">Initial value of the timestamp property.</param>
+	<param name="description">Initial value of the description property.</param>
+	<param name="nCR_Id">Initial value of the NCR_Id property.</param>
+</member><member name="P:TTMS.Log.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.timestamp">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.NCR_Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.user_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.NCR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.NCRReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.User">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Log.UserReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.Log">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.NCR.CreateNCR(System.Int32,System.Int32,System.DateTime,System.Int32,System.String)">
+	<summary>
+ Create a new NCR object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="raised_by_id">Initial value of the raised_by_id property.</param>
+	<param name="raised_date">Initial value of the raised_date property.</param>
+	<param name="status_id">Initial value of the status_id property.</param>
+	<param name="title">Initial value of the title property.</param>
+</member><member name="P:TTMS.NCR.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.raised_by_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.raised_date">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.raised_to_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.status_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RCP_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.Description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.title">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RaisedByUser">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RaisedByUserReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RaisedToUser">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RaisedToUserReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.NCR_Status">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.NCR_StatusReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RCPs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.RCPsReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.Logs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.Notifications">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.CCs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR.CCsReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.NCR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.NCR_Status.CreateNCR_Status(System.String,System.String,System.Int32)">
+	<summary>
+ Create a new NCR_Status object.
+ </summary>
+	<param name="short_description">Initial value of the short_description property.</param>
+	<param name="code">Initial value of the Code property.</param>
+	<param name="id">Initial value of the id property.</param>
+</member><member name="P:TTMS.NCR_Status.short_description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR_Status.Code">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR_Status.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR_Status.Permissions">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR_Status.NCRs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.NCR_Status.Actions">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.NCR_Status">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Notification.CreateNotification(System.Int32,System.Int32,System.Int32,System.String,System.DateTime)">
+	<summary>
+ Create a new Notification object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="user_id">Initial value of the user_id property.</param>
+	<param name="ncr_id">Initial value of the ncr_id property.</param>
+	<param name="message">Initial value of the message property.</param>
+	<param name="timestamp">Initial value of the timestamp property.</param>
+</member><member name="P:TTMS.Notification.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.user_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.ncr_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.message">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.timestamp">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.NCR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.NCRReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.User">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Notification.UserReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.Notification">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.Permission.CreatePermission(System.Int32,System.Int32)">
+	<summary>
+ Create a new Permission object.
+ </summary>
+	<param name="level_id">Initial value of the Level_id property.</param>
+	<param name="status_id">Initial value of the Status_id property.</param>
+</member><member name="P:TTMS.Permission.Level_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Permission.Status_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Permission.Level">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Permission.LevelReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Permission.Status">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.Permission.StatusReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.Permission">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.RCP.CreateRCP(System.Int32)">
+	<summary>
+ Create a new RCP object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+</member><member name="P:TTMS.RCP.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.RCP.NCR">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.RCP">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:TTMS.User.CreateUser(System.Int32,System.String,System.String,System.Int32,System.String,System.String,System.String,System.Boolean,System.Boolean,System.String)">
+	<summary>
+ Create a new User object.
+ </summary>
+	<param name="id">Initial value of the Id property.</param>
+	<param name="firstname">Initial value of the Firstname property.</param>
+	<param name="surname">Initial value of the Surname property.</param>
+	<param name="level_id">Initial value of the level_id property.</param>
+	<param name="email">Initial value of the email property.</param>
+	<param name="userid">Initial value of the userid property.</param>
+	<param name="password">Initial value of the password property.</param>
+	<param name="is_admin">Initial value of the is_admin property.</param>
+	<param name="is_active">Initial value of the is_active property.</param>
+	<param name="fullname">Initial value of the Fullname property.</param>
+</member><member name="P:TTMS.User.Id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Firstname">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Surname">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.level_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.department_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.email">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.userid">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.password">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.is_admin">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.is_active">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Fullname">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Level">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.LevelReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.NCRs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.NCRs_1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Department">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.DepartmentReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.CC_Item">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Notifications">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:TTMS.User.Logs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.User">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:TTMS.MySqlDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:TTMS.LoginForm">
+	<summary>
+ Login. Returns OK if successful. Get userid by calling GetUserId
+ </summary>
+	<remarks></remarks>
+</member><member name="P:TTMS.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:TTMS.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:TTMS.My.Resources.Resources.CompanyLogo">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:TTMS.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:TTMS.DB.LoadUsers">
+	<summary>
+ Load datatable with all users from the database
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TTMS.DB.LoadStatus">
+	<summary>
+ Load datatable with all status from database
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

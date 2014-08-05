@@ -1,0 +1,16 @@
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\bin\Debug\Dots.dll
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\bin\Debug\Dots.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\bin\Debug\Dots.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\bin\Debug\TTMS.exe
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\bin\Debug\TTMS.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\bin\Debug\TTMS.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Dots.dll
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Dots.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Dots.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.vbprojResolveAssemblyReference.cache
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.DotsForm.resources
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.Resources.resources
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.vbproj.GenerateResource.Cache
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.dll
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.pdb
