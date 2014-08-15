@@ -27,3 +27,9 @@ Namespace TTMSDataSetTableAdapters
 	Partial Public Class NotificationsTableAdapter
 	End Class
 End Namespace
+
+Namespace TTMSDataSetTableAdapters
+
+	Partial Public Class NCRsTableAdapter
+	End Class
+End Namespace

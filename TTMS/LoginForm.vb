@@ -17,9 +17,11 @@ Public Class LoginForm
 	End Sub
 
 	Private Sub LoginBtn_Click(sender As System.Object, e As System.EventArgs) Handles LoginBtn.Click
-		Dim userTable As New TTMSDataSet.UsersDataTable()
-		Dim userAdapter As New TTMSDataSetTableAdapters.UsersTableAdapter()
-		Dim result As Integer = Convert.ToInt32(userAdapter.CheckPwd(Me.UserIdTb.Text, Me.PwdTb.Text))
+
+		Dim userTable As New MySqlDataSet.userDataTable()
+		Dim userAdapt As New MySqlDataSetTableAdapters.userTableAdapter()
+
+		Dim result As Integer = Convert.ToInt32(userAdapt.CheckPwd(Me.UserIdTb.Text, Me.PwdTb.Text))
 		' returns  id of the user or 0 if not found
 		If (result > 0) Then
 			userid = result

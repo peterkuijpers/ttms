@@ -6,7 +6,12 @@ WorkflowTest
 </name>
 </assembly>
 <members>
-<member name="P:WorkflowTest.My.Resources.Resources.ResourceManager">
+<member name="M:WorkflowTest.Status.#ctor">
+	<summary>
+ Constructor
+ </summary>
+	<remarks></remarks>
+</member><member name="P:WorkflowTest.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>

@@ -31,10 +31,10 @@ Partial Class LoginForm
 		Me.PwdTb = New System.Windows.Forms.TextBox()
 		Me.Label3 = New System.Windows.Forms.Label()
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-		Me.TtmsDataSet1 = New TTMS.TTMSDataSet()
+		Me.MySqlDataSet1 = New MySqlDataSet()
 		Me.FlowLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
-		CType(Me.TtmsDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.SuspendLayout()
 		'
 		'FlowLayoutPanel1
@@ -130,6 +130,7 @@ Partial Class LoginForm
 		'
 		'StatusStrip1
 		'
+		Me.StatusStrip1.BackColor = System.Drawing.SystemColors.ButtonFace
 		Me.StatusStrip1.Location = New System.Drawing.Point(0, 119)
 		Me.StatusStrip1.Name = "StatusStrip1"
 		Me.StatusStrip1.Size = New System.Drawing.Size(328, 22)
@@ -137,16 +138,17 @@ Partial Class LoginForm
 		Me.StatusStrip1.TabIndex = 4
 		Me.StatusStrip1.Text = "StatusStrip1"
 		'
-		'TtmsDataSet1
+		'MySqlDataSet1
 		'
-		Me.TtmsDataSet1.DataSetName = "TTMSDataSet"
-		Me.TtmsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
+		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
 		'
 		'LoginForm
 		'
 		Me.AcceptButton = Me.LoginBtn
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+		Me.BackColor = System.Drawing.SystemColors.ButtonFace
 		Me.ClientSize = New System.Drawing.Size(328, 177)
 		Me.Controls.Add(Me.StatusStrip1)
 		Me.Controls.Add(Me.Label3)
@@ -160,7 +162,7 @@ Partial Class LoginForm
 		Me.FlowLayoutPanel1.ResumeLayout(False)
 		Me.TableLayoutPanel1.ResumeLayout(False)
 		Me.TableLayoutPanel1.PerformLayout()
-		CType(Me.TtmsDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -173,6 +175,6 @@ Partial Class LoginForm
 	Friend WithEvents UserIdTb As System.Windows.Forms.TextBox
 	Friend WithEvents PwdTb As System.Windows.Forms.TextBox
 	Friend WithEvents Label3 As System.Windows.Forms.Label
-	Friend WithEvents TtmsDataSet1 As TTMS.TTMSDataSet
+	Friend WithEvents MySqlDataSet1 As MySqlDataSet
 	Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
 End Class

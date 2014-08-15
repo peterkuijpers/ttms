@@ -902,9 +902,121 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
+</member><member name="T:TTMS.MySqlDataSet.userDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.departmentDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.userlevelDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.ncrDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.notificationDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.userRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.departmentRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.userlevelRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.ncrRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.notificationRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.userRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.departmentRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.userlevelRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.ncrRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:TTMS.MySqlDataSet.notificationRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
 </member><member name="T:TTMS.MySqlDataSet">
 	<summary>
 Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.userTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.departmentTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.userlevelTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.ncrTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.notificationTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(TTMS.MySqlDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(TTMS.MySqlDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(TTMS.MySqlDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.UpdateAll(TTMS.MySqlDataSet)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:TTMS.MySqlDataSetTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
 </summary>
 </member><member name="T:TTMS.LoginForm">
 	<summary>
@@ -928,6 +1040,27 @@ Represents a strongly typed in-memory cache of data.
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="M:TTMS.DatabaseModule.Database.LoadUser(System.Int32)">
+	<summary>
+ Get the user from database by userid
+ </summary>
+	<param name="userid"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TTMS.DatabaseModule.Database.LoadDepartment(TTMS.User)">
+	<summary>
+ Get the department from the database for the user
+ </summary>
+	<param name="user"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:TTMS.DatabaseModule.Database.LoadLevel(TTMS.User)">
+	<summary>
+ Get the level from the database for user
+ </summary>
+	<param name="user"></param>
+	<returns></returns>
+	<remarks></remarks>
 </member><member name="M:TTMS.DB.LoadUsers">
 	<summary>
  Load datatable with all users from the database

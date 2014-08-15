@@ -7,3 +7,5 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\WorkflowTest\obj\x86\Debug
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\WorkflowTest\obj\x86\Debug\WorkflowTest.exe
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\WorkflowTest\obj\x86\Debug\WorkflowTest.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\WorkflowTest\obj\x86\Debug\WorkflowTest.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\WorkflowTest\obj\x86\Debug\WorkflowTest.Form1.resources
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\WorkflowTest\obj\x86\Debug\WorkflowTest.StatusControl.resources

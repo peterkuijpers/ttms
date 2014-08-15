@@ -2,7 +2,7 @@
 Public Class DB
 
 	Public Shared Function LoadNcr(ncrId As Integer) As NCR
-		Dim ncrAdapt = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim datatable = ncrAdapt.GetDataBy(ncrId)
 		If datatable.Rows.Count <> 1 Then
 			Return Nothing
@@ -64,7 +64,7 @@ Public Class DB
 	End Function
 
 	Public Shared Function LoadUser(id As Integer) As User
-		Dim userAdapt = New TTMS.TTMSDataSetTableAdapters.UsersTableAdapter()
+		Dim userAdapt = New MySqlDataSetTableAdapters.userTableAdapter()
 		Dim dataTable = userAdapt.GetDataById(id)
 		If (dataTable.Rows.Count <> 1) Then
 			Return Nothing
@@ -90,8 +90,8 @@ Public Class DB
 	''' </summary>
 	''' <returns></returns>
 	''' <remarks></remarks>
-	Public Shared Function LoadUsers() As TTMS.TTMSDataSet.UsersDataTable
-		Dim userAdapt = New TTMS.TTMSDataSetTableAdapters.UsersTableAdapter()
+	Public Shared Function LoadUsers() As MySqlDataSet.userDataTable
+		Dim userAdapt = New MySqlDataSetTableAdapters.userTableAdapter()
 		Dim dt = userAdapt.GetData()
 		Return dt
 	End Function

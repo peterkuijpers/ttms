@@ -1,20 +1,28 @@
 ﻿Imports TTMS
+Imports System.Windows.Controls
+Imports System.Xaml
+
+
+
 
 Public Class NCRDetailsForm
+
 	Private ncrId As Integer
 	Private user As User
 	Private curNcr As NCR
-	
+
 	Public Sub New(id As Integer)
+
 		InitializeComponent()
-		'
+
+
 		Me.ncrId = id
 		curNcr = DB.LoadNcr(id)
 		curNcr.RaisedByUser = DB.LoadUser(curNcr.raised_by_id)
 
-		Me.ActionCmb.DataSource = DB.LoadActions(curNcr.status_id)
-		Me.ActionCmb.DisplayMember = "description"
-		Me.ActionCmb.ValueMember = "Code"
+		'	Me.ActionCmb.DataSource = DB.LoadActions(curNcr.status_id)
+		'	Me.ActionCmb.DisplayMember = "description"
+		'	Me.ActionCmb.ValueMember = "Code"
 
 		Me.CurStatusCmb.DataSource = DB.LoadStatus
 		Me.CurStatusCmb.DisplayMember = "short_description"
@@ -41,13 +49,15 @@ Public Class NCRDetailsForm
 
 		'enable/disable objects according to the status
 		Select Case curNcr.status_id
-			Case Status.NewNCR
+			Case Status.StatusType.Creating
 				StatusNewNCR()
-			Case Status.NewNcrSubmit
-				StatusNewNcrSubmitted()
-			Case Status.NewNcrAccepted
+			Case Status.StatusType.SubmittedToAssignee
+				StatusNewNcrSubmittedToAssignee()
+			Case Status.StatusType.Assigned
 				StatusNcrAccepted()
-			Case Status.NewNcrDelegated
+			Case Status.StatusType.SubmittedToDelegate
+				StatusNewNcrSubmittedToDelegate()
+			Case Status.StatusType.Delegated
 				StatusNcrDelegated()
 			Case Else
 				StatusStrip1.Items.Clear()
@@ -70,16 +80,16 @@ Public Class NCRDetailsForm
 	''' <remarks></remarks>
 	Private Sub SelectStatus(stat As Integer)
 		Select Case stat
-			Case Status.NewNCR
+			Case Status.StatusType.Creating
 				StatusNewNCR()
-			Case Status.NewNcrSubmit
+			Case Status.StatusType.SubmittedToAssignee
 				StatusSubmitAndWaitingApprovalNCR()
 			Case Else
 
 		End Select
 	End Sub
 
-	Private Sub StatusNewNcrSubmitted()
+	Private Sub StatusNewNcrSubmittedToAssignee()
 		Me.TitleTb.Enabled = False
 		Me.DescriptionTB.Enabled = False
 		Me.RaisedToCmb.Enabled = False
@@ -94,6 +104,20 @@ Public Class NCRDetailsForm
 		NCRTabControl.TabPages(5).Enabled = False
 	End Sub
 
+	Private Sub StatusNewNcrSubmittedToDelegate()
+		Me.TitleTb.Enabled = False
+		Me.DescriptionTB.Enabled = False
+		Me.RaisedToCmb.Enabled = False
+		Me.RaisedByTb.Enabled = False
+		'
+		Me.RaisedByTb.Enabled = False
+		NCRTabControl.TabPages(0).Enabled = True
+		NCRTabControl.TabPages(1).Enabled = False
+		NCRTabControl.TabPages(2).Enabled = False
+		NCRTabControl.TabPages(3).Enabled = False
+		NCRTabControl.TabPages(4).Enabled = False
+		NCRTabControl.TabPages(5).Enabled = False
+	End Sub
 	Private Sub StatusNewNCR()
 		Me.RaisedByTb.Enabled = False
 		Me.RaisedToCmb.Enabled = True
@@ -103,7 +127,7 @@ Public Class NCRDetailsForm
 		NCRTabControl.TabPages(3).Enabled = False
 		NCRTabControl.TabPages(4).Enabled = False
 		NCRTabControl.TabPages(5).Enabled = False
-		Me.ActionCmb.DataSource = DB.LoadActions(curNcr.status_id)
+		'	Me.ActionCmb.DataSource = DB.LoadActions(curNcr.status_id)
 	End Sub
 
 	Private Sub StatusNcrAccepted()
@@ -147,9 +171,9 @@ Public Class NCRDetailsForm
 		Me.Close()
 	End Sub
 
-	Private Sub SubmitBtn_Click(sender As System.Object, e As System.EventArgs) Handles SubmitBtn.Click
+	Private Sub SubmitBtn_Click(sender As System.Object, e As System.EventArgs)
 
-		Dim actionCode As String = Me.ActionCmb.SelectedValue
+		'	Dim actionCode As String = Me.ActionCmb.SelectedValue
 
 		' get raised to user
 		If (Not IsNothing(RaisedToCmb.SelectedValue)) Then
@@ -160,50 +184,50 @@ Public Class NCRDetailsForm
 
 		End If
 
-		Select Case actionCode
-			Case "SUBMIT"
-				Dim result = NewNcrSubmitValidate()
-				If (result <> 0) Then
-					StatusStrip1.Items.Clear()
-					StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-				Else 'validated
-					NewNcrSubmit()
-				End If
-			Case "ACCEPT"
-				Dim result = NcrAcceptValidate()
-				If (result <> 0) Then
-					StatusStrip1.Items.Clear()
-					StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-				Else ' valid
-					NcrAccept()
-				End If
-			Case "REJECT"
-				Dim result = NcrRejectValidate()
-				If (result <> 0) Then
-					StatusStrip1.Items.Clear()
-					StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-				Else
-					'valid action
-					NcrReject()
-				End If
-			Case "DELEGATE"
-				Dim result = NcrDelegateValidate()
-				If (result <> 0) Then
-					StatusStrip1.Items.Clear()
-					StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-				Else
-					'valid action
-					NcrDelegate()
-				End If
-			Case Else
-				StatusStrip1.Items.Clear()
-				StatusStrip1.Items.Add("Invalid action")
-		End Select
+		'Select Case actionCode
+		'	Case "SUBMIT"
+		'		Dim result = NewNcrSubmitValidate()
+		'		If (result <> 0) Then
+		'			StatusStrip1.Items.Clear()
+		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
+		'		Else 'validated
+		'			NewNcrSubmit()
+		'		End If
+		'	Case "ACCEPT"
+		'		Dim result = NcrAcceptValidate()
+		'		If (result <> 0) Then
+		'			StatusStrip1.Items.Clear()
+		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
+		'		Else ' valid
+		'			NcrAccept()
+		'		End If
+		'	Case "REJECT"
+		'		Dim result = NcrRejectValidate()
+		'		If (result <> 0) Then
+		'			StatusStrip1.Items.Clear()
+		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
+		'		Else
+		'			'valid action
+		'			NcrReject()
+		'		End If
+		'	Case "DELEGATE"
+		'		Dim result = NcrDelegateValidate()
+		'		If (result <> 0) Then
+		'			StatusStrip1.Items.Clear()
+		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
+		'		Else
+		'			'valid action
+		'			NcrDelegate()
+		'		End If
+		'	Case Else
+		'		StatusStrip1.Items.Clear()
+		'		StatusStrip1.Items.Add("Invalid action")
+		'End Select
 	End Sub
 
 	Private Function NewNcrSubmitValidate() As Integer
 		' check if current status is newncr
-		If (curNcr.status_id <> Status.NewNCR) Then Return ErrorCode.ActionNotAllowedForThisStatus
+		If (curNcr.status_id <> Status.StatusType.Creating) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr is assigned to someone
 		If (IsNothing(curNcr.raised_to_id)) Then Return ErrorCode.NcrNotAssigned
 		'check if current user is same as raised_by
@@ -215,7 +239,7 @@ Public Class NCRDetailsForm
 		'update status in db
 		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
 		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.raised_to_id, curNcr.Id)
-		Dim statusResult = ncrAdapt.UpdateStatus(Status.NewNcrSubmit, curNcr.Id)
+		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.SubmittedToAssignee, curNcr.Id)
 		'add item to log
 		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
 		Dim message As String = "New NCR Submitted to " + curNcr.RaisedToUser.Fullname
@@ -246,7 +270,7 @@ Public Class NCRDetailsForm
 	Private Sub NcrAccept()
 		'update status in db
 		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
-		Dim statusResult = ncrAdapt.UpdateStatus(Status.NewNcrAccepted, curNcr.Id)
+		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Assigned, curNcr.Id)
 		'add item to log
 		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
 		Dim message As String = "NCR Accepted by " & user.Fullname
@@ -272,7 +296,7 @@ Public Class NCRDetailsForm
 
 	Private Function NcrRejectValidate() As Integer
 		' check if current status is ncrsubmit
-		If (curNcr.status_id <> Status.NewNcrSubmit And curNcr.status_id <> Status.NewNcrDelegated) Then Return ErrorCode.ActionNotAllowedForThisStatus
+		If (curNcr.status_id <> Status.StatusType.SubmittedToAssignee And curNcr.status_id <> Status.StatusType.SubmittedToDelegate) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr assignee is user
 		If (curNcr.raised_to_id <> user.Id) Then Return ErrorCode.WrongNcrOwner
 		Return 0
@@ -282,7 +306,7 @@ Public Class NCRDetailsForm
 		'update status in db
 		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
 		Dim result = ncrAdapt.UpdateRaisedTo(Nothing, curNcr.Id)
-		Dim statusResult = ncrAdapt.UpdateStatus(Status.NewNCR, curNcr.Id)
+		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Creating, curNcr.Id)
 		'add item to log
 		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
 		Dim message As String = "NCR Rejected by " & user.Fullname
@@ -300,7 +324,7 @@ Public Class NCRDetailsForm
 
 	Private Function NcrDelegateValidate() As Integer
 		' check if current status is ncraccepted
-		If (curNcr.status_id <> Status.NewNcrAccepted) Then Return ErrorCode.ActionNotAllowedForThisStatus
+		If (curNcr.status_id <> Status.StatusType.Assigned) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr assignee is user
 		If (curNcr.raised_to_id = user.Id) Then Return ErrorCode.WrongNcrOwner
 		Return 0
@@ -310,7 +334,7 @@ Public Class NCRDetailsForm
 		'update status in db
 		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
 		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.raised_to_id, curNcr.Id)
-		Dim statusResult = ncrAdapt.UpdateStatus(Status.NewNcrDelegated, curNcr.Id)
+		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Delegated, curNcr.Id)
 		'add item to log
 		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
 		Dim message As String = "NCR Delegated to " & curNcr.RaisedToUser.Fullname

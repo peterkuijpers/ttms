@@ -125,6 +125,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MySqlDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MySqlDataSet.vb">
+      <DependentUpon>MySqlDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PluginManager.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="TTMSDataSet.Designer.vb">
@@ -211,7 +214,12 @@
     <Content Include="Database\DDL.sql">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Database\Model1.edmx.sql" />
+    <Content Include="Database\Model1.edmx.sql">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Database\MySqlUserTableData.sql">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
