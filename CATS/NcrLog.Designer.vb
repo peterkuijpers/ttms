@@ -1,29 +1,30 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿Imports BaseModel
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class NcrLog
-    Inherits System.Windows.Forms.UserControl
+	Inherits System.Windows.Forms.UserControl
 
-    'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
-    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
-    End Sub
+	'UserControl overrides dispose to clean up the component list.
+	<System.Diagnostics.DebuggerNonUserCode()> _
+	Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+		Try
+			If disposing AndAlso components IsNot Nothing Then
+				components.Dispose()
+			End If
+		Finally
+			MyBase.Dispose(disposing)
+		End Try
+	End Sub
 
-    'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+	'Required by the Windows Form Designer
+	Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
-    'It can be modified using the Windows Form Designer.  
-    'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
-    Private Sub InitializeComponent()
+	'NOTE: The following procedure is required by the Windows Form Designer
+	'It can be modified using the Windows Form Designer.  
+	'Do not modify it using the code editor.
+	<System.Diagnostics.DebuggerStepThrough()> _
+	Private Sub InitializeComponent()
 		Me.components = New System.ComponentModel.Container()
-		Me.LogDataSet = New TTMS.TTMSDataSet()
+		'	Me.LogDataSet = New MySqlDataSet()
 		Me.LogGridView = New System.Windows.Forms.DataGridView()
 		Me.LogBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -31,15 +32,15 @@ Partial Class NcrLog
 		Me.UseridDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.NCRIdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		CType(Me.LogDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+		'	CType(Me.LogDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.LogGridView, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.LogBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.SuspendLayout()
 		'
 		'LogDataSet
 		'
-		Me.LogDataSet.DataSetName = "TTMSDataSet"
-		Me.LogDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+		'Me.LogDataSet.DataSetName = "MySqlDataSet"
+		'Me.LogDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
 		'
 		'LogGridView
 		'
@@ -59,8 +60,8 @@ Partial Class NcrLog
 		'
 		'LogBindingSource
 		'
-		Me.LogBindingSource.DataMember = "Logs"
-		Me.LogBindingSource.DataSource = Me.LogDataSet
+		'	Me.LogBindingSource.DataMember = "Logs"
+		'		Me.LogBindingSource.DataSource = Me.LogDataSet
 		'
 		'IdDataGridViewTextBoxColumn
 		'
@@ -109,13 +110,13 @@ Partial Class NcrLog
 		Me.Controls.Add(Me.LogGridView)
 		Me.Name = "NcrLog"
 		Me.Size = New System.Drawing.Size(796, 436)
-		CType(Me.LogDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+		'	CType(Me.LogDataSet, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.LogGridView, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.LogBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ResumeLayout(False)
 
 	End Sub
-	Friend WithEvents LogDataSet As TTMS.TTMSDataSet
+	'	Friend WithEvents LogDataSet As BaseModel.MySqlDataSet()
 	Friend WithEvents LogGridView As System.Windows.Forms.DataGridView
 	Friend WithEvents LogBindingSource As System.Windows.Forms.BindingSource
 	Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn

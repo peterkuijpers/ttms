@@ -11,6 +11,248 @@ WorkflowTest
  Constructor
  </summary>
 	<remarks></remarks>
+</member><member name="M:WorkflowTest.rqtsEntities1.#ctor">
+	<summary>
+ Initializes a new rqtsEntities1 object using the connection string found in the 'rqtsEntities1' section of the application configuration file.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.#ctor(System.String)">
+	<summary>
+ Initialize a new rqtsEntities1 object.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.#ctor(System.Data.EntityClient.EntityConnection)">
+	<summary>
+ Initialize a new rqtsEntities1 object.
+ </summary>
+</member><member name="P:WorkflowTest.rqtsEntities1.departments">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.rqtsEntities1.ncrs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.rqtsEntities1.notifications">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.rqtsEntities1.users">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.rqtsEntities1.userlevels">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.AddTodepartments(WorkflowTest.department)">
+	<summary>
+ Deprecated Method for adding a new object to the departments EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.AddToncrs(WorkflowTest.ncr)">
+	<summary>
+ Deprecated Method for adding a new object to the ncrs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.AddTonotifications(WorkflowTest.notification)">
+	<summary>
+ Deprecated Method for adding a new object to the notifications EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.AddTousers(WorkflowTest.user)">
+	<summary>
+ Deprecated Method for adding a new object to the users EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:WorkflowTest.rqtsEntities1.AddTouserlevels(WorkflowTest.userlevel)">
+	<summary>
+ Deprecated Method for adding a new object to the userlevels EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:WorkflowTest.rqtsEntities1">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:WorkflowTest.department.Createdepartment(System.Int32,System.String)">
+	<summary>
+ Create a new department object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+	<param name="description">Initial value of the description property.</param>
+</member><member name="P:WorkflowTest.department.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.department.description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:WorkflowTest.department">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:WorkflowTest.ncr.Createncr(System.Int32,System.Int32,System.Int32,System.Byte[],System.String)">
+	<summary>
+ Create a new ncr object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+	<param name="raisedby_id">Initial value of the raisedby_id property.</param>
+	<param name="status_id">Initial value of the status_id property.</param>
+	<param name="description">Initial value of the description property.</param>
+	<param name="title">Initial value of the title property.</param>
+</member><member name="P:WorkflowTest.ncr.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.raisedby_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.assignedto_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.delegatedto_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.raiseddate">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.status_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.cc_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.rcp_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.ncr.title">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:WorkflowTest.ncr">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:WorkflowTest.notification.Createnotification(System.Int32,System.Int32,System.Int32,System.String,System.DateTime)">
+	<summary>
+ Create a new notification object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+	<param name="user_id">Initial value of the user_id property.</param>
+	<param name="ncr_id">Initial value of the ncr_id property.</param>
+	<param name="message">Initial value of the message property.</param>
+	<param name="timestamp">Initial value of the timestamp property.</param>
+</member><member name="P:WorkflowTest.notification.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.notification.user_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.notification.ncr_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.notification.message">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.notification.timestamp">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:WorkflowTest.notification">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:WorkflowTest.user.Createuser(System.Int32,System.String,System.String,System.String,System.SByte,System.Int32,System.Int32,System.String,System.SByte)">
+	<summary>
+ Create a new user object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+	<param name="firstname">Initial value of the firstname property.</param>
+	<param name="surname">Initial value of the surname property.</param>
+	<param name="userid">Initial value of the userid property.</param>
+	<param name="active">Initial value of the active property.</param>
+	<param name="level_id">Initial value of the level_id property.</param>
+	<param name="department_id">Initial value of the department_id property.</param>
+	<param name="password">Initial value of the password property.</param>
+	<param name="admin">Initial value of the admin property.</param>
+</member><member name="P:WorkflowTest.user.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.firstname">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.surname">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.userid">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.email">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.active">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.level_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.department_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.password">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.admin">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.user.usercol">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:WorkflowTest.user">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:WorkflowTest.userlevel.Createuserlevel(System.Int32)">
+	<summary>
+ Create a new userlevel object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+</member><member name="P:WorkflowTest.userlevel.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.userlevel.fulldescription">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:WorkflowTest.userlevel.shortdescription">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:WorkflowTest.userlevel">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
 </member><member name="P:WorkflowTest.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.

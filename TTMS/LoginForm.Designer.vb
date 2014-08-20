@@ -31,7 +31,7 @@ Partial Class LoginForm
 		Me.PwdTb = New System.Windows.Forms.TextBox()
 		Me.Label3 = New System.Windows.Forms.Label()
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-		Me.MySqlDataSet1 = New MySqlDataSet()
+		Me.MySqlDataSet1 = New TTMS.MySqlDataSet()
 		Me.FlowLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
 		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()

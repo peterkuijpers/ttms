@@ -73,7 +73,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="rqtsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="rqtsEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="rqtsEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="departments" EntityType="rqtsModel.department" />
           <EntitySet Name="ncrs" EntityType="rqtsModel.ncr" />
           <EntitySet Name="notifications" EntityType="rqtsModel.notification" />
@@ -141,7 +141,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="rqtsModelStoreContainer" CdmEntityContainer="rqtsEntities">
+        <EntityContainerMapping StorageEntityContainer="rqtsModelStoreContainer" CdmEntityContainer="rqtsEntities1">
           <EntitySetMapping Name="departments">
             <EntityTypeMapping TypeName="rqtsModel.department">
               <MappingFragment StoreEntitySet="department">
@@ -219,6 +219,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
@@ -227,8 +228,8 @@
         <EntityTypeShape EntityType="rqtsModel.department" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
         <EntityTypeShape EntityType="rqtsModel.ncr" Width="1.5" PointX="2.75" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
         <EntityTypeShape EntityType="rqtsModel.notification" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="rqtsModel.user" Width="1.5" PointX="0.75" PointY="4.75" Height="3.1340950520833335" IsExpanded="true" />
-        <EntityTypeShape EntityType="rqtsModel.userlevel" Width="1.5" PointX="2.75" PointY="4.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="rqtsModel.user" Width="1.5" PointX="8.875" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="rqtsModel.userlevel" Width="1.5" PointX="6.875" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>

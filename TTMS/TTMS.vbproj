@@ -55,7 +55,6 @@
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data.Entity, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
-    <Reference Include="MySql.Web, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -93,17 +92,17 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DatabaseModule.vb" />
+    <Compile Include="Database\MySqlModel.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySqlModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="DB.vb" />
     <Compile Include="LoginForm.Designer.vb">
       <DependentUpon>LoginForm.vb</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.vb">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Database\Model1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -154,11 +153,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Database\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.vb</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.config" />
+    <EntityDeploy Include="Database\MySqlModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MySqlModel.Designer.vb</LastGenOutput>
+    </EntityDeploy>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -206,15 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data.sql">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Database\DBL.sql">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Database\DDL.sql">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Database\Model1.edmx.sql">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Database\MySqlUserTableData.sql">

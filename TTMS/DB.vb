@@ -1,7 +1,7 @@
-﻿Imports TTMS.TTMS
+﻿
 Public Class DB
 
-	Public Shared Function LoadNcr(ncrId As Integer) As NCR
+	Public Shared Function LoadNcr(ncrId As Integer) As ncr
 		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim datatable = ncrAdapt.GetDataBy(ncrId)
 		If datatable.Rows.Count <> 1 Then
@@ -9,14 +9,14 @@ Public Class DB
 		Else
 			Dim dr = datatable.Rows(0)
 			Dim id As Integer = CType(dr.Item("id"), Integer)
-			Dim raised_by_id As Integer? = Nothing
-			If Not IsDBNull(dr.Item("raised_by_id")) Then
-				raised_by_id = CType(dr.Item("raised_by_id"), Integer)
+			Dim raisedby_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("raisedby_id")) Then
+				raisedby_id = CType(dr.Item("raisedby_id"), Integer)
 			End If
-			Dim raised_date = CType(dr.Item("raised_date"), DateTime)
-			Dim raised_to_id As Integer? = Nothing
-			If Not IsDBNull(dr.Item("raised_to_id")) Then
-				raised_to_id = CType(dr.Item("raised_to_id"), Integer)
+			Dim raiseddate = CType(dr.Item("raiseddate"), DateTime)
+			Dim assignedto_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("assignedto_id")) Then
+				assignedto_id = CType(dr.Item("assignedto_id"), Integer)
 			End If
 			Dim status_id = CType(dr.Item("status_id"), Integer)
 			Dim CC_id As Integer? = Nothing
@@ -32,9 +32,9 @@ Public Class DB
 			'Dim thisNcr As NCR = NCR.CreateNCR(id, raised_by_id, raised_date, raised_to_id, status_id, description, title)
 			Dim thisNcr As NCR = New NCR()
 			thisNcr.Id = id
-			thisNcr.raised_by_id = raised_by_id
-			thisNcr.raised_date = raised_date
-			thisNcr.raised_to_id = raised_to_id
+			thisNcr.raisedby_id = raisedby_id
+			thisNcr.raiseddate = raiseddate
+			thisNcr.assignedto_id = assignedto_id
 			thisNcr.status_id = status_id
 			thisNcr.RCP_id = RCP_id
 			thisNcr.Description = description
@@ -44,11 +44,11 @@ Public Class DB
 
 	End Function
 
-	Public Shared Function StoreNcr(ncr As NCR) As Boolean
+	Public Shared Function StoreNcr(ncr As ncr) As Boolean
 
 	End Function
 
-	Public Shared Function UpdateNcr(ncr As NCR) As Boolean
+	Public Shared Function UpdateNcr(ncr As ncr) As Boolean
 		Dim ncrAdapt = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
 		Dim result As Integer = 1
 		'		Dim result As Integer = ncrAdapt.UpdateNcrDetails(ncr.raised_to_id, ncr.Description, ncr.Id, System.DBNull)
@@ -78,8 +78,8 @@ Public Class DB
 
 			user.Id = userid
 			user.Firstname = firstname
-			user.Surname = surname
-			user.Fullname = surname + ", " + firstname
+			user.surname = surname
+			'	user.fullname = surname + ", " + firstname
 			Return user
 		End If
 

@@ -18,40 +18,40 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("e8febeb2-3921-4d2c-97e3-6b841ddeaac0")>
+<Assembly: EdmSchemaAttribute("e8983c43-4e6d-43ae-b878-6f5e3b323220")>
 #Region "Contexts"
 
 ''' <summary>
 ''' No Metadata Documentation available.
 ''' </summary>
-Public Partial Class rqtsEntities
+Public Partial Class rqtsEntities1
     Inherits ObjectContext
 
     #Region "Constructors"
 
     ''' <summary>
-    ''' Initializes a new rqtsEntities object using the connection string found in the 'rqtsEntities' section of the application configuration file.
+    ''' Initializes a new rqtsEntities1 object using the connection string found in the 'rqtsEntities1' section of the application configuration file.
     ''' </summary>
     Public Sub New()
-        MyBase.New("name=rqtsEntities", "rqtsEntities")
+        MyBase.New("name=rqtsEntities1", "rqtsEntities1")
         MyBase.ContextOptions.LazyLoadingEnabled = true
         OnContextCreated()
     End Sub
 
     ''' <summary>
-    ''' Initialize a new rqtsEntities object.
+    ''' Initialize a new rqtsEntities1 object.
     ''' </summary>
     Public Sub New(ByVal connectionString As String)
-        MyBase.New(connectionString, "rqtsEntities")
+        MyBase.New(connectionString, "rqtsEntities1")
         MyBase.ContextOptions.LazyLoadingEnabled = true
         OnContextCreated()
     End Sub
 
     ''' <summary>
-    ''' Initialize a new rqtsEntities object.
+    ''' Initialize a new rqtsEntities1 object.
     ''' </summary>
     Public Sub New(ByVal connection As EntityConnection)
-        MyBase.New(connection, "rqtsEntities")
+        MyBase.New(connection, "rqtsEntities1")
         MyBase.ContextOptions.LazyLoadingEnabled = true
         OnContextCreated()
     End Sub

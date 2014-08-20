@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class CatsForm
 	Inherits System.Windows.Forms.Form
 
@@ -23,6 +23,10 @@ Partial Class CatsForm
 	<System.Diagnostics.DebuggerStepThrough()> _
 	Private Sub InitializeComponent()
 		Me.components = New System.ComponentModel.Container()
+		Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
 		Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
 		Me.UserStatStripLbl = New System.Windows.Forms.ToolStripStatusLabel()
@@ -37,23 +41,19 @@ Partial Class CatsForm
 		Me.Panel2 = New System.Windows.Forms.Panel()
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-		Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.UserBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.TtmsDataSet1 = New TTMS.TTMSDataSet()
-		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.StatusBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.NcrBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.Label7 = New System.Windows.Forms.Label()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-		Me.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
-		Me.NCR_StatusTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
-		Me.UsersTableAdapter = New TTMS.TTMSDataSetTableAdapters.UsersTableAdapter()
 		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
 		Me.StatusStrip2 = New System.Windows.Forms.StatusStrip()
 		Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
+		Me.idColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.RaisedByIdCmb = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.AssignedToIdCmb = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.DelegateIdCmb = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.StatusIdCmb = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.StatusStrip1.SuspendLayout()
 		Me.Panel1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
@@ -61,9 +61,7 @@ Partial Class CatsForm
 		Me.Panel2.SuspendLayout()
 		Me.TableLayoutPanel3.SuspendLayout()
 		CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.TtmsDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.StatusBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.NcrBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.TableLayoutPanel2.SuspendLayout()
 		Me.StatusStrip2.SuspendLayout()
 		Me.SuspendLayout()
@@ -209,99 +207,51 @@ Partial Class CatsForm
 		'
 		Me.DataGridView1.AllowUserToAddRows = False
 		Me.DataGridView1.AllowUserToDeleteRows = False
+		DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+		Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
 		Me.DataGridView1.AutoGenerateColumns = False
 		Me.DataGridView1.BackgroundColor = System.Drawing.Color.Khaki
+		DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+		DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+		DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+		DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+		DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+		DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
 		Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdColumn, Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.TitleDataGridViewTextBoxColumn})
-		Me.DataGridView1.DataMember = "NCRs"
-		Me.DataGridView1.DataSource = Me.TtmsDataSet1
+		Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idColumn, Me.TitleDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn2, Me.RaisedByIdCmb, Me.AssignedToIdCmb, Me.DelegateIdCmb, Me.StatusIdCmb})
+		Me.DataGridView1.DataSource = Me.NcrBindingSource
+		DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+		DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+		DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+		DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+		DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+		DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+		Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
 		Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.DataGridView1.Location = New System.Drawing.Point(3, 3)
+		Me.DataGridView1.MultiSelect = False
 		Me.DataGridView1.Name = "DataGridView1"
 		Me.DataGridView1.ReadOnly = True
+		DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+		DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+		DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+		DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+		DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+		DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+		Me.DataGridView1.RowHeadersVisible = False
 		Me.DataGridView1.RowHeadersWidth = 20
+		Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
 		Me.DataGridView1.Size = New System.Drawing.Size(853, 363)
 		Me.DataGridView1.TabIndex = 0
 		'
-		'IdColumn
+		'NcrBindingSource
 		'
-		Me.IdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-		Me.IdColumn.DataPropertyName = "Id"
-		Me.IdColumn.HeaderText = "Id"
-		Me.IdColumn.MinimumWidth = 50
-		Me.IdColumn.Name = "IdColumn"
-		Me.IdColumn.ReadOnly = True
-		Me.IdColumn.Width = 50
-		'
-		'DataGridViewTextBoxColumn1
-		'
-		Me.DataGridViewTextBoxColumn1.DataPropertyName = "raised_by_id"
-		Me.DataGridViewTextBoxColumn1.DataSource = Me.UserBindingSource
-		Me.DataGridViewTextBoxColumn1.DisplayMember = "FullName"
-		Me.DataGridViewTextBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-		Me.DataGridViewTextBoxColumn1.HeaderText = "Raised By"
-		Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-		Me.DataGridViewTextBoxColumn1.ReadOnly = True
-		Me.DataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.DataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		Me.DataGridViewTextBoxColumn1.ValueMember = "Id"
-		'
-		'UserBindingSource
-		'
-		Me.UserBindingSource.DataMember = "Users"
-		Me.UserBindingSource.DataSource = Me.TtmsDataSet1
-		Me.UserBindingSource.Sort = "surname"
-		'
-		'TtmsDataSet1
-		'
-		Me.TtmsDataSet1.DataSetName = "TTMSDataSet"
-		Me.TtmsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-		'
-		'DataGridViewTextBoxColumn2
-		'
-		Me.DataGridViewTextBoxColumn2.DataPropertyName = "raised_date"
-		Me.DataGridViewTextBoxColumn2.HeaderText = "Raised Date"
-		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-		Me.DataGridViewTextBoxColumn2.ReadOnly = True
-		'
-		'DataGridViewTextBoxColumn3
-		'
-		Me.DataGridViewTextBoxColumn3.DataPropertyName = "raised_to_id"
-		Me.DataGridViewTextBoxColumn3.DataSource = Me.UserBindingSource
-		Me.DataGridViewTextBoxColumn3.DisplayMember = "FullName"
-		Me.DataGridViewTextBoxColumn3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-		Me.DataGridViewTextBoxColumn3.HeaderText = "Raised To"
-		Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-		Me.DataGridViewTextBoxColumn3.ReadOnly = True
-		Me.DataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		Me.DataGridViewTextBoxColumn3.ValueMember = "Id"
-		'
-		'DataGridViewTextBoxColumn4
-		'
-		Me.DataGridViewTextBoxColumn4.DataPropertyName = "status_id"
-		Me.DataGridViewTextBoxColumn4.DataSource = Me.StatusBindingSource
-		Me.DataGridViewTextBoxColumn4.DisplayMember = "short_description"
-		Me.DataGridViewTextBoxColumn4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-		Me.DataGridViewTextBoxColumn4.HeaderText = "Status"
-		Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-		Me.DataGridViewTextBoxColumn4.ReadOnly = True
-		Me.DataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.DataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		Me.DataGridViewTextBoxColumn4.ValueMember = "id"
-		'
-		'StatusBindingSource
-		'
-		Me.StatusBindingSource.DataMember = "NCR_Status1"
-		Me.StatusBindingSource.DataSource = Me.TtmsDataSet1
-		'
-		'TitleDataGridViewTextBoxColumn
-		'
-		Me.TitleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-		Me.TitleDataGridViewTextBoxColumn.DataPropertyName = "title"
-		Me.TitleDataGridViewTextBoxColumn.HeaderText = "Title"
-		Me.TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
-		Me.TitleDataGridViewTextBoxColumn.ReadOnly = True
+		Me.NcrBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.ncrDataTable)
 		'
 		'Label7
 		'
@@ -314,18 +264,6 @@ Partial Class CatsForm
 		'
 		Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
 		Me.ContextMenuStrip1.Size = New System.Drawing.Size(61, 4)
-		'
-		'NCRsTableAdapter
-		'
-		Me.NCRsTableAdapter.ClearBeforeFill = True
-		'
-		'NCR_StatusTableAdapter
-		'
-		Me.NCR_StatusTableAdapter.ClearBeforeFill = True
-		'
-		'UsersTableAdapter
-		'
-		Me.UsersTableAdapter.ClearBeforeFill = True
 		'
 		'TableLayoutPanel2
 		'
@@ -359,6 +297,74 @@ Partial Class CatsForm
 		Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(97, 20)
 		Me.ToolStripStatusLabel3.Text = "NCTS Version 1.1"
 		'
+		'idColumn
+		'
+		Me.idColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.idColumn.DataPropertyName = "id"
+		Me.idColumn.FillWeight = 50.0!
+		Me.idColumn.HeaderText = "id"
+		Me.idColumn.MinimumWidth = 50
+		Me.idColumn.Name = "idColumn"
+		Me.idColumn.ReadOnly = True
+		Me.idColumn.Width = 50
+		'
+		'TitleDataGridViewTextBoxColumn
+		'
+		Me.TitleDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		Me.TitleDataGridViewTextBoxColumn.DataPropertyName = "title"
+		Me.TitleDataGridViewTextBoxColumn.HeaderText = "Title"
+		Me.TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
+		Me.TitleDataGridViewTextBoxColumn.ReadOnly = True
+		'
+		'DataGridViewTextBoxColumn2
+		'
+		Me.DataGridViewTextBoxColumn2.DataPropertyName = "raiseddate"
+		Me.DataGridViewTextBoxColumn2.HeaderText = "Date Raised"
+		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+		Me.DataGridViewTextBoxColumn2.ReadOnly = True
+		'
+		'RaisedByIdCmb
+		'
+		Me.RaisedByIdCmb.DataPropertyName = "raisedby_id"
+		Me.RaisedByIdCmb.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+		Me.RaisedByIdCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.RaisedByIdCmb.HeaderText = "Raised By"
+		Me.RaisedByIdCmb.Name = "RaisedByIdCmb"
+		Me.RaisedByIdCmb.ReadOnly = True
+		Me.RaisedByIdCmb.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.RaisedByIdCmb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		'
+		'AssignedToIdCmb
+		'
+		Me.AssignedToIdCmb.DataPropertyName = "assignedto_id"
+		Me.AssignedToIdCmb.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+		Me.AssignedToIdCmb.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+		Me.AssignedToIdCmb.HeaderText = "Assigned To"
+		Me.AssignedToIdCmb.Name = "AssignedToIdCmb"
+		Me.AssignedToIdCmb.ReadOnly = True
+		Me.AssignedToIdCmb.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.AssignedToIdCmb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		'
+		'DelegateIdCmb
+		'
+		Me.DelegateIdCmb.DataPropertyName = "delegatedto_id"
+		Me.DelegateIdCmb.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+		Me.DelegateIdCmb.HeaderText = "Delegated To"
+		Me.DelegateIdCmb.Name = "DelegateIdCmb"
+		Me.DelegateIdCmb.ReadOnly = True
+		Me.DelegateIdCmb.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.DelegateIdCmb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		'
+		'StatusIdCmb
+		'
+		Me.StatusIdCmb.DataPropertyName = "status_id"
+		Me.StatusIdCmb.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+		Me.StatusIdCmb.HeaderText = "Status"
+		Me.StatusIdCmb.Name = "StatusIdCmb"
+		Me.StatusIdCmb.ReadOnly = True
+		Me.StatusIdCmb.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.StatusIdCmb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		'
 		'CatsForm
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -378,9 +384,7 @@ Partial Class CatsForm
 		Me.Panel2.ResumeLayout(False)
 		Me.TableLayoutPanel3.ResumeLayout(False)
 		CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.TtmsDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.StatusBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.NcrBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.TableLayoutPanel2.ResumeLayout(False)
 		Me.TableLayoutPanel2.PerformLayout()
 		Me.StatusStrip2.ResumeLayout(False)
@@ -400,9 +404,7 @@ Partial Class CatsForm
 	Friend WithEvents Label7 As System.Windows.Forms.Label
 	Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
 	Friend WithEvents NCRsBindingSource As System.Windows.Forms.BindingSource
-	Friend WithEvents NCRsTableAdapter As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter
 	Friend WithEvents UsersBindingSource As System.Windows.Forms.BindingSource
-	Friend WithEvents UsersTableAdapter As TTMS.TTMSDataSetTableAdapters.UsersTableAdapter
 	Friend WithEvents UsersBindingSource1 As System.Windows.Forms.BindingSource
 	Friend WithEvents NCRStatusBindingSource As System.Windows.Forms.BindingSource
 	Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
@@ -414,16 +416,6 @@ Partial Class CatsForm
 	Friend WithEvents CCidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents RCPidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents description As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents TtmsDataSet1 As TTMS.TTMSDataSet
-	Friend WithEvents UserBindingSource As System.Windows.Forms.BindingSource
-	Friend WithEvents StatusBindingSource As System.Windows.Forms.BindingSource
-	Friend WithEvents IdColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewComboBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewComboBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewComboBoxColumn
-	Friend WithEvents TitleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents NCR_StatusTableAdapter As TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter
 	Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 	Friend WithEvents UserStatStripLbl As System.Windows.Forms.ToolStripStatusLabel
 	Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
@@ -431,5 +423,13 @@ Partial Class CatsForm
 	Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
 	Friend WithEvents StatusStrip2 As System.Windows.Forms.StatusStrip
 	Friend WithEvents ToolStripStatusLabel3 As System.Windows.Forms.ToolStripStatusLabel
+	Friend WithEvents NcrBindingSource As System.Windows.Forms.BindingSource
+	Friend WithEvents idColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents TitleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents RaisedByIdCmb As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents AssignedToIdCmb As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents DelegateIdCmb As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents StatusIdCmb As System.Windows.Forms.DataGridViewComboBoxColumn
 
 End Class

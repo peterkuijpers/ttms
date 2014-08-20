@@ -8,7 +8,7 @@ Public Class Dashboard
 
 	Private thisUser As User
 	Private thisDepartment As Department
-	Private thisLevel As Level
+	Private thisLevel As userlevel
 
 
 	Public Sub New()
@@ -39,16 +39,16 @@ Public Class Dashboard
 		thisUser = Database.LoadUser(id)
 		Dim department As New Department
 		department = Database.LoadDepartment(thisUser)
-		thisUser.Department = department
+		thisUser.department = department
 		DepartmentLbl.Text = department.Description
 
-		Dim lvl As New Level
+		Dim lvl As New userlevel
 		lvl = Database.LoadLevel(thisUser)
-		thisUser.Level = lvl
-		LevelLbl.Text = lvl.full_description
+		thisUser.userlevel = lvl
+		LevelLbl.Text = lvl.fulldescription
 		ShowUserDetails(thisUser)
 		ShowNotifications(thisUser.Id)
-		ShowUserAdminBtn(thisUser.is_admin)
+		ShowUserAdminBtn(thisUser.admin)
 
 	End Sub
 
@@ -118,18 +118,18 @@ Public Class Dashboard
 		thisUser.Department = department
 		DepartmentLbl.Text = department.Description
 
-		Dim lvl As New Level
+		Dim lvl As New userlevel
 		lvl = Database.LoadLevel(thisUser)
-		thisUser.Level = lvl
-		LevelLbl.Text = lvl.full_description
+		thisUser.userlevel = lvl
+		LevelLbl.Text = lvl.fulldescription
 		ShowUserDetails(thisUser)
 		ShowNotifications(thisUser.Id)
-		ShowUserAdminBtn(thisUser.is_admin)
+		ShowUserAdminBtn(thisUser.admin)
 
 	End Sub
 
-	Private Sub ShowUserDetails(thisuser As User)
-		UserNameLbl.Text = thisuser.Firstname + " " + thisuser.Surname
+	Private Sub ShowUserDetails(thisuser As user)
+		UserNameLbl.Text = thisuser.firstname + " " + thisuser.surname
 
 	End Sub
 

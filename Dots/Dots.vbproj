@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\TTMS\Plugins\</OutputPath>
+    <OutputPath>..\ModelTest\Plugins\</OutputPath>
     <DocumentationFile>Dots.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -55,6 +55,11 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="TTMS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>bin\Debug\TTMS.exe</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -112,9 +117,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TTMS\TTMS.vbproj">
-      <Project>{990432F2-7BB1-46EF-BD05-E6784D1FEEEB}</Project>
-      <Name>TTMS</Name>
+    <ProjectReference Include="..\ModelTest\BaseModel.vbproj">
+      <Project>{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}</Project>
+      <Name>BaseModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
