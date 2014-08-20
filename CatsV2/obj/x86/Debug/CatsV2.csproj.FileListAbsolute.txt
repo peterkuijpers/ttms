@@ -1,3 +1,0 @@
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CatsV2\obj\x86\Debug\CatsV2.Properties.Resources.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CatsV2\obj\x86\Debug\CatsV2.StatusControl.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CatsV2\obj\x86\Debug\CatsV2.csproj.GenerateResource.Cache

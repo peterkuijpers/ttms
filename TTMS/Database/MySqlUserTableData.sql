@@ -1,1 +1,0 @@
-﻿insert into user (firstname, surname, userid, email, active, level_id, department_id, password, admin) values ('peter', 'kuijpers', 'pkuijp1', 'kuijpers@optusnet.com.au', 1, 1, 1, 'pkp123',1 )

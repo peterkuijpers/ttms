@@ -1,6 +1,0 @@
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Cats2\obj\x86\Debug\Cats2.vbprojResolveAssemblyReference.cache
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Cats2\obj\x86\Debug\Cats2.CatsForm.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Cats2\obj\x86\Debug\Cats2.Resources.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Cats2\obj\x86\Debug\Cats2.NewCARForm.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Cats2\obj\x86\Debug\Cats2.StatusControl.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Cats2\obj\x86\Debug\Cats2.vbproj.GenerateResource.Cache
