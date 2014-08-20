@@ -1,0 +1,215 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+CATS
+</name>
+</assembly>
+<members>
+<member name="T:CATS.TTMSDataSet1.NCRsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:CATS.TTMSDataSet1.NCRsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:CATS.TTMSDataSet1.NCRsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:CATS.TTMSDataSet1">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:CATS.TTMSDataSet1TableAdapters.NCRsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.UpdateUpdatedRows(CATS.TTMSDataSet1,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.UpdateInsertedRows(CATS.TTMSDataSet1,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.UpdateDeletedRows(CATS.TTMSDataSet1,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.UpdateAll(CATS.TTMSDataSet1)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:CATS.TTMSDataSet1TableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:CATS.TTMSDataSet1TableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="M:CATS.CatsForm.ShowPluginForm(TTMS.User,System.Int32)">
+	<summary>
+ Show this form as a Plugin
+ </summary>
+	<param name="user"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CatsForm.UpdateHeaderInfo(TTMS.User)">
+	<summary>
+ Update the header part of the form with the user details
+ </summary>
+	<param name="user"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CatsForm.QuitBtn_Click(System.Object,System.EventArgs)">
+	<summary>
+ Close this form
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CatsForm.NewCarBtn_Click(System.Object,System.EventArgs)">
+	<summary>
+ Start creating a new CAR
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CatsForm.DataGridView1_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+	<summary>
+ Show details when any cell is double clicked
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CatsForm.ShowDetails(System.Int32)">
+	<summary>
+ Show details of selected CAR
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATS.NCRDetailsForm.SelectStatus(System.Int32)">
+	<summary>
+ Perform action depending on new status
+ </summary>
+	<param name="stat"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.NCRDetailsForm.NcrAccept">
+	<summary>
+ NCR status change to Accepted. Start CC
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATS.NCRDetailsForm.CreateCC(System.Int32)">
+	<summary>
+ Create the CC and return it
+ </summary>
+	<param name="ncrId"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:CATS.Status.#ctor">
+	<summary>
+ Constructor
+ </summary>
+	<remarks></remarks>
+</member><member name="P:CATS.My.Resources.Resources.ResourceManager">
+	<summary>
+ Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:CATS.My.Resources.Resources.Culture">
+	<summary>
+ Overrides the current thread's CurrentUICulture property for all
+ resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:CATS.My.Resources.Resources">
+	<summary>
+ A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:CATS.TTMSDataSet.NCRsDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:CATS.TTMSDataSet.NCRsRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:CATS.TTMSDataSet.NCRsRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:CATS.TTMSDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:CATS.TTMSDataSetTableAdapters.NCRsTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="M:CATS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateUpdatedRows(CATS.TTMSDataSet,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Update rows in top-down order.
+</summary>
+</member><member name="M:CATS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateInsertedRows(CATS.TTMSDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Insert rows in top-down order.
+</summary>
+</member><member name="M:CATS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateDeletedRows(CATS.TTMSDataSet,System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Delete rows in bottom-up order.
+</summary>
+</member><member name="M:CATS.TTMSDataSetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+	<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member><member name="M:CATS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateAll(CATS.TTMSDataSet)">
+	<summary>
+Update all changes to the dataset.
+</summary>
+</member><member name="T:CATS.TTMSDataSetTableAdapters.TableAdapterManager.UpdateOrderOption">
+	<summary>
+Update Order Option
+</summary>
+</member><member name="T:CATS.TTMSDataSetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+	<summary>
+Used to sort self-referenced table's rows
+</summary>
+</member><member name="T:CATS.TTMSDataSetTableAdapters.TableAdapterManager">
+	<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member><member name="P:CATS.NewCARForm.CreateNewCAR">
+	<summary>
+ Get the property that indicates for the form that a new CAR is needed (TRUE) or 
+ viewing an existing CAR (FALSE)
+ </summary>
+	<value></value>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="P:CATS.NewCARForm.CarIdent">
+	<summary>
+ Set the CAR Id property for showing the CAR details
+ </summary>
+	<value></value>
+	<remarks></remarks>
+</member><member name="M:CATS.NewCARForm.CreateBtn_Click(System.Object,System.EventArgs)">
+	<summary>
+ Create new car ticket
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="T:CATS.NewCARForm">
+	<summary>
+ Enter details for new Customer Assistance Request (CAR) or view/modify details for existing CAR
+ </summary>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

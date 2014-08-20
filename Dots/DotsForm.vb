@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel.Composition
 Imports System.ComponentModel.Composition.Hosting
-Imports BaseModel
+Imports TTMS
 
 <Export(GetType(IOperation))>
 <ExportMetadata("PluginType", "dots")>
@@ -12,7 +12,7 @@ Public Class DotsForm
 		Me.ShowDialog()
 	End Sub
 
-
+	
 	Private Sub CloseBtn_Click(sender As System.Object, e As System.EventArgs) Handles CloseBtn.Click
 		Me.Close()
 	End Sub

@@ -1,25 +1,22 @@
-﻿
+﻿Imports TTMS.TTMS
 Public Class DB
 
-	Public Shared Function LoadNcr(ncrId As Integer) As Ncr
-		If IsNothing(ncrId) Then
-			Return Nothing
-		End If
+	Public Shared Function LoadNcr(ncrId As Integer) As NCR
 		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter()
-		Dim datatable = ncrAdapt.GetDataBy1(ncrId)
+		Dim datatable = ncrAdapt.GetDataBy(ncrId)
 		If datatable.Rows.Count <> 1 Then
 			Return Nothing
 		Else
 			Dim dr = datatable.Rows(0)
 			Dim id As Integer = CType(dr.Item("id"), Integer)
-			Dim raisedby_id As Integer? = Nothing
-			If Not IsDBNull(dr.Item("raisedby_id")) Then
-				raisedby_id = CType(dr.Item("raisedby_id"), Integer)
+			Dim raised_by_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("raised_by_id")) Then
+				raised_by_id = CType(dr.Item("raised_by_id"), Integer)
 			End If
-			Dim raiseddate = CType(dr.Item("raiseddate"), DateTime)
-			Dim assignedto_id As Integer? = Nothing
-			If Not IsDBNull(dr.Item("assignedto_id")) Then
-				assignedto_id = CType(dr.Item("assignedto_id"), Integer)
+			Dim raised_date = CType(dr.Item("raised_date"), DateTime)
+			Dim raised_to_id As Integer? = Nothing
+			If Not IsDBNull(dr.Item("raised_to_id")) Then
+				raised_to_id = CType(dr.Item("raised_to_id"), Integer)
 			End If
 			Dim status_id = CType(dr.Item("status_id"), Integer)
 			Dim CC_id As Integer? = Nothing
@@ -33,26 +30,26 @@ Public Class DB
 			End If
 			Dim title = CType(dr.Item("title"), String)
 			'Dim thisNcr As NCR = NCR.CreateNCR(id, raised_by_id, raised_date, raised_to_id, status_id, description, title)
-			Dim thisNcr As Ncr = New Ncr()
-			thisNcr.id = id
-			thisNcr.raisedby_id = raisedby_id
-			thisNcr.raiseddate = raiseddate
-			thisNcr.assignedto_id = assignedto_id
+			Dim thisNcr As NCR = New NCR()
+			thisNcr.Id = id
+			thisNcr.raised_by_id = raised_by_id
+			thisNcr.raised_date = raised_date
+			thisNcr.raised_to_id = raised_to_id
 			thisNcr.status_id = status_id
-			thisNcr.rcp_id = RCP_id
-			thisNcr.description = description
+			thisNcr.RCP_id = RCP_id
+			thisNcr.Description = description
 			thisNcr.title = title
 			Return thisNcr
 		End If
 
 	End Function
 
-	Public Shared Function StoreNcr(ncr As ncr) As Boolean
+	Public Shared Function StoreNcr(ncr As NCR) As Boolean
 
 	End Function
 
-	Public Shared Function UpdateNcr(ncr As ncr) As Boolean
-		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter()
+	Public Shared Function UpdateNcr(ncr As NCR) As Boolean
+		Dim ncrAdapt = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
 		Dim result As Integer = 1
 		'		Dim result As Integer = ncrAdapt.UpdateNcrDetails(ncr.raised_to_id, ncr.Description, ncr.Id, System.DBNull)
 		'		Dim result As Integer = ncrAdapt.Update(ncr.raised_by_id, ncr.raised_date, ncr.raised_to_id, ncr.status_id, ncr.RCP_id, ncr.Description, ncr.title, ncr.Id, ncr.raised_by_id, ncr.raised_date, ncr.raised_to_id, ncr.status_id, ncr.RCP_id)
@@ -77,11 +74,12 @@ Public Class DB
 			Dim firstname As String = CType(dr.Item("firstname"), String)
 			Dim surname As String = CType(dr.Item("surname"), String)
 
-			Dim user = New User()
-			user.id = userid
-			user.firstname = firstname
-			user.surname = surname
-			'user.fullname = surname + ", " + firstname
+			Dim user As Global.TTMS.User = New Global.TTMS.User()
+
+			user.Id = userid
+			user.Firstname = firstname
+			user.Surname = surname
+			user.Fullname = surname + ", " + firstname
 			Return user
 		End If
 
@@ -103,20 +101,20 @@ Public Class DB
 	''' </summary>
 	''' <returns></returns>
 	''' <remarks></remarks>
-	'Public Shared Function LoadStatus() As MySqlDataSet.NCR_Status1DataTable
-	'	'Dim dt As TTMSDataSet.NCR_StatusDataTable = New TTMSDataSet.NCR_StatusDataTable()
-	'	'dt.Clear()
-	'	'Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_StatusTableAdapter()
-	'	Dim dt As TTMS.TTMSDataSet.NCR_Status1DataTable = New TTMS.TTMSDataSet.NCR_Status1DataTable()
-	'	dt.Clear()
-	'	Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
-	'	dt = statusAdapt.GetData()
-	'	Return dt
-	'End Function
+	Public Shared Function LoadStatus() As TTMS.TTMSDataSet.NCR_Status1DataTable
+		'Dim dt As TTMSDataSet.NCR_StatusDataTable = New TTMSDataSet.NCR_StatusDataTable()
+		'dt.Clear()
+		'Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_StatusTableAdapter()
+		Dim dt As TTMS.TTMSDataSet.NCR_Status1DataTable = New TTMS.TTMSDataSet.NCR_Status1DataTable()
+		dt.Clear()
+		Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
+		dt = statusAdapt.GetData()
+		Return dt
+	End Function
 
-	'Public Shared Function LoadActions(statusId As Integer) As TTMS.TTMSDataSet.ActionsDataTable
-	'	Dim actionsAdapt = New TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter()
-	'	Dim dt = actionsAdapt.GetDataByStatusId(statusId)
-	'	Return dt
-	'End Function
+	Public Shared Function LoadActions(statusId As Integer) As TTMS.TTMSDataSet.ActionsDataTable
+		Dim actionsAdapt = New TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter()
+		Dim dt = actionsAdapt.GetDataByStatusId(statusId)
+		Return dt
+	End Function
 End Class

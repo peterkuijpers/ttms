@@ -16,14 +16,14 @@
 				Dim user As New User
 				user.Firstname = userTable.Item(0).Field(Of String)("FirstName")
 				user.Surname = userTable.Item(0).Field(Of String)("surname")
-				'	user.Fullname = user.Surname + ", " + user.Firstname
+				user.Fullname = user.Surname + ", " + user.Firstname
 				user.Id = userTable.Item(0).Field(Of Integer)("id")
 				'
 				'If (Not userTable.Item(0).Isdepartment_idNull) Then
 				user.department_id = userTable.Item(0).Field(Of Integer)("department_id")
 				'End If
 				user.level_id = userTable.Item(0).Field(Of Integer)("level_id")
-				user.admin = userTable.Item(0).Field(Of SByte)("admin")
+				user.is_admin = userTable.Item(0).Field(Of Boolean)("admin")
 				Return user
 			Else
 				Return Nothing
@@ -38,8 +38,8 @@
 		''' <returns></returns>
 		''' <remarks></remarks>
 		Public Shared Function LoadDepartment(user As User) As Department
-			Dim departmentAdapter As New MySqlDataSetTableAdapters.departmentTableAdapter
-			Dim departmentTable As New MySqlDataSet.departmentDataTable
+			Dim departmentAdapter As New TTMSDataSetTableAdapters.DepartmentsTableAdapter
+			Dim departmentTable As New TTMSDataSet.DepartmentsDataTable
 			departmentAdapter.Fill(departmentTable)
 
 			Dim results = From tempDep In departmentTable
@@ -60,7 +60,7 @@
 		''' <param name="user"></param>
 		''' <returns></returns>
 		''' <remarks></remarks>
-		Public Shared Function LoadLevel(user As user) As userlevel
+		Public Shared Function LoadLevel(user As User) As Level
 			Dim levelAdapter As New MySqlDataSetTableAdapters.userlevelTableAdapter()
 			Dim levelTable As New MySqlDataSet.userlevelDataTable()
 			levelAdapter.Fill(levelTable)
@@ -68,11 +68,11 @@
 			Dim results = From tempLevel In levelTable
 			   Where tempLevel.id = user.level_id
 
-			Dim resultLevel As New userlevel
+			Dim resultLevel As New Level
 			If results.Count > 0 Then
-				resultLevel.Id = results(0).id
-				resultLevel.fulldescription = results(0).fulldescription
-				resultLevel.shortdescription = results(0).shortdescription
+				resultLevel.Id = results(0).Id
+				resultLevel.full_description = results(0).fulldescription
+				resultLevel.short_description = results(0).shortdescription
 			End If
 			Return resultLevel
 		End Function

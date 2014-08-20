@@ -1,41 +1,23 @@
-﻿Imports BaseModel
-
-Public Class StatusControl
+﻿Public Class StatusControl
 	Private statusMatrix()() As Integer = New Integer(5)() {}
-	Private users = New List(Of User)
+
 	Private state As Status.StatusType
 	Private callback As Action(Of Status.Actions, String)
-	Private curUser As User
 
 	Sub New()
 		' This call is required by the designer.
 		InitializeComponent()
 		' Add any initialization after the InitializeComponent() call.
-		statusMatrix(0) = {0}		'status "creating": Actions: Create
-		statusMatrix(1) = {1, 7, 8}	'status "modifying": submit, save, drop
+		statusMatrix(0) = {}
+		statusMatrix(1) = {1, 7, 8}	'status "creating": submit, save, drop
 		statusMatrix(2) = {3, 2}  ' status "submittedtoassignee": reject, accept
 		statusMatrix(3) = {4}	  'status "delegate"
 		statusMatrix(4) = {6, 5}  ' status "submittedtodelegate": reject, accept
 		statusMatrix(5) = {}	  ' status "delegated"
 	End Sub
 
-
 	Public Sub SetupCallback(callback As Action(Of Status.Actions, String))
 		Me.callback = callback
-	End Sub
-
-	Public Sub SetUsers(users As List(Of User))
-		Me.users = users
-		UserCb.DataSource = Me.users
-		UserCb.ValueMember = "id"
-		UserCb.DisplayMember = "firstname" + "," + "surname"
-		UserCb.SelectedIndex = -1
-	End Sub
-	Public Sub SetUsers(users As MySqlDataSet.userDataTable)
-		UserCb.DataSource = users
-		UserCb.ValueMember = "id"
-		UserCb.DisplayMember = "userid"
-		UserCb.SelectedIndex = -1
 	End Sub
 
 	Public Sub SetStatus(state As Status.StatusType)
@@ -57,7 +39,7 @@ Public Class StatusControl
 			End If
 			Select Case action
 				Case Status.Actions.Create
-					button.Text = "Create"
+					'do something
 				Case Status.Actions.Submit
 					button.Text = "Submit to Assignee"
 				Case Status.Actions.RejectByAssignee
@@ -77,7 +59,10 @@ Public Class StatusControl
 				Case Else
 					'else do
 			End Select
+
 		Next
+
+
 	End Sub
 	Private Sub RemoveAllButtons()
 		ActionFlowPanel.Controls.Clear()
@@ -89,16 +74,20 @@ Public Class StatusControl
 		Dim action As Status.Actions
 		action = DirectCast(button.Tag, Status.Actions)
 		Dim userReq As Boolean = Status.ActionRequiresUsername(action)
-		Dim userid As Integer
+		Dim username
 		If userReq Then
-			If UserCb.SelectedValue Is Nothing Then
+			If UserCb.SelectedItem Is Nothing Then
 				MessageBox.Show("Select user")
 				Exit Sub
 			Else
-				userid = UserCb.SelectedValue
+				username = UserCb.SelectedItem.ToString()
+
 			End If
 		End If
-		callback(action, userid)
+		callback(action, username)
 	End Sub
 
+	Private Sub GroupBox1_Enter(sender As System.Object, e As System.EventArgs) Handles GroupBox1.Enter
+
+	End Sub
 End Class

@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="rqtsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="rqtsModelStoreContainer">
+          <EntitySet Name="department" EntityType="rqtsModel.Store.department" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="ncr" EntityType="rqtsModel.Store.ncr" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="notification" EntityType="rqtsModel.Store.notification" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="user" EntityType="rqtsModel.Store.user" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="userlevel" EntityType="rqtsModel.Store.userlevel" store:Type="Tables" Schema="rqts" />
+        </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ncr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="raisedby_id" Type="int" Nullable="false" />
+          <Property Name="assignedto_id" Type="int" />
+          <Property Name="delegatedto_id" Type="int" />
+          <Property Name="raiseddate" Type="datetime" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="cc_id" Type="int" />
+          <Property Name="rcp_id" Type="int" />
+          <Property Name="description" Type="blob" Nullable="false" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="ncr_id" Type="int" Nullable="false" />
+          <Property Name="message" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="userid" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="active" Type="tinyint" Nullable="false" />
+          <Property Name="level_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="admin" Type="tinyint" Nullable="false" />
+          <Property Name="usercol" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="userlevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fulldescription" Type="varchar" MaxLength="75" />
+          <Property Name="shortdescription" Type="varchar" MaxLength="30" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="rqtsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="rqtsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="departments" EntityType="rqtsModel.department" />
+          <EntitySet Name="ncrs" EntityType="rqtsModel.ncr" />
+          <EntitySet Name="notifications" EntityType="rqtsModel.notification" />
+          <EntitySet Name="users" EntityType="rqtsModel.user" />
+          <EntitySet Name="userlevels" EntityType="rqtsModel.userlevel" />
+        </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ncr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="raisedby_id" Type="Int32" Nullable="false" />
+          <Property Name="assignedto_id" Type="Int32" />
+          <Property Name="delegatedto_id" Type="Int32" />
+          <Property Name="raiseddate" Type="DateTime" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="cc_id" Type="Int32" />
+          <Property Name="rcp_id" Type="Int32" />
+          <Property Name="description" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="ncr_id" Type="Int32" Nullable="false" />
+          <Property Name="message" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="userid" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="active" Type="SByte" Nullable="false" />
+          <Property Name="level_id" Type="Int32" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="admin" Type="SByte" Nullable="false" />
+          <Property Name="usercol" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="userlevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fulldescription" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
+          <Property Name="shortdescription" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="rqtsModelStoreContainer" CdmEntityContainer="rqtsEntities">
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="rqtsModel.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ncrs">
+            <EntityTypeMapping TypeName="rqtsModel.ncr">
+              <MappingFragment StoreEntitySet="ncr">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="raisedby_id" ColumnName="raisedby_id" />
+                <ScalarProperty Name="assignedto_id" ColumnName="assignedto_id" />
+                <ScalarProperty Name="delegatedto_id" ColumnName="delegatedto_id" />
+                <ScalarProperty Name="raiseddate" ColumnName="raiseddate" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+                <ScalarProperty Name="rcp_id" ColumnName="rcp_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="rqtsModel.notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="rqtsModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="level_id" ColumnName="level_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="usercol" ColumnName="usercol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userlevels">
+            <EntityTypeMapping TypeName="rqtsModel.userlevel">
+              <MappingFragment StoreEntitySet="userlevel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fulldescription" ColumnName="fulldescription" />
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="rqtsModel.department" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="rqtsModel.ncr" Width="1.5" PointX="2.75" PointY="0.75" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="rqtsModel.notification" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="rqtsModel.user" Width="1.5" PointX="0.75" PointY="4.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="rqtsModel.userlevel" Width="1.5" PointX="2.75" PointY="4.75" Height="1.5956835937499996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

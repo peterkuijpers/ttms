@@ -8,7 +8,7 @@ Public Class Dashboard
 
 	Private thisUser As User
 	Private thisDepartment As Department
-	Private thisLevel As Userlevel
+	Private thisLevel As Level
 
 
 	Public Sub New()
@@ -23,7 +23,7 @@ Public Class Dashboard
 	Private Sub Dashboard_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 		' Login before anything else
 		Me.Enabled = False
-		' Dim loginForm = New LoginForm()
+		Dim loginForm = New LoginForm()
 		Dim result As DialogResult = loginForm.ShowDialog()
 		If (result <> Windows.Forms.DialogResult.OK) Then
 			loggedIn = False
@@ -39,16 +39,16 @@ Public Class Dashboard
 		thisUser = Database.LoadUser(id)
 		Dim department As New Department
 		department = Database.LoadDepartment(thisUser)
-		thisUser.department = department
+		thisUser.Department = department
 		DepartmentLbl.Text = department.Description
 
-		Dim lvl As New userlevel
+		Dim lvl As New Level
 		lvl = Database.LoadLevel(thisUser)
-		thisUser.userlevel = lvl
-		LevelLbl.Text = lvl.fulldescription
+		thisUser.Level = lvl
+		LevelLbl.Text = lvl.full_description
 		ShowUserDetails(thisUser)
 		ShowNotifications(thisUser.Id)
-		ShowUserAdminBtn(thisUser.admin)
+		ShowUserAdminBtn(thisUser.is_admin)
 
 	End Sub
 
@@ -118,13 +118,13 @@ Public Class Dashboard
 		thisUser.Department = department
 		DepartmentLbl.Text = department.Description
 
-		Dim lvl As New userlevel
+		Dim lvl As New Level
 		lvl = Database.LoadLevel(thisUser)
-		thisUser.userlevel = lvl
-		LevelLbl.Text = lvl.fulldescription
+		thisUser.Level = lvl
+		LevelLbl.Text = lvl.full_description
 		ShowUserDetails(thisUser)
 		ShowNotifications(thisUser.Id)
-		ShowUserAdminBtn(thisUser.admin)
+		ShowUserAdminBtn(thisUser.is_admin)
 
 	End Sub
 
@@ -138,14 +138,12 @@ Public Class Dashboard
 	End Sub
 
 	Private Sub ShowNotifications(userid As Integer)
-
-
-		Dim notesAdapt = New MySqlDataSetTableAdapters.notificationTableAdapter()
-		Dim notesTable = New MySqlDataSet.notificationDataTable()
+		Dim notesAdapt = New TTMSDataSetTableAdapters.NotificationsTableAdapter()
+		Dim notesTable = New TTMSDataSet.NotificationsDataTable()
 		notesTable = notesAdapt.GetDataByUserId(userid)
 
-		'		NotificationsGridView.DataSource = notesTable
-		'		NotificationsGridView.Refresh()
+		NotificationsGridView.DataSource = notesTable
+		NotificationsGridView.Refresh()
 
 	End Sub
 
@@ -158,13 +156,13 @@ Public Class Dashboard
 
 	End Sub
 
-	Private Sub NotificationsGridView_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs)
+	Private Sub NotificationsGridView_CellDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles NotificationsGridView.CellDoubleClick
 		Dim rowNbr = e.RowIndex
 		Dim row = DirectCast(sender, DataGridView).Rows(rowNbr)
 		Dim ncrId = DirectCast(row.Cells.Item("ncr_id").Value, Integer)
 
 		CatsOps.ShowPluginForm(thisUser, ncrId)
-		ShowNotifications(thisUser.id)
+		ShowNotifications(thisUser.Id)
 	End Sub
 
 	Private Sub ShowUserAdminBtn(is_admin As Boolean)

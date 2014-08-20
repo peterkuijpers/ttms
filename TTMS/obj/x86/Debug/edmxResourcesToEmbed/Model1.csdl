@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="Model1.User" />
+    <EntitySet Name="Levels" EntityType="Model1.Level" />
+    <EntitySet Name="NCR_Status" EntityType="Model1.NCR_Status" />
+    <AssociationSet Name="LevelUser" Association="Model1.LevelUser">
+      <End Role="Level" EntitySet="Levels" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="Permissions1" EntityType="Model1.Permission" />
+    <AssociationSet Name="LevelPermissions" Association="Model1.LevelPermissions">
+      <End Role="Level" EntitySet="Levels" />
+      <End Role="Permissions" EntitySet="Permissions1" />
+    </AssociationSet>
+    <AssociationSet Name="StatusPermission" Association="Model1.StatusPermission">
+      <End Role="Status" EntitySet="NCR_Status" />
+      <End Role="Permission" EntitySet="Permissions1" />
+    </AssociationSet>
+    <EntitySet Name="NCRs" EntityType="Model1.NCR" />
+    <AssociationSet Name="UserNCR" Association="Model1.UserNCR">
+      <End Role="User" EntitySet="Users" />
+      <End Role="NCR" EntitySet="NCRs" />
+    </AssociationSet>
+    <AssociationSet Name="UserNCR1" Association="Model1.UserNCR1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="NCR" EntitySet="NCRs" />
+    </AssociationSet>
+    <AssociationSet Name="NCR_StatusNCR" Association="Model1.NCR_StatusNCR">
+      <End Role="NCR_Status" EntitySet="NCR_Status" />
+      <End Role="NCR" EntitySet="NCRs" />
+    </AssociationSet>
+    <EntitySet Name="CCs" EntityType="Model1.CC" />
+    <EntitySet Name="CC_Item" EntityType="Model1.CC_Item" />
+    <EntitySet Name="Departments" EntityType="Model1.Department" />
+    <AssociationSet Name="DepartmentUser" Association="Model1.DepartmentUser">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="NCRCC" Association="Model1.FK_NCR_CC">
+      <End Role="NCR" EntitySet="NCRs" />
+      <End Role="CC" EntitySet="CCs" />
+    </AssociationSet>
+    <AssociationSet Name="CCCC_Item" Association="Model1.FK_CC_CC_Item">
+      <End Role="CC" EntitySet="CCs" />
+      <End Role="CC_Item" EntitySet="CC_Item" />
+    </AssociationSet>
+    <EntitySet Name="RCPs" EntityType="Model1.RCP" />
+    <AssociationSet Name="NCRRCP" Association="Model1.NCRRCP">
+      <End Role="NCR" EntitySet="NCRs" />
+      <End Role="RCP" EntitySet="RCPs" />
+    </AssociationSet>
+    <AssociationSet Name="UserCC_Item" Association="Model1.UserCC_Item">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CC_Item" EntitySet="CC_Item" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Firstname" Nullable="false" MaxLength="50" FixedLength="false" />
+    <Property Type="String" Name="Surname" Nullable="false" FixedLength="false" MaxLength="50" />
+    <Property Type="Int32" Name="level_id" Nullable="false" />
+    <NavigationProperty Name="Level" Relationship="Model1.LevelUser" FromRole="User" ToRole="Level" />
+    <NavigationProperty Name="NCRs" Relationship="Model1.UserNCR" FromRole="User" ToRole="NCR" />
+    <NavigationProperty Name="NCRs_1" Relationship="Model1.UserNCR1" FromRole="User" ToRole="NCR" />
+    <Property Type="Int32" Name="department_id" Nullable="true" />
+    <NavigationProperty Name="Department" Relationship="Model1.DepartmentUser" FromRole="User" ToRole="Department" />
+    <Property Type="String" Name="email" Nullable="false" />
+    <NavigationProperty Name="CC_Item" Relationship="Model1.UserCC_Item" FromRole="User" ToRole="CC_Item" />
+    <Property Type="String" Name="userid" Nullable="false" />
+    <Property Type="String" Name="password" Nullable="false" />
+    <Property Type="Boolean" Name="is_admin" Nullable="false" />
+    <Property Type="Boolean" Name="is_active" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="full_description" Nullable="false" MaxLength="75" />
+    <Property Type="String" Name="short_description" Nullable="false" MaxLength="30" />
+    <NavigationProperty Name="User" Relationship="Model1.LevelUser" FromRole="Level" ToRole="User" />
+    <NavigationProperty Name="Permission" Relationship="Model1.LevelPermissions" FromRole="Level" ToRole="Permissions" />
+  </EntityType>
+  <EntityType Name="NCR_Status">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="short_description" Nullable="false" MaxLength="20" />
+    <NavigationProperty Name="Permissions" Relationship="Model1.StatusPermission" FromRole="Status" ToRole="Permission" />
+    <NavigationProperty Name="NCRs" Relationship="Model1.NCR_StatusNCR" FromRole="NCR_Status" ToRole="NCR" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+  </EntityType>
+  <Association Name="LevelUser">
+    <End Type="Model1.Level" Role="Level" Multiplicity="1" />
+    <End Type="Model1.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Level">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="level_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Level_id" />
+      <PropertyRef Name="Status_id" />
+    </Key>
+    <Property Type="Int32" Name="Level_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Status_id" Nullable="false" />
+    <NavigationProperty Name="Level" Relationship="Model1.LevelPermissions" FromRole="Permissions" ToRole="Level" />
+    <NavigationProperty Name="Status" Relationship="Model1.StatusPermission" FromRole="Permission" ToRole="Status" />
+  </EntityType>
+  <Association Name="LevelPermissions">
+    <End Type="Model1.Level" Role="Level" Multiplicity="1" />
+    <End Type="Model1.Permission" Role="Permissions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Level">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permissions">
+        <PropertyRef Name="Level_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StatusPermission">
+    <End Type="Model1.NCR_Status" Role="Status" Multiplicity="1" />
+    <End Type="Model1.Permission" Role="Permission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Permission">
+        <PropertyRef Name="Status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="NCR">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="raised_by_id" Nullable="false" />
+    <Property Type="DateTime" Name="raised_date" Nullable="false" />
+    <Property Type="Int32" Name="raised_to_id" Nullable="true" />
+    <Property Type="Int32" Name="status_id" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model1.UserNCR" FromRole="NCR" ToRole="User" />
+    <NavigationProperty Name="User_1" Relationship="Model1.UserNCR1" FromRole="NCR" ToRole="User" />
+    <NavigationProperty Name="NCR_Status" Relationship="Model1.NCR_StatusNCR" FromRole="NCR" ToRole="NCR_Status" />
+    <Property Type="Int32" Name="CC_id" Nullable="true" />
+    <NavigationProperty Name="CCs" Relationship="Model1.FK_NCR_CC" FromRole="NCR" ToRole="CC" />
+    <Property Type="Int32" Name="RCP_id" Nullable="true" />
+    <NavigationProperty Name="RCPs" Relationship="Model1.NCRRCP" FromRole="NCR" ToRole="RCP" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="title" Nullable="false" />
+  </EntityType>
+  <Association Name="UserNCR">
+    <End Type="Model1.User" Role="User" Multiplicity="1" />
+    <End Type="Model1.NCR" Role="NCR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NCR">
+        <PropertyRef Name="raised_by_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserNCR1">
+    <End Type="Model1.User" Role="User" Multiplicity="0..1" />
+    <End Type="Model1.NCR" Role="NCR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NCR">
+        <PropertyRef Name="raised_to_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NCR_StatusNCR">
+    <Documentation>
+      <Summary>FK-NCR_status-id_NCR_status_id</Summary>
+      <LongDescription>test</LongDescription>
+    </Documentation>
+    <End Type="Model1.NCR_Status" Role="NCR_Status" Multiplicity="1" />
+    <End Type="Model1.NCR" Role="NCR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NCR_Status">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="NCR">
+        <PropertyRef Name="status_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CC">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="NCR" Relationship="Model1.FK_NCR_CC" FromRole="CC" ToRole="NCR" />
+    <NavigationProperty Name="CC_Item" Relationship="Model1.FK_CC_CC_Item" FromRole="CC" ToRole="CC_Item" />
+    <Property Type="Boolean" Name="CCDone" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CC_Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Action" Nullable="false" />
+    <Property Type="String" Name="Action_by_id" Nullable="false" />
+    <Property Type="String" Name="due_date" Nullable="false" />
+    <Property Type="String" Name="completion_Date" Nullable="false" />
+    <Property Type="String" Name="status" Nullable="false" />
+    <Property Type="Int32" Name="CC_Id" Nullable="false" />
+    <NavigationProperty Name="CC" Relationship="Model1.FK_CC_CC_Item" FromRole="CC_Item" ToRole="CC" />
+    <Property Type="Boolean" Name="Passed" Nullable="false" />
+    <Property Type="Boolean" Name="Failed" Nullable="false" />
+    <Property Type="Int32" Name="Reviewer_Id" Nullable="false" />
+    <Property Type="String" Name="Review_Date" Nullable="false" />
+    <Property Type="String" Name="Review_Comment" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Model1.UserCC_Item" FromRole="CC_Item" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Users" Relationship="Model1.DepartmentUser" FromRole="Department" ToRole="User" />
+    <Property Type="String" Name="Description" Nullable="false" />
+  </EntityType>
+  <Association Name="DepartmentUser">
+    <End Type="Model1.Department" Role="Department" Multiplicity="0..1" />
+    <End Type="Model1.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NCR_CC">
+    <End Type="Model1.NCR" Role="NCR" Multiplicity="*" />
+    <End Type="Model1.CC" Role="CC" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CC">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NCR">
+        <PropertyRef Name="CC_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CC_CC_Item">
+    <End Type="Model1.CC" Role="CC" Multiplicity="1" />
+    <End Type="Model1.CC_Item" Role="CC_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CC">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CC_Item">
+        <PropertyRef Name="CC_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RCP">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="NCR" Relationship="Model1.NCRRCP" FromRole="RCP" ToRole="NCR" />
+  </EntityType>
+  <Association Name="NCRRCP">
+    <End Type="Model1.NCR" Role="NCR" Multiplicity="*" />
+    <End Type="Model1.RCP" Role="RCP" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="RCP">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NCR">
+        <PropertyRef Name="RCP_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCC_Item">
+    <End Type="Model1.User" Role="User" Multiplicity="1" />
+    <End Type="Model1.CC_Item" Role="CC_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CC_Item">
+        <PropertyRef Name="Reviewer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
