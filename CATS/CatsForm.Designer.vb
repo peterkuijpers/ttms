@@ -40,7 +40,7 @@ Partial Class CatsForm
 		Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.UserBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.TtmsDataSet1 = New TTMS.TTMSDataSet()
+		Me.TtmsDataSet1 = New BaseModel.MySqlDataSet()
 		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -48,9 +48,8 @@ Partial Class CatsForm
 		Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.Label7 = New System.Windows.Forms.Label()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-		Me.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
-		Me.NCR_StatusTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
-		Me.UsersTableAdapter = New TTMS.TTMSDataSetTableAdapters.UsersTableAdapter()
+		Me.NCRsTableAdapter = New BaseModel.MySqlDataSetTableAdapters.ncrTableAdapter()
+		Me.UsersTableAdapter = New BaseModel.MySqlDataSetTableAdapters.userTableAdapter()
 		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
 		Me.StatusStrip2 = New System.Windows.Forms.StatusStrip()
 		Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -400,9 +399,9 @@ Partial Class CatsForm
 	Friend WithEvents Label7 As System.Windows.Forms.Label
 	Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
 	Friend WithEvents NCRsBindingSource As System.Windows.Forms.BindingSource
-	Friend WithEvents NCRsTableAdapter As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter
+	Friend WithEvents NCRsTableAdapter As BaseModel.MySqlDataSetTableAdapters.ncrTableAdapter
 	Friend WithEvents UsersBindingSource As System.Windows.Forms.BindingSource
-	Friend WithEvents UsersTableAdapter As TTMS.TTMSDataSetTableAdapters.UsersTableAdapter
+	Friend WithEvents UsersTableAdapter As BaseModel.MySqlDataSetTableAdapters.userTableAdapter
 	Friend WithEvents UsersBindingSource1 As System.Windows.Forms.BindingSource
 	Friend WithEvents NCRStatusBindingSource As System.Windows.Forms.BindingSource
 	Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
@@ -414,7 +413,7 @@ Partial Class CatsForm
 	Friend WithEvents CCidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents RCPidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents description As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents TtmsDataSet1 As TTMS.TTMSDataSet
+	Friend WithEvents TtmsDataSet1 As BaseModel.MySqlDataSet
 	Friend WithEvents UserBindingSource As System.Windows.Forms.BindingSource
 	Friend WithEvents StatusBindingSource As System.Windows.Forms.BindingSource
 	Friend WithEvents IdColumn As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -423,7 +422,6 @@ Partial Class CatsForm
 	Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewComboBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewComboBoxColumn
 	Friend WithEvents TitleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents NCR_StatusTableAdapter As TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter
 	Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 	Friend WithEvents UserStatStripLbl As System.Windows.Forms.ToolStripStatusLabel
 	Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel

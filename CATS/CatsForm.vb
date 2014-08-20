@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel.Composition
 Imports System.ComponentModel.Composition.Hosting
-Imports TTMS
+Imports BaseModel
+
 
 Public Enum ErrorCode As Integer
 	WrongNcrOwner = 1

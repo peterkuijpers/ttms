@@ -11,7 +11,7 @@
 
 	Public Sub RefreshLog(ncrId As Integer)
 
-		Dim logAdapt = New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
-		logAdapt.FillBy(Me.LogDataSet.Logs, ncrId)
+		Dim logAdapt = New BaseModel.MySqlDataSetTableAdapters.logTableAdapter()
+		'		logAdapt.FillBy(Me.LogDataSet.Logs, ncrId)
 	End Sub
 End Class

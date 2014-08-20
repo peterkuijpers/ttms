@@ -98,12 +98,6 @@
     <Compile Include="NcrLog.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="NewCar.Designer.vb">
-      <DependentUpon>NewCar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="NewCar.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="CatsForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -153,9 +147,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NcrLog.resx">
       <DependentUpon>NcrLog.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewCar.resx">
-      <DependentUpon>NewCar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CatsForm.resx">
       <DependentUpon>CatsForm.vb</DependentUpon>
@@ -207,13 +198,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TTMS\TTMS.vbproj">
-      <Project>{990432F2-7BB1-46EF-BD05-E6784D1FEEEB}</Project>
-      <Name>TTMS</Name>
-    </ProjectReference>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+    <ProjectReference Include="..\ModelTest\BaseModel.vbproj">
+      <Project>{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}</Project>
+      <Name>BaseModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
