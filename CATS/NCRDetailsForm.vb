@@ -1,4 +1,4 @@
-﻿Imports TTMS
+﻿Imports BaseModel
 Imports System.Windows.Controls
 Imports System.Xaml
 
@@ -18,13 +18,13 @@ Public Class NCRDetailsForm
 
 		Me.ncrId = id
 		curNcr = DB.LoadNcr(id)
-		curNcr.RaisedByUser = DB.LoadUser(curNcr.raised_by_id)
+		curNcr.RaisedBy = DB.LoadUser(curNcr.raisedby_id)
 
 		'	Me.ActionCmb.DataSource = DB.LoadActions(curNcr.status_id)
 		'	Me.ActionCmb.DisplayMember = "description"
 		'	Me.ActionCmb.ValueMember = "Code"
-
-		Me.CurStatusCmb.DataSource = DB.LoadStatus
+		' TODO
+		Me.CurStatusCmb.DataSource = Nothing
 		Me.CurStatusCmb.DisplayMember = "short_description"
 		Me.CurStatusCmb.ValueMember = "id"
 		Me.CurStatusCmb.SelectedValue = curNcr.status_id
@@ -34,8 +34,8 @@ Public Class NCRDetailsForm
 		Me.RaisedToCmb.DataSource = DB.LoadUsers
 		Me.RaisedToCmb.DisplayMember = "fullname"
 		Me.RaisedToCmb.ValueMember = "id"
-		If (Not IsNothing(curNcr.raised_to_id)) Then
-			Me.RaisedToCmb.SelectedValue = curNcr.raised_to_id
+		If (Not IsNothing(curNcr.assignedto_id)) Then
+			Me.RaisedToCmb.SelectedValue = curNcr.assignedto_id
 		Else
 			Me.RaisedToCmb.SelectedItem = Nothing
 		End If
@@ -44,8 +44,8 @@ Public Class NCRDetailsForm
 
 		Me.TitleTb.Text = curNcr.title
 		Me.DescriptionTB.Text = curNcr.Description
-		Me.RaisedDatePicker.Value = curNcr.raised_date
-		Me.RaisedByTb.Text = curNcr.RaisedByUser.Surname + ", " + curNcr.RaisedByUser.Firstname
+		Me.RaisedDatePicker.Value = curNcr.raiseddate
+		Me.RaisedByTb.Text = curNcr.RaisedBy.surname + ", " + curNcr.RaisedBy.firstname
 
 		'enable/disable objects according to the status
 		Select Case curNcr.status_id
@@ -71,7 +71,7 @@ Public Class NCRDetailsForm
 
 	Public Sub SetCurrentUser(user As User)
 		Me.user = user
-		curNcr.RaisedByUser = user
+		curNcr.RaisedBy = user
 	End Sub
 	''' <summary>
 	''' Perform action depending on new status
@@ -177,61 +177,22 @@ Public Class NCRDetailsForm
 
 		' get raised to user
 		If (Not IsNothing(RaisedToCmb.SelectedValue)) Then
-			curNcr.raised_to_id = RaisedToCmb.SelectedValue
+			curNcr.assignedto_id = RaisedToCmb.SelectedValue
 
-			Dim raisedToUser As TTMS.User = New TTMS.User()
-			curNcr.RaisedToUser = DB.LoadUser(curNcr.raised_to_id)
+			Dim raisedToUser As User = New User()
+			curNcr.AssignedTo = DB.LoadUser(curNcr.assignedto_id)
 
 		End If
 
-		'Select Case actionCode
-		'	Case "SUBMIT"
-		'		Dim result = NewNcrSubmitValidate()
-		'		If (result <> 0) Then
-		'			StatusStrip1.Items.Clear()
-		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-		'		Else 'validated
-		'			NewNcrSubmit()
-		'		End If
-		'	Case "ACCEPT"
-		'		Dim result = NcrAcceptValidate()
-		'		If (result <> 0) Then
-		'			StatusStrip1.Items.Clear()
-		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-		'		Else ' valid
-		'			NcrAccept()
-		'		End If
-		'	Case "REJECT"
-		'		Dim result = NcrRejectValidate()
-		'		If (result <> 0) Then
-		'			StatusStrip1.Items.Clear()
-		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-		'		Else
-		'			'valid action
-		'			NcrReject()
-		'		End If
-		'	Case "DELEGATE"
-		'		Dim result = NcrDelegateValidate()
-		'		If (result <> 0) Then
-		'			StatusStrip1.Items.Clear()
-		'			StatusStrip1.Items.Add(CatsForm.ErrorCodes(result))
-		'		Else
-		'			'valid action
-		'			NcrDelegate()
-		'		End If
-		'	Case Else
-		'		StatusStrip1.Items.Clear()
-		'		StatusStrip1.Items.Add("Invalid action")
-		'End Select
 	End Sub
 
 	Private Function NewNcrSubmitValidate() As Integer
 		' check if current status is newncr
 		If (curNcr.status_id <> Status.StatusType.Creating) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr is assigned to someone
-		If (IsNothing(curNcr.raised_to_id)) Then Return ErrorCode.NcrNotAssigned
+		If (IsNothing(curNcr.assignedto_id)) Then Return ErrorCode.NcrNotAssigned
 		'check if current user is same as raised_by
-		If (curNcr.raised_by_id <> user.Id) Then Return ErrorCode.WrongNcrOwner
+		If (curNcr.raisedby_id <> user.id) Then Return ErrorCode.WrongNcrOwner
 		Return 0
 	End Function
 
@@ -353,23 +314,5 @@ Public Class NCRDetailsForm
 		StatusStrip1.Items.Add(message)
 	End Sub
 
-	''' <summary>
-	''' Create the CC and return it
-	''' </summary>
-	''' <param name="ncrId"></param>
-	''' <returns></returns>
-	''' <remarks></remarks>
-	Private Function CreateCC(ncrId As Integer) As CC
-		Dim ccAdapt = New TTMS.TTMSDataSetTableAdapters.CCsTableAdapter()
-		' insert into db, returns new cc-id
-		Dim result = ccAdapt.Insert(False, 0)
-		Dim cc As CC = Nothing
-		If (result > 0) Then
-			'success
-			NCRTabControl.TabPages(1).Enabled = True
-			cc = New CC
-			cc.Id = result
-		End If
-		Return cc
-	End Function
+	
 End Class

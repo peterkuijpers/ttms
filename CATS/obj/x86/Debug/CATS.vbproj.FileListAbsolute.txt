@@ -4,10 +4,10 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\bin\Debug\CATS.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\bin\Debug\TTMS.exe
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\bin\Debug\TTMS.pdb
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\bin\Debug\TTMS.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.vbprojResolveAssemblyReference.cache
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.CcControl.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.NCRDetailsForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.NcrLog.resources
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.NewCARForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.CatsForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.Resources.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.StatusControl.resources

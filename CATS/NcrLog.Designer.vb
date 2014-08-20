@@ -23,7 +23,7 @@ Partial Class NcrLog
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
 		Me.components = New System.ComponentModel.Container()
-		Me.LogDataSet = New TTMS.TTMSDataSet()
+		Me.LogDataSet = New BaseModel.MySqlDataSet()
 		Me.LogGridView = New System.Windows.Forms.DataGridView()
 		Me.LogBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -115,7 +115,7 @@ Partial Class NcrLog
 		Me.ResumeLayout(False)
 
 	End Sub
-	Friend WithEvents LogDataSet As TTMS.TTMSDataSet
+	Friend WithEvents LogDataSet As BaseModel.MySqlDataSet
 	Friend WithEvents LogGridView As System.Windows.Forms.DataGridView
 	Friend WithEvents LogBindingSource As System.Windows.Forms.BindingSource
 	Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn

@@ -4,6 +4,7 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseMo
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.pdb
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.vbprojResolveAssemblyReference.cache
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.Dashboard.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.LoginForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.Resources.resources
