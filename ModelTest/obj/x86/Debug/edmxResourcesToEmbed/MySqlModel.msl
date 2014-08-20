@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WorkflowTestStoreContainer" CdmEntityContainer="rqtsEntities">
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="BaseModel.Department">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ncrs">
+      <EntityTypeMapping TypeName="BaseModel.Ncr">
+        <MappingFragment StoreEntitySet="ncr">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="raisedby_id" ColumnName="raisedby_id" />
+          <ScalarProperty Name="assignedto_id" ColumnName="assignedto_id" />
+          <ScalarProperty Name="delegatedto_id" ColumnName="delegatedto_id" />
+          <ScalarProperty Name="raiseddate" ColumnName="raiseddate" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+          <ScalarProperty Name="rcp_id" ColumnName="rcp_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="BaseModel.Notification">
+        <MappingFragment StoreEntitySet="notification">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BaseModel.User">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="level_id" ColumnName="level_id" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="admin" ColumnName="admin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Userlevels">
+      <EntityTypeMapping TypeName="BaseModel.Userlevel">
+        <MappingFragment StoreEntitySet="userlevel">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="fulldescription" ColumnName="fulldescription" />
+          <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ccitems">
+      <EntityTypeMapping TypeName="BaseModel.ccitem">
+        <MappingFragment StoreEntitySet="ccitem">
+          <ScalarProperty Name="corrective" ColumnName="corrective" />
+          <ScalarProperty Name="reviewcomment" ColumnName="reviewcomment" />
+          <ScalarProperty Name="reviewdate" ColumnName="reviewdate" />
+          <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+          <ScalarProperty Name="failed" ColumnName="failed" />
+          <ScalarProperty Name="passed" ColumnName="passed" />
+          <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="completiondate" ColumnName="completiondate" />
+          <ScalarProperty Name="duedate" ColumnName="duedate" />
+          <ScalarProperty Name="actionby_id" ColumnName="actionby_id" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

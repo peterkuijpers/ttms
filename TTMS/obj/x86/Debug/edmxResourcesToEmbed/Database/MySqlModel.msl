@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="rqtsModelStoreContainer" CdmEntityContainer="rqtsEntities1">
+    <EntitySetMapping Name="departments">
+      <EntityTypeMapping TypeName="TTMS.department">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ncrs">
+      <EntityTypeMapping TypeName="TTMS.ncr">
+        <MappingFragment StoreEntitySet="ncr">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="rcp_id" ColumnName="rcp_id" />
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
+          <ScalarProperty Name="raiseddate" ColumnName="raiseddate" />
+          <ScalarProperty Name="delegatedto_id" ColumnName="delegatedto_id" />
+          <ScalarProperty Name="assignedto_id" ColumnName="assignedto_id" />
+          <ScalarProperty Name="raisedby_id" ColumnName="raisedby_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notifications">
+      <EntityTypeMapping TypeName="TTMS.notification">
+        <MappingFragment StoreEntitySet="notification">
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="TTMS.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+          <ScalarProperty Name="level_id" ColumnName="level_id" />
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userlevels">
+      <EntityTypeMapping TypeName="TTMS.userlevel">
+        <MappingFragment StoreEntitySet="userlevel">
+          <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+          <ScalarProperty Name="fulldescription" ColumnName="fulldescription" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ccitems">
+      <EntityTypeMapping TypeName="TTMS.ccitem">
+        <MappingFragment StoreEntitySet="ccitem">
+          <ScalarProperty Name="corrective" ColumnName="corrective" />
+          <ScalarProperty Name="reviewcomment" ColumnName="reviewcomment" />
+          <ScalarProperty Name="reviewdate" ColumnName="reviewdate" />
+          <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+          <ScalarProperty Name="failed" ColumnName="failed" />
+          <ScalarProperty Name="passed" ColumnName="passed" />
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="completiondate" ColumnName="completiondate" />
+          <ScalarProperty Name="duedate" ColumnName="duedate" />
+          <ScalarProperty Name="actionby_id" ColumnName="actionby_id" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ccs">
+      <EntityTypeMapping TypeName="TTMS.Cc">
+        <MappingFragment StoreEntitySet="cc">
+          <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+          <ScalarProperty Name="ccdone" ColumnName="ccdone" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

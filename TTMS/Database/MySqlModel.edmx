@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="rqtsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="rqtsModelStoreContainer">
+          <EntitySet Name="cc" EntityType="rqtsModel.Store.cc" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="ccitem" EntityType="rqtsModel.Store.ccitem" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="department" EntityType="rqtsModel.Store.department" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="ncr" EntityType="rqtsModel.Store.ncr" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="notification" EntityType="rqtsModel.Store.notification" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="user" EntityType="rqtsModel.Store.user" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="userlevel" EntityType="rqtsModel.Store.userlevel" store:Type="Tables" Schema="rqts" />
+        </EntityContainer>
+        <EntityType Name="cc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ccdone" Type="tinyint" Nullable="false" />
+          <Property Name="ncr_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ccitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="action" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="actionby_id" Type="int" Nullable="false" />
+          <Property Name="duedate" Type="datetime" Nullable="false" />
+          <Property Name="completiondate" Type="datetime" />
+          <Property Name="status" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="cc_id" Type="int" Nullable="false" />
+          <Property Name="passed" Type="bit" />
+          <Property Name="failed" Type="bit" />
+          <Property Name="reviewer_id" Type="int" />
+          <Property Name="reviewdate" Type="datetime" />
+          <Property Name="reviewcomment" Type="varchar" MaxLength="255" />
+          <Property Name="corrective" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ncr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="raisedby_id" Type="int" Nullable="false" />
+          <Property Name="assignedto_id" Type="int" />
+          <Property Name="delegatedto_id" Type="int" />
+          <Property Name="raiseddate" Type="datetime" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="cc_id" Type="int" />
+          <Property Name="rcp_id" Type="int" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="512" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="ncr_id" Type="int" Nullable="false" />
+          <Property Name="message" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="userid" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="active" Type="tinyint" Nullable="false" />
+          <Property Name="level_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="admin" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userlevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fulldescription" Type="varchar" MaxLength="75" />
+          <Property Name="shortdescription" Type="varchar" MaxLength="30" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TTMS" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="rqtsEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="departments" EntityType="TTMS.department" />
+          <EntitySet Name="ncrs" EntityType="TTMS.ncr" />
+          <EntitySet Name="notifications" EntityType="TTMS.notification" />
+          <EntitySet Name="users" EntityType="TTMS.user" />
+          <EntitySet Name="userlevels" EntityType="TTMS.userlevel" />
+          <AssociationSet Name="departmentuser" Association="TTMS.departmentuser">
+            <End Role="department" EntitySet="departments" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="userleveluser" Association="TTMS.userleveluser">
+            <End Role="userlevel" EntitySet="userlevels" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="userncr" Association="TTMS.userncr">
+            <End Role="user" EntitySet="users" />
+            <End Role="ncr" EntitySet="ncrs" />
+          </AssociationSet>
+          <AssociationSet Name="userncr1" Association="TTMS.userncr1">
+            <End Role="user" EntitySet="users" />
+            <End Role="ncr" EntitySet="ncrs" />
+          </AssociationSet>
+          <AssociationSet Name="userncr2" Association="TTMS.userncr2">
+            <End Role="user" EntitySet="users" />
+            <End Role="ncr" EntitySet="ncrs" />
+          </AssociationSet>
+          <EntitySet Name="ccitems" EntityType="TTMS.ccitem" />
+          <EntitySet Name="Ccs" EntityType="TTMS.Cc" />
+          <AssociationSet Name="ncrcc" Association="TTMS.ncrcc">
+            <End Role="ncr" EntitySet="ncrs" />
+            <End Role="cc" EntitySet="Ccs" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="TTMS.departmentuser" FromRole="department" ToRole="user" />
+        </EntityType>
+        <EntityType Name="ncr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="raisedby_id" Nullable="false" />
+          <Property Type="Int32" Name="assignedto_id" />
+          <Property Type="Int32" Name="delegatedto_id" />
+          <Property Type="DateTime" Name="raiseddate" />
+          <Property Type="Int32" Name="status_id" Nullable="false" />
+          <Property Type="Int32" Name="cc_id" Nullable="true" />
+          <Property Type="Int32" Name="rcp_id" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RaisedBy" Relationship="TTMS.userncr" FromRole="ncr" ToRole="user" />
+          <NavigationProperty Name="DelegatedTo" Relationship="TTMS.userncr1" FromRole="ncr" ToRole="user" />
+          <NavigationProperty Name="AssignedTo" Relationship="TTMS.userncr2" FromRole="ncr" ToRole="user" />
+          <NavigationProperty Name="ccs" Relationship="TTMS.ncrcc" FromRole="ncr" ToRole="cc" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="user_id" Nullable="false" />
+          <Property Type="Int32" Name="ncr_id" Nullable="false" />
+          <Property Type="String" Name="message" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="timestamp" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="firstname" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="surname" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="userid" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="SByte" Name="active" Nullable="false" />
+          <Property Type="Int32" Name="level_id" Nullable="false" />
+          <Property Type="Int32" Name="department_id" Nullable="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="SByte" Name="admin" Nullable="false" />
+          <NavigationProperty Name="department" Relationship="TTMS.departmentuser" FromRole="user" ToRole="department" />
+          <NavigationProperty Name="userlevel" Relationship="TTMS.userleveluser" FromRole="user" ToRole="userlevel" />
+          <NavigationProperty Name="ncrs" Relationship="TTMS.userncr" FromRole="user" ToRole="ncr" />
+          <NavigationProperty Name="ncrs_1" Relationship="TTMS.userncr1" FromRole="user" ToRole="ncr" />
+          <NavigationProperty Name="ncrs_2" Relationship="TTMS.userncr2" FromRole="user" ToRole="ncr" />
+        </EntityType>
+        <EntityType Name="userlevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="fulldescription" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shortdescription" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="users" Relationship="TTMS.userleveluser" FromRole="userlevel" ToRole="user" />
+        </EntityType>
+        <Association Name="departmentuser">
+          <End Type="TTMS.department" Role="department" Multiplicity="1" />
+          <End Type="TTMS.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userleveluser">
+          <End Type="TTMS.userlevel" Role="userlevel" Multiplicity="1" />
+          <End Type="TTMS.user" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userlevel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userncr">
+          <End Type="TTMS.user" Role="user" Multiplicity="1" />
+          <End Type="TTMS.ncr" Role="ncr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ncr">
+              <PropertyRef Name="raisedby_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userncr1">
+          <End Type="TTMS.user" Role="user" Multiplicity="0..1" />
+          <End Type="TTMS.ncr" Role="ncr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ncr">
+              <PropertyRef Name="delegatedto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userncr2">
+          <End Type="TTMS.user" Role="user" Multiplicity="0..1" />
+          <End Type="TTMS.ncr" Role="ncr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ncr">
+              <PropertyRef Name="assignedto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ccitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="action" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="actionby_id" Nullable="false" />
+          <Property Type="DateTime" Name="duedate" Nullable="false" />
+          <Property Type="DateTime" Name="completiondate" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="cc_id" Nullable="false" />
+          <Property Type="Boolean" Name="passed" />
+          <Property Type="Boolean" Name="failed" />
+          <Property Type="Int32" Name="reviewer_id" />
+          <Property Type="DateTime" Name="reviewdate" />
+          <Property Type="String" Name="reviewcomment" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="corrective" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="SByte" Name="ccdone" Nullable="false" />
+          <Property Type="Int32" Name="ncr_id" Nullable="false" />
+          <NavigationProperty Name="ncr" Relationship="TTMS.ncrcc" FromRole="cc" ToRole="ncr" />
+        </EntityType>
+        <Association Name="ncrcc">
+          <End Type="TTMS.ncr" Role="ncr" Multiplicity="1" />
+          <End Type="TTMS.Cc" Role="cc" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ncr">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="cc">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="rqtsModelStoreContainer" CdmEntityContainer="rqtsEntities1">
+          <EntitySetMapping Name="departments">
+            <EntityTypeMapping TypeName="TTMS.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ncrs">
+            <EntityTypeMapping TypeName="TTMS.ncr">
+              <MappingFragment StoreEntitySet="ncr">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="rcp_id" ColumnName="rcp_id" />
+                <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="raiseddate" ColumnName="raiseddate" />
+                <ScalarProperty Name="delegatedto_id" ColumnName="delegatedto_id" />
+                <ScalarProperty Name="assignedto_id" ColumnName="assignedto_id" />
+                <ScalarProperty Name="raisedby_id" ColumnName="raisedby_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="TTMS.notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="TTMS.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="level_id" ColumnName="level_id" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userlevels">
+            <EntityTypeMapping TypeName="TTMS.userlevel">
+              <MappingFragment StoreEntitySet="userlevel">
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+                <ScalarProperty Name="fulldescription" ColumnName="fulldescription" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ccitems">
+            <EntityTypeMapping TypeName="TTMS.ccitem">
+              <MappingFragment StoreEntitySet="ccitem">
+                <ScalarProperty Name="corrective" ColumnName="corrective" />
+                <ScalarProperty Name="reviewcomment" ColumnName="reviewcomment" />
+                <ScalarProperty Name="reviewdate" ColumnName="reviewdate" />
+                <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+                <ScalarProperty Name="failed" ColumnName="failed" />
+                <ScalarProperty Name="passed" ColumnName="passed" />
+                <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="completiondate" ColumnName="completiondate" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+                <ScalarProperty Name="actionby_id" ColumnName="actionby_id" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ccs">
+            <EntityTypeMapping TypeName="TTMS.Cc">
+              <MappingFragment StoreEntitySet="cc">
+                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+                <ScalarProperty Name="ccdone" ColumnName="ccdone" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MySqlModel" DisplayType="true">
+        <EntityTypeShape EntityType="TTMS.department" Width="1.5" PointX="0.5" PointY="3.25" Height="1.59568359375" />
+        <EntityTypeShape EntityType="TTMS.ncr" Width="1.5" PointX="6.125" PointY="0.5" Height="2.9417936197916665" />
+        <EntityTypeShape EntityType="TTMS.notification" Width="1.5" PointX="9.125" PointY="0.5" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="TTMS.user" Width="1.5" PointX="3.25" PointY="0.5" Height="3.326396484375" />
+        <EntityTypeShape EntityType="TTMS.userlevel" Width="2.125" PointX="0.5" PointY="0.875" Height="1.787985026041667" />
+        <AssociationConnector Association="TTMS.departmentuser">
+          <ConnectorPoint PointX="2" PointY="3.826650390625" />
+          <ConnectorPoint PointX="3.25" PointY="3.826650390625" />
+        </AssociationConnector>
+        <AssociationConnector Association="TTMS.userleveluser">
+          <ConnectorPoint PointX="2.625" PointY="1.7689925130208333" />
+          <ConnectorPoint PointX="3.25" PointY="1.7689925130208333" />
+        </AssociationConnector>
+        <AssociationConnector Association="TTMS.userncr">
+          <ConnectorPoint PointX="4.75" PointY="1.9687500000000002" />
+          <ConnectorPoint PointX="6.125" PointY="1.9687500000000002" />
+        </AssociationConnector>
+        <AssociationConnector Association="TTMS.userncr1">
+          <ConnectorPoint PointX="4.75" PointY="2.56640625" />
+          <ConnectorPoint PointX="6.125" PointY="2.56640625" />
+        </AssociationConnector>
+        <AssociationConnector Association="TTMS.userncr2">
+          <ConnectorPoint PointX="4.75" PointY="1.072265625" />
+          <ConnectorPoint PointX="6.125" PointY="1.072265625" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="TTMS.ccitem" Width="1.5" PointX="2.75" PointY="5.75" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="TTMS.Cc" Width="1.5" PointX="9" PointY="2.75" Height="1.5956835937499996" />
+        <AssociationConnector Association="TTMS.ncrcc">
+          <ConnectorPoint PointX="7.625" PointY="3.4804996744791663" />
+          <ConnectorPoint PointX="9" PointY="3.4804996744791663" />
+        </AssociationConnector>
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

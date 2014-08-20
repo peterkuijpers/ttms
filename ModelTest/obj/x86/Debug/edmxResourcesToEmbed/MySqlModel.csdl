@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="rqtsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="BaseModel.Department" />
+    <EntitySet Name="Ncrs" EntityType="BaseModel.Ncr" />
+    <EntitySet Name="Notifications" EntityType="BaseModel.Notification" />
+    <EntitySet Name="Users" EntityType="BaseModel.User" />
+    <EntitySet Name="Userlevels" EntityType="BaseModel.Userlevel" />
+    <AssociationSet Name="userleveluser" Association="BaseModel.userleveluser">
+      <End Role="userlevel" EntitySet="Userlevels" />
+      <End Role="user" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="departmentuser" Association="BaseModel.departmentuser">
+      <End Role="department" EntitySet="Departments" />
+      <End Role="user" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="ncruser" Association="BaseModel.ncruser">
+      <End Role="ncr" EntitySet="Ncrs" />
+      <End Role="user" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="userncr" Association="BaseModel.userncr">
+      <End Role="user" EntitySet="Users" />
+      <End Role="ncr" EntitySet="Ncrs" />
+    </AssociationSet>
+    <AssociationSet Name="userncr1" Association="BaseModel.userncr1">
+      <End Role="user" EntitySet="Users" />
+      <End Role="ncr" EntitySet="Ncrs" />
+    </AssociationSet>
+    <EntitySet Name="ccitems" EntityType="BaseModel.ccitem" />
+    <AssociationSet Name="Ncrccitem" Association="BaseModel.Ncrccitem">
+      <End Role="Ncr" EntitySet="Ncrs" />
+      <End Role="ccitem" EntitySet="ccitems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="users" Relationship="BaseModel.departmentuser" FromRole="department" ToRole="user" />
+  </EntityType>
+  <EntityType Name="Ncr">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="raisedby_id" Type="Int32" Nullable="false" />
+    <Property Name="assignedto_id" Type="Int32" Nullable="true" />
+    <Property Name="delegatedto_id" Type="Int32" Nullable="true" />
+    <Property Name="raiseddate" Type="DateTime" />
+    <Property Name="status_id" Type="Int32" Nullable="false" />
+    <Property Name="cc_id" Type="Int32" />
+    <Property Name="rcp_id" Type="Int32" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="512" Unicode="false" FixedLength="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
+    <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
+    <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
+    <NavigationProperty Name="ccitems" Relationship="BaseModel.Ncrccitem" FromRole="Ncr" ToRole="ccitem" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="ncr_id" Type="Int32" Nullable="false" />
+    <Property Name="message" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="timestamp" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="surname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="userid" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="active" Type="SByte" Nullable="false" />
+    <Property Name="level_id" Type="Int32" Nullable="false" />
+    <Property Name="department_id" Type="Int32" Nullable="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="admin" Type="SByte" Nullable="false" />
+    <NavigationProperty Name="userlevel" Relationship="BaseModel.userleveluser" FromRole="user" ToRole="userlevel" />
+    <NavigationProperty Name="department" Relationship="BaseModel.departmentuser" FromRole="user" ToRole="department" />
+    <NavigationProperty Name="ncr" Relationship="BaseModel.ncruser" FromRole="user" ToRole="ncr" />
+  </EntityType>
+  <EntityType Name="Userlevel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="fulldescription" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
+    <Property Name="shortdescription" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="users" Relationship="BaseModel.userleveluser" FromRole="userlevel" ToRole="user" />
+  </EntityType>
+  <Association Name="userleveluser">
+    <End Type="BaseModel.Userlevel" Role="userlevel" Multiplicity="1" />
+    <End Type="BaseModel.User" Role="user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userlevel">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="level_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="departmentuser">
+    <End Type="BaseModel.Department" Role="department" Multiplicity="1" />
+    <End Type="BaseModel.User" Role="user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="department">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="department_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ncruser">
+    <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+    <End Type="BaseModel.User" Role="user" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ncr">
+        <PropertyRef Name="assignedto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="userncr">
+    <End Type="BaseModel.User" Role="user" Multiplicity="1" />
+    <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ncr">
+        <PropertyRef Name="raisedby_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="userncr1">
+    <End Type="BaseModel.User" Role="user" Multiplicity="0..1" />
+    <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ncr">
+        <PropertyRef Name="delegatedto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ccitem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="action" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="actionby_id" Nullable="false" />
+    <Property Type="DateTime" Name="duedate" Nullable="false" />
+    <Property Type="DateTime" Name="completiondate" />
+    <Property Type="String" Name="status" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ncr_id" Nullable="false" />
+    <Property Type="Boolean" Name="passed" />
+    <Property Type="Boolean" Name="failed" />
+    <Property Type="Int32" Name="reviewer_id" />
+    <Property Type="DateTime" Name="reviewdate" />
+    <Property Type="String" Name="reviewcomment" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="corrective" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrccitem" FromRole="ccitem" ToRole="Ncr" />
+  </EntityType>
+  <Association Name="Ncrccitem">
+    <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="1" />
+    <End Type="BaseModel.ccitem" Role="ccitem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ncr">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ccitem">
+        <PropertyRef Name="ncr_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

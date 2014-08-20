@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WorkflowTest.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WorkflowTestStoreContainer">
+          <EntitySet Name="ccitem" EntityType="WorkflowTest.Store.ccitem" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="department" EntityType="WorkflowTest.Store.department" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="ncr" EntityType="WorkflowTest.Store.ncr" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="notification" EntityType="WorkflowTest.Store.notification" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="user" EntityType="WorkflowTest.Store.user" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="userlevel" EntityType="WorkflowTest.Store.userlevel" store:Type="Tables" Schema="rqts" />
+        </EntityContainer>
+        <EntityType Name="ccitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="action" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="actionby_id" Type="int" Nullable="false" />
+          <Property Name="duedate" Type="datetime" Nullable="false" />
+          <Property Name="completiondate" Type="datetime" />
+          <Property Name="status" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ncr_id" Type="int" Nullable="false" />
+          <Property Name="passed" Type="bit" />
+          <Property Name="failed" Type="bit" />
+          <Property Name="reviewer_id" Type="int" />
+          <Property Name="reviewdate" Type="datetime" />
+          <Property Name="reviewcomment" Type="varchar" MaxLength="255" />
+          <Property Name="corrective" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ncr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="raisedby_id" Type="int" Nullable="false" />
+          <Property Name="assignedto_id" Type="int" />
+          <Property Name="delegatedto_id" Type="int" />
+          <Property Name="raiseddate" Type="datetime" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="cc_id" Type="int" />
+          <Property Name="rcp_id" Type="int" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="512" />
+          <Property Name="title" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="ncr_id" Type="int" Nullable="false" />
+          <Property Name="message" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="surname" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="userid" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="active" Type="tinyint" Nullable="false" />
+          <Property Name="level_id" Type="int" Nullable="false" />
+          <Property Name="department_id" Type="int" Nullable="false" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="admin" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userlevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="fulldescription" Type="varchar" MaxLength="75" />
+          <Property Name="shortdescription" Type="varchar" MaxLength="30" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="rqtsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departments" EntityType="BaseModel.Department" />
+          <EntitySet Name="Ncrs" EntityType="BaseModel.Ncr" />
+          <EntitySet Name="Notifications" EntityType="BaseModel.Notification" />
+          <EntitySet Name="Users" EntityType="BaseModel.User" />
+          <EntitySet Name="Userlevels" EntityType="BaseModel.Userlevel" />
+          <AssociationSet Name="userleveluser" Association="BaseModel.userleveluser">
+            <End Role="userlevel" EntitySet="Userlevels" />
+            <End Role="user" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="departmentuser" Association="BaseModel.departmentuser">
+            <End Role="department" EntitySet="Departments" />
+            <End Role="user" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="ncruser" Association="BaseModel.ncruser">
+            <End Role="ncr" EntitySet="Ncrs" />
+            <End Role="user" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="userncr" Association="BaseModel.userncr">
+            <End Role="user" EntitySet="Users" />
+            <End Role="ncr" EntitySet="Ncrs" />
+          </AssociationSet>
+          <AssociationSet Name="userncr1" Association="BaseModel.userncr1">
+            <End Role="user" EntitySet="Users" />
+            <End Role="ncr" EntitySet="Ncrs" />
+          </AssociationSet>
+          <EntitySet Name="ccitems" EntityType="BaseModel.ccitem" />
+          <AssociationSet Name="Ncrccitem" Association="BaseModel.Ncrccitem">
+            <End Role="Ncr" EntitySet="Ncrs" />
+            <End Role="ccitem" EntitySet="ccitems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="users" Relationship="BaseModel.departmentuser" FromRole="department" ToRole="user" />
+        </EntityType>
+        <EntityType Name="Ncr">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="raisedby_id" Type="Int32" Nullable="false" />
+          <Property Name="assignedto_id" Type="Int32" Nullable="true" />
+          <Property Name="delegatedto_id" Type="Int32" Nullable="true" />
+          <Property Name="raiseddate" Type="DateTime" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="cc_id" Type="Int32" />
+          <Property Name="rcp_id" Type="Int32" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="512" Unicode="false" FixedLength="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
+          <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
+          <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
+          <NavigationProperty Name="ccitems" Relationship="BaseModel.Ncrccitem" FromRole="Ncr" ToRole="ccitem" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="ncr_id" Type="Int32" Nullable="false" />
+          <Property Name="message" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="timestamp" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="userid" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="active" Type="SByte" Nullable="false" />
+          <Property Name="level_id" Type="Int32" Nullable="false" />
+          <Property Name="department_id" Type="Int32" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="admin" Type="SByte" Nullable="false" />
+          <NavigationProperty Name="userlevel" Relationship="BaseModel.userleveluser" FromRole="user" ToRole="userlevel" />
+          <NavigationProperty Name="department" Relationship="BaseModel.departmentuser" FromRole="user" ToRole="department" />
+          <NavigationProperty Name="ncr" Relationship="BaseModel.ncruser" FromRole="user" ToRole="ncr" />
+        </EntityType>
+        <EntityType Name="Userlevel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="fulldescription" Type="String" MaxLength="75" Unicode="false" FixedLength="false" />
+          <Property Name="shortdescription" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="users" Relationship="BaseModel.userleveluser" FromRole="userlevel" ToRole="user" />
+        </EntityType>
+        <Association Name="userleveluser">
+          <End Type="BaseModel.Userlevel" Role="userlevel" Multiplicity="1" />
+          <End Type="BaseModel.User" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userlevel">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="level_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="departmentuser">
+          <End Type="BaseModel.Department" Role="department" Multiplicity="1" />
+          <End Type="BaseModel.User" Role="user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ncruser">
+          <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+          <End Type="BaseModel.User" Role="user" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ncr">
+              <PropertyRef Name="assignedto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userncr">
+          <End Type="BaseModel.User" Role="user" Multiplicity="1" />
+          <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ncr">
+              <PropertyRef Name="raisedby_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userncr1">
+          <End Type="BaseModel.User" Role="user" Multiplicity="0..1" />
+          <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ncr">
+              <PropertyRef Name="delegatedto_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ccitem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="action" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="actionby_id" Nullable="false" />
+          <Property Type="DateTime" Name="duedate" Nullable="false" />
+          <Property Type="DateTime" Name="completiondate" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ncr_id" Nullable="false" />
+          <Property Type="Boolean" Name="passed" />
+          <Property Type="Boolean" Name="failed" />
+          <Property Type="Int32" Name="reviewer_id" />
+          <Property Type="DateTime" Name="reviewdate" />
+          <Property Type="String" Name="reviewcomment" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="corrective" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrccitem" FromRole="ccitem" ToRole="Ncr" />
+        </EntityType>
+        <Association Name="Ncrccitem">
+          <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="1" />
+          <End Type="BaseModel.ccitem" Role="ccitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ncr">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ccitem">
+              <PropertyRef Name="ncr_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WorkflowTestStoreContainer" CdmEntityContainer="rqtsEntities">
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="BaseModel.Department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ncrs">
+            <EntityTypeMapping TypeName="BaseModel.Ncr">
+              <MappingFragment StoreEntitySet="ncr">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="raisedby_id" ColumnName="raisedby_id" />
+                <ScalarProperty Name="assignedto_id" ColumnName="assignedto_id" />
+                <ScalarProperty Name="delegatedto_id" ColumnName="delegatedto_id" />
+                <ScalarProperty Name="raiseddate" ColumnName="raiseddate" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+                <ScalarProperty Name="rcp_id" ColumnName="rcp_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="BaseModel.Notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BaseModel.User">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="level_id" ColumnName="level_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="admin" ColumnName="admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Userlevels">
+            <EntityTypeMapping TypeName="BaseModel.Userlevel">
+              <MappingFragment StoreEntitySet="userlevel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fulldescription" ColumnName="fulldescription" />
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ccitems">
+            <EntityTypeMapping TypeName="BaseModel.ccitem">
+              <MappingFragment StoreEntitySet="ccitem">
+                <ScalarProperty Name="corrective" ColumnName="corrective" />
+                <ScalarProperty Name="reviewcomment" ColumnName="reviewcomment" />
+                <ScalarProperty Name="reviewdate" ColumnName="reviewdate" />
+                <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+                <ScalarProperty Name="failed" ColumnName="failed" />
+                <ScalarProperty Name="passed" ColumnName="passed" />
+                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="completiondate" ColumnName="completiondate" />
+                <ScalarProperty Name="duedate" ColumnName="duedate" />
+                <ScalarProperty Name="actionby_id" ColumnName="actionby_id" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MySqlModel" ZoomLevel="63">
+        <EntityTypeShape EntityType="BaseModel.Department" Width="1.5" PointX="3.25" PointY="0.875" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Ncr" Width="1.5" PointX="9" PointY="0.875" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Notification" Width="1.5" PointX="0.5" PointY="0.5" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.User" Width="1.5" PointX="5.625" PointY="0.875" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="BaseModel.Userlevel" Width="1.5" PointX="2.875" PointY="3" Height="1.7879850260416665" IsExpanded="true" />
+        <AssociationConnector Association="BaseModel.userleveluser">
+          <ConnectorPoint PointX="4.375" PointY="3.6968489583333328" />
+          <ConnectorPoint PointX="5.625" PointY="3.6968489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="BaseModel.departmentuser">
+          <ConnectorPoint PointX="4.75" PointY="1.672841796875" />
+          <ConnectorPoint PointX="5.625" PointY="1.672841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="BaseModel.ncruser">
+          <ConnectorPoint PointX="9" PointY="2.6343489583333328" />
+          <ConnectorPoint PointX="7.125" PointY="2.6343489583333328" />
+        </AssociationConnector>
+        <AssociationConnector Association="BaseModel.userncr">
+          <ConnectorPoint PointX="7.125" PointY="1.6921744791666664" />
+          <ConnectorPoint PointX="9" PointY="1.6921744791666664" />
+        </AssociationConnector>
+        <AssociationConnector Association="BaseModel.userncr1">
+          <ConnectorPoint PointX="7.125" PointY="3.5765234374999992" />
+          <ConnectorPoint PointX="9" PointY="3.5765234374999992" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="BaseModel.ccitem" Width="1.5" PointX="12.125" PointY="0.875" Height="3.5186979166666674" />
+        <AssociationConnector Association="BaseModel.Ncrccitem">
+          <ConnectorPoint PointX="10.5" PointY="2.7304996744791659" />
+          <ConnectorPoint PointX="12.125" PointY="2.7304996744791659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
