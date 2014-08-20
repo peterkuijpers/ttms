@@ -16,14 +16,14 @@
 				Dim user As New User
 				user.Firstname = userTable.Item(0).Field(Of String)("FirstName")
 				user.Surname = userTable.Item(0).Field(Of String)("surname")
-				user.Fullname = user.Surname + ", " + user.Firstname
+				'user.Fullname = user.Surname + ", " + user.Firstname
 				user.Id = userTable.Item(0).Field(Of Integer)("id")
 				'
 				'If (Not userTable.Item(0).Isdepartment_idNull) Then
 				user.department_id = userTable.Item(0).Field(Of Integer)("department_id")
 				'End If
 				user.level_id = userTable.Item(0).Field(Of Integer)("level_id")
-				user.is_admin = userTable.Item(0).Field(Of Boolean)("admin")
+				user.admin = userTable.Item(0).Field(Of Boolean)("admin")
 				Return user
 			Else
 				Return Nothing
@@ -38,8 +38,9 @@
 		''' <returns></returns>
 		''' <remarks></remarks>
 		Public Shared Function LoadDepartment(user As User) As Department
-			Dim departmentAdapter As New TTMSDataSetTableAdapters.DepartmentsTableAdapter
-			Dim departmentTable As New TTMSDataSet.DepartmentsDataTable
+			Dim departmentAdapter As New MySqlDataSetTableAdapters.departmentTableAdapter
+			Dim departmentTable As New MySqlDataSet.departmentDataTable
+
 			departmentAdapter.Fill(departmentTable)
 
 			Dim results = From tempDep In departmentTable
@@ -47,8 +48,8 @@
 
 			Dim resultDep As New Department
 			If results.Count > 0 Then
-				resultDep.Id = results(0).Id
-				resultDep.Description = results(0).Description
+				resultDep.id = results(0).Id
+				resultDep.description = results(0).Description
 			End If
 
 			Return resultDep
@@ -60,7 +61,7 @@
 		''' <param name="user"></param>
 		''' <returns></returns>
 		''' <remarks></remarks>
-		Public Shared Function LoadLevel(user As User) As Level
+		Public Shared Function LoadLevel(user As User) As Userlevel
 			Dim levelAdapter As New MySqlDataSetTableAdapters.userlevelTableAdapter()
 			Dim levelTable As New MySqlDataSet.userlevelDataTable()
 			levelAdapter.Fill(levelTable)
@@ -68,11 +69,11 @@
 			Dim results = From tempLevel In levelTable
 			   Where tempLevel.id = user.level_id
 
-			Dim resultLevel As New Level
+			Dim resultLevel As New Userlevel
 			If results.Count > 0 Then
-				resultLevel.Id = results(0).Id
-				resultLevel.full_description = results(0).fulldescription
-				resultLevel.short_description = results(0).shortdescription
+				resultLevel.id = results(0).id
+				resultLevel.fulldescription = results(0).fulldescription
+				resultLevel.shortdescription = results(0).shortdescription
 			End If
 			Return resultLevel
 		End Function

@@ -15,8 +15,8 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.Nc
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.NewCARForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.CatsForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.Resources.resources
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.StatusControl.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.vbproj.GenerateResource.Cache
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.dll
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.StatusControl.resources

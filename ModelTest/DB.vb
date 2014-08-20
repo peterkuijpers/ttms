@@ -1,9 +1,8 @@
-﻿Imports TTMS.TTMS
-Public Class DB
+﻿Public Class DB
 
-	Public Shared Function LoadNcr(ncrId As Integer) As NCR
+	Public Shared Function LoadNcr(ncrId As Integer) As Ncr
 		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter()
-		Dim datatable = ncrAdapt.GetDataBy(ncrId)
+		Dim datatable = ncrAdapt.GetDataBy1(ncrId)
 		If datatable.Rows.Count <> 1 Then
 			Return Nothing
 		Else
@@ -30,26 +29,26 @@ Public Class DB
 			End If
 			Dim title = CType(dr.Item("title"), String)
 			'Dim thisNcr As NCR = NCR.CreateNCR(id, raised_by_id, raised_date, raised_to_id, status_id, description, title)
-			Dim thisNcr As NCR = New NCR()
-			thisNcr.Id = id
-			thisNcr.raised_by_id = raised_by_id
-			thisNcr.raised_date = raised_date
-			thisNcr.raised_to_id = raised_to_id
+			Dim thisNcr As Ncr = New Ncr()
+			thisNcr.id = id
+			thisNcr.raisedby_id = raised_by_id
+			thisNcr.raiseddate = raised_date
+			thisNcr.assignedto_id = raised_to_id
 			thisNcr.status_id = status_id
-			thisNcr.RCP_id = RCP_id
-			thisNcr.Description = description
+			thisNcr.rcp_id = RCP_id
+			thisNcr.description = description
 			thisNcr.title = title
 			Return thisNcr
 		End If
 
 	End Function
 
-	Public Shared Function StoreNcr(ncr As NCR) As Boolean
+	Public Shared Function StoreNcr(ncr As Ncr) As Boolean
 
 	End Function
 
-	Public Shared Function UpdateNcr(ncr As NCR) As Boolean
-		Dim ncrAdapt = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+	Public Shared Function UpdateNcr(ncr As Ncr) As Boolean
+		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result As Integer = 1
 		'		Dim result As Integer = ncrAdapt.UpdateNcrDetails(ncr.raised_to_id, ncr.Description, ncr.Id, System.DBNull)
 		'		Dim result As Integer = ncrAdapt.Update(ncr.raised_by_id, ncr.raised_date, ncr.raised_to_id, ncr.status_id, ncr.RCP_id, ncr.Description, ncr.title, ncr.Id, ncr.raised_by_id, ncr.raised_date, ncr.raised_to_id, ncr.status_id, ncr.RCP_id)
@@ -74,12 +73,12 @@ Public Class DB
 			Dim firstname As String = CType(dr.Item("firstname"), String)
 			Dim surname As String = CType(dr.Item("surname"), String)
 
-			Dim user As Global.TTMS.User = New Global.TTMS.User()
+			Dim user As User = New User()
 
 			user.Id = userid
 			user.Firstname = firstname
 			user.Surname = surname
-			user.Fullname = surname + ", " + firstname
+			'			user.Fullname = surname + ", " + firstname
 			Return user
 		End If
 
@@ -101,20 +100,21 @@ Public Class DB
 	''' </summary>
 	''' <returns></returns>
 	''' <remarks></remarks>
-	Public Shared Function LoadStatus() As TTMS.TTMSDataSet.NCR_Status1DataTable
-		'Dim dt As TTMSDataSet.NCR_StatusDataTable = New TTMSDataSet.NCR_StatusDataTable()
-		'dt.Clear()
-		'Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_StatusTableAdapter()
-		Dim dt As TTMS.TTMSDataSet.NCR_Status1DataTable = New TTMS.TTMSDataSet.NCR_Status1DataTable()
-		dt.Clear()
-		Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
-		dt = statusAdapt.GetData()
-		Return dt
-	End Function
+	'Public Shared Function LoadStatus() As MySqlDataSet.NCR_Status1DataTable
+	'	MySqlDataSet.ncr
+	'	'Dim dt As TTMSDataSet.NCR_StatusDataTable = New TTMSDataSet.NCR_StatusDataTable()
+	'	'dt.Clear()
+	'	'Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_StatusTableAdapter()
+	'	Dim dt As TTMS.TTMSDataSet.NCR_Status1DataTable = New TTMS.TTMSDataSet.NCR_Status1DataTable()
+	'	dt.Clear()
+	'	Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
+	'	dt = statusAdapt.GetData()
+	'	Return dt
+	'End Function
 
-	Public Shared Function LoadActions(statusId As Integer) As TTMS.TTMSDataSet.ActionsDataTable
-		Dim actionsAdapt = New TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter()
-		Dim dt = actionsAdapt.GetDataByStatusId(statusId)
-		Return dt
-	End Function
+	'Public Shared Function LoadActions(statusId As Integer) As TTMS.TTMSDataSet.ActionsDataTable
+	'	Dim actionsAdapt = New TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter()
+	'	Dim dt = actionsAdapt.GetDataByStatusId(statusId)
+	'	Return dt
+	'End Function
 End Class

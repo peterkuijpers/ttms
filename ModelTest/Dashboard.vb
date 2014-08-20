@@ -8,7 +8,7 @@ Public Class Dashboard
 
 	Private thisUser As User
 	Private thisDepartment As Department
-	Private thisLevel As Level
+	Private thisLevel As Userlevel
 
 
 	Public Sub New()
@@ -42,13 +42,13 @@ Public Class Dashboard
 		thisUser.Department = department
 		DepartmentLbl.Text = department.Description
 
-		Dim lvl As New Level
+		Dim lvl As New Userlevel
 		lvl = Database.LoadLevel(thisUser)
-		thisUser.Level = lvl
-		LevelLbl.Text = lvl.full_description
+		thisUser.userlevel = lvl
+		LevelLbl.Text = lvl.fulldescription
 		ShowUserDetails(thisUser)
 		ShowNotifications(thisUser.Id)
-		ShowUserAdminBtn(thisUser.is_admin)
+		ShowUserAdminBtn(thisUser.admin)
 
 	End Sub
 
@@ -118,13 +118,13 @@ Public Class Dashboard
 		thisUser.Department = department
 		DepartmentLbl.Text = department.Description
 
-		Dim lvl As New Level
+		Dim lvl As New Userlevel
 		lvl = Database.LoadLevel(thisUser)
-		thisUser.Level = lvl
-		LevelLbl.Text = lvl.full_description
+		thisUser.userlevel = lvl
+		LevelLbl.Text = lvl.fulldescription
 		ShowUserDetails(thisUser)
 		ShowNotifications(thisUser.Id)
-		ShowUserAdminBtn(thisUser.is_admin)
+		ShowUserAdminBtn(thisUser.admin)
 
 	End Sub
 
@@ -138,8 +138,8 @@ Public Class Dashboard
 	End Sub
 
 	Private Sub ShowNotifications(userid As Integer)
-		Dim notesAdapt = New TTMSDataSetTableAdapters.NotificationsTableAdapter()
-		Dim notesTable = New TTMSDataSet.NotificationsDataTable()
+		Dim notesAdapt = New MySqlDataSetTableAdapters.notificationTableAdapter()
+		Dim notesTable = New MySqlDataSet.notificationDataTable()
 		notesTable = notesAdapt.GetDataByUserId(userid)
 
 		NotificationsGridView.DataSource = notesTable
