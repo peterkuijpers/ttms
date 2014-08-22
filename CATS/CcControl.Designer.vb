@@ -22,290 +22,281 @@ Partial Class CcControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+		Me.components = New System.ComponentModel.Container()
 		Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+		Me.CloseBtn = New System.Windows.Forms.Button()
+		Me.CcPlanGridView = New System.Windows.Forms.DataGridView()
+		Me.CcBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-		Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-		Me.Button1 = New System.Windows.Forms.Button()
-		Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-		Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-		Me.TtmsDataSet1 = New BaseModel.MySqlDataSet()
-		Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ActionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ActionbyidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DuedateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.CompletionDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.CCIdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.PassedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-		Me.FailedDataGridViewCheckBoxColumn = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-		Me.ReviewerIdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ReviewDateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ReviewCommentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ActionDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ActionbyidDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DuedateDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.CompletionDateDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.StatusDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.CCIdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.PassedDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-		Me.FailedDataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-		Me.ReviewerIdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ReviewDateDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ReviewCommentDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
+		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
+		Me.Label1 = New System.Windows.Forms.Label()
+		Me.Label2 = New System.Windows.Forms.Label()
+		Me.NcrIdTb = New System.Windows.Forms.TextBox()
+		Me.NcrSubjectTb = New System.Windows.Forms.TextBox()
+		Me.seqCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.IdTb = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.ActionByCmb = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.PassedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.FailedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.ncrIdCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.TableLayoutPanel1.SuspendLayout()
-		Me.FlowLayoutPanel1.SuspendLayout()
-		CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.TtmsDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.CcPlanGridView, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.CcBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+		Me.TableLayoutPanel2.SuspendLayout()
+		Me.TableLayoutPanel3.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'TableLayoutPanel1
 		'
-		Me.TableLayoutPanel1.ColumnCount = 1
+		Me.TableLayoutPanel1.ColumnCount = 3
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
 		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-		Me.TableLayoutPanel1.Controls.Add(Me.DataGridView2, 0, 2)
-		Me.TableLayoutPanel1.Controls.Add(Me.FlowLayoutPanel1, 0, 0)
-		Me.TableLayoutPanel1.Controls.Add(Me.DataGridView1, 0, 1)
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10.0!))
+		Me.TableLayoutPanel1.Controls.Add(Me.CcPlanGridView, 1, 1)
 		Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+		Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 40)
 		Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
 		Me.TableLayoutPanel1.RowCount = 3
-		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
-		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 11.0!))
+		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
 		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 153.0!))
-		Me.TableLayoutPanel1.Size = New System.Drawing.Size(962, 389)
+		Me.TableLayoutPanel1.Size = New System.Drawing.Size(792, 349)
 		Me.TableLayoutPanel1.TabIndex = 0
+		'
+		'CloseBtn
+		'
+		Me.CloseBtn.Anchor = System.Windows.Forms.AnchorStyles.Right
+		Me.CloseBtn.Location = New System.Drawing.Point(721, 8)
+		Me.CloseBtn.Name = "CloseBtn"
+		Me.CloseBtn.Size = New System.Drawing.Size(68, 23)
+		Me.CloseBtn.TabIndex = 0
+		Me.CloseBtn.Text = "CloseBtn"
+		Me.CloseBtn.UseVisualStyleBackColor = True
+		'
+		'CcPlanGridView
+		'
+		Me.CcPlanGridView.AutoGenerateColumns = False
+		Me.CcPlanGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+		Me.CcPlanGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.seqCol, Me.IdTb, Me.DataGridViewTextBoxColumn2, Me.ActionByCmb, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.PassedDataGridViewTextBoxColumn, Me.FailedDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.ncrIdCol})
+		Me.CcPlanGridView.DataSource = Me.CcBindingSource
+		Me.CcPlanGridView.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.CcPlanGridView.Location = New System.Drawing.Point(13, 14)
+		Me.CcPlanGridView.Name = "CcPlanGridView"
+		Me.CcPlanGridView.RowHeadersVisible = False
+		Me.CcPlanGridView.Size = New System.Drawing.Size(766, 179)
+		Me.CcPlanGridView.TabIndex = 1
+		'
+		'CcBindingSource
+		'
+		Me.CcBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.ccitemDataTable)
 		'
 		'StatusStrip1
 		'
 		Me.StatusStrip1.Location = New System.Drawing.Point(0, 389)
 		Me.StatusStrip1.Name = "StatusStrip1"
-		Me.StatusStrip1.Size = New System.Drawing.Size(962, 22)
+		Me.StatusStrip1.Size = New System.Drawing.Size(792, 22)
 		Me.StatusStrip1.TabIndex = 1
 		Me.StatusStrip1.Text = "StatusStrip1"
 		'
-		'FlowLayoutPanel1
+		'TableLayoutPanel2
 		'
-		Me.FlowLayoutPanel1.Controls.Add(Me.Button1)
-		Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.FlowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft
-		Me.FlowLayoutPanel1.Location = New System.Drawing.Point(3, 3)
-		Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-		Me.FlowLayoutPanel1.Size = New System.Drawing.Size(956, 34)
-		Me.FlowLayoutPanel1.TabIndex = 0
+		Me.TableLayoutPanel2.ColumnCount = 2
+		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.70271!))
+		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.297297!))
+		Me.TableLayoutPanel2.Controls.Add(Me.CloseBtn, 1, 0)
+		Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 0, 0)
+		Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top
+		Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
+		Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+		Me.TableLayoutPanel2.RowCount = 1
+		Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+		Me.TableLayoutPanel2.Size = New System.Drawing.Size(792, 40)
+		Me.TableLayoutPanel2.TabIndex = 2
 		'
-		'Button1
+		'TableLayoutPanel3
 		'
-		Me.Button1.Location = New System.Drawing.Point(878, 3)
-		Me.Button1.Name = "Button1"
-		Me.Button1.Size = New System.Drawing.Size(75, 23)
-		Me.Button1.TabIndex = 0
-		Me.Button1.Text = "Button1"
-		Me.Button1.UseVisualStyleBackColor = True
+		Me.TableLayoutPanel3.ColumnCount = 4
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75.0!))
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+		Me.TableLayoutPanel3.Controls.Add(Me.NcrSubjectTb, 3, 0)
+		Me.TableLayoutPanel3.Controls.Add(Me.Label1, 0, 0)
+		Me.TableLayoutPanel3.Controls.Add(Me.Label2, 2, 0)
+		Me.TableLayoutPanel3.Controls.Add(Me.NcrIdTb, 1, 0)
+		Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
+		Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+		Me.TableLayoutPanel3.RowCount = 1
+		Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+		Me.TableLayoutPanel3.Size = New System.Drawing.Size(712, 34)
+		Me.TableLayoutPanel3.TabIndex = 1
 		'
-		'DataGridView1
+		'Label1
 		'
-		Me.DataGridView1.AutoGenerateColumns = False
-		Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.ActionDataGridViewTextBoxColumn, Me.ActionbyidDataGridViewTextBoxColumn, Me.DuedateDataGridViewTextBoxColumn, Me.CompletionDateDataGridViewTextBoxColumn, Me.StatusDataGridViewTextBoxColumn, Me.CCIdDataGridViewTextBoxColumn, Me.PassedDataGridViewCheckBoxColumn, Me.FailedDataGridViewCheckBoxColumn, Me.ReviewerIdDataGridViewTextBoxColumn, Me.ReviewDateDataGridViewTextBoxColumn, Me.ReviewCommentDataGridViewTextBoxColumn})
-		Me.DataGridView1.DataMember = "CC_Item"
-		Me.DataGridView1.DataSource = Me.TtmsDataSet1
-		Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.DataGridView1.Location = New System.Drawing.Point(3, 43)
-		Me.DataGridView1.Name = "DataGridView1"
-		Me.DataGridView1.Size = New System.Drawing.Size(956, 190)
-		Me.DataGridView1.TabIndex = 1
+		Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
+		Me.Label1.AutoSize = True
+		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label1.Location = New System.Drawing.Point(17, 8)
+		Me.Label1.Name = "Label1"
+		Me.Label1.Size = New System.Drawing.Size(30, 17)
+		Me.Label1.TabIndex = 0
+		Me.Label1.Text = "Ncr"
 		'
-		'DataGridView2
+		'Label2
 		'
-		Me.DataGridView2.AutoGenerateColumns = False
-		Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn1, Me.ActionDataGridViewTextBoxColumn1, Me.ActionbyidDataGridViewTextBoxColumn1, Me.DuedateDataGridViewTextBoxColumn1, Me.CompletionDateDataGridViewTextBoxColumn1, Me.StatusDataGridViewTextBoxColumn1, Me.CCIdDataGridViewTextBoxColumn1, Me.PassedDataGridViewCheckBoxColumn1, Me.FailedDataGridViewCheckBoxColumn1, Me.ReviewerIdDataGridViewTextBoxColumn1, Me.ReviewDateDataGridViewTextBoxColumn1, Me.ReviewCommentDataGridViewTextBoxColumn1})
-		Me.DataGridView2.DataMember = "CC_Item"
-		Me.DataGridView2.DataSource = Me.TtmsDataSet1
-		Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.DataGridView2.Location = New System.Drawing.Point(3, 239)
-		Me.DataGridView2.Name = "DataGridView2"
-		Me.DataGridView2.Size = New System.Drawing.Size(956, 147)
-		Me.DataGridView2.TabIndex = 2
+		Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
+		Me.Label2.AutoSize = True
+		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label2.Location = New System.Drawing.Point(167, 8)
+		Me.Label2.Name = "Label2"
+		Me.Label2.Size = New System.Drawing.Size(55, 17)
+		Me.Label2.TabIndex = 1
+		Me.Label2.Text = "Subject"
 		'
-		'IdDataGridViewTextBoxColumn
+		'NcrIdTb
 		'
-		Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
-		Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
-		Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
-		Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+		Me.NcrIdTb.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.NcrIdTb.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.NcrIdTb.Location = New System.Drawing.Point(53, 5)
+		Me.NcrIdTb.Name = "NcrIdTb"
+		Me.NcrIdTb.ReadOnly = True
+		Me.NcrIdTb.Size = New System.Drawing.Size(94, 23)
+		Me.NcrIdTb.TabIndex = 2
 		'
-		'ActionDataGridViewTextBoxColumn
+		'NcrSubjectTb
 		'
-		Me.ActionDataGridViewTextBoxColumn.DataPropertyName = "Action"
-		Me.ActionDataGridViewTextBoxColumn.HeaderText = "Action"
-		Me.ActionDataGridViewTextBoxColumn.Name = "ActionDataGridViewTextBoxColumn"
+		Me.NcrSubjectTb.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+		Me.NcrSubjectTb.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.NcrSubjectTb.Location = New System.Drawing.Point(228, 5)
+		Me.NcrSubjectTb.Name = "NcrSubjectTb"
+		Me.NcrSubjectTb.ReadOnly = True
+		Me.NcrSubjectTb.Size = New System.Drawing.Size(481, 23)
+		Me.NcrSubjectTb.TabIndex = 3
 		'
-		'ActionbyidDataGridViewTextBoxColumn
+		'seqCol
 		'
-		Me.ActionbyidDataGridViewTextBoxColumn.DataPropertyName = "Action_by_id"
-		Me.ActionbyidDataGridViewTextBoxColumn.HeaderText = "Action_by_id"
-		Me.ActionbyidDataGridViewTextBoxColumn.Name = "ActionbyidDataGridViewTextBoxColumn"
+		Me.seqCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.seqCol.DataPropertyName = "seq"
+		Me.seqCol.HeaderText = "Seq"
+		Me.seqCol.MinimumWidth = 30
+		Me.seqCol.Name = "seqCol"
+		Me.seqCol.Width = 30
 		'
-		'DuedateDataGridViewTextBoxColumn
+		'IdTb
 		'
-		Me.DuedateDataGridViewTextBoxColumn.DataPropertyName = "due_date"
-		Me.DuedateDataGridViewTextBoxColumn.HeaderText = "due_date"
-		Me.DuedateDataGridViewTextBoxColumn.Name = "DuedateDataGridViewTextBoxColumn"
+		Me.IdTb.DataPropertyName = "id"
+		Me.IdTb.HeaderText = "id"
+		Me.IdTb.Name = "IdTb"
+		Me.IdTb.Visible = False
 		'
-		'CompletionDateDataGridViewTextBoxColumn
+		'DataGridViewTextBoxColumn2
 		'
-		Me.CompletionDateDataGridViewTextBoxColumn.DataPropertyName = "completion_Date"
-		Me.CompletionDateDataGridViewTextBoxColumn.HeaderText = "completion_Date"
-		Me.CompletionDateDataGridViewTextBoxColumn.Name = "CompletionDateDataGridViewTextBoxColumn"
+		Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		Me.DataGridViewTextBoxColumn2.DataPropertyName = "action"
+		Me.DataGridViewTextBoxColumn2.HeaderText = "Action"
+		Me.DataGridViewTextBoxColumn2.MinimumWidth = 50
+		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
 		'
-		'StatusDataGridViewTextBoxColumn
+		'ActionByCmb
 		'
-		Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "status"
-		Me.StatusDataGridViewTextBoxColumn.HeaderText = "status"
-		Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
+		Me.ActionByCmb.DataPropertyName = "actionby_id"
+		Me.ActionByCmb.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox
+		Me.ActionByCmb.HeaderText = "Action By"
+		Me.ActionByCmb.Name = "ActionByCmb"
+		Me.ActionByCmb.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.ActionByCmb.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
 		'
-		'CCIdDataGridViewTextBoxColumn
+		'DataGridViewTextBoxColumn4
 		'
-		Me.CCIdDataGridViewTextBoxColumn.DataPropertyName = "CC_Id"
-		Me.CCIdDataGridViewTextBoxColumn.HeaderText = "CC_Id"
-		Me.CCIdDataGridViewTextBoxColumn.Name = "CCIdDataGridViewTextBoxColumn"
+		Me.DataGridViewTextBoxColumn4.DataPropertyName = "duedate"
+		Me.DataGridViewTextBoxColumn4.HeaderText = "Due Date"
+		Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
 		'
-		'PassedDataGridViewCheckBoxColumn
+		'DataGridViewTextBoxColumn5
 		'
-		Me.PassedDataGridViewCheckBoxColumn.DataPropertyName = "Passed"
-		Me.PassedDataGridViewCheckBoxColumn.HeaderText = "Passed"
-		Me.PassedDataGridViewCheckBoxColumn.Name = "PassedDataGridViewCheckBoxColumn"
+		Me.DataGridViewTextBoxColumn5.DataPropertyName = "completiondate"
+		Me.DataGridViewTextBoxColumn5.HeaderText = "Compl Date"
+		Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
 		'
-		'FailedDataGridViewCheckBoxColumn
+		'DataGridViewTextBoxColumn6
 		'
-		Me.FailedDataGridViewCheckBoxColumn.DataPropertyName = "Failed"
-		Me.FailedDataGridViewCheckBoxColumn.HeaderText = "Failed"
-		Me.FailedDataGridViewCheckBoxColumn.Name = "FailedDataGridViewCheckBoxColumn"
+		Me.DataGridViewTextBoxColumn6.DataPropertyName = "status"
+		Me.DataGridViewTextBoxColumn6.HeaderText = "Status"
+		Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
 		'
-		'ReviewerIdDataGridViewTextBoxColumn
+		'PassedDataGridViewTextBoxColumn
 		'
-		Me.ReviewerIdDataGridViewTextBoxColumn.DataPropertyName = "Reviewer_Id"
-		Me.ReviewerIdDataGridViewTextBoxColumn.HeaderText = "Reviewer_Id"
-		Me.ReviewerIdDataGridViewTextBoxColumn.Name = "ReviewerIdDataGridViewTextBoxColumn"
+		Me.PassedDataGridViewTextBoxColumn.DataPropertyName = "passed"
+		Me.PassedDataGridViewTextBoxColumn.HeaderText = "passed"
+		Me.PassedDataGridViewTextBoxColumn.Name = "PassedDataGridViewTextBoxColumn"
+		Me.PassedDataGridViewTextBoxColumn.Visible = False
 		'
-		'ReviewDateDataGridViewTextBoxColumn
+		'FailedDataGridViewTextBoxColumn
 		'
-		Me.ReviewDateDataGridViewTextBoxColumn.DataPropertyName = "Review_Date"
-		Me.ReviewDateDataGridViewTextBoxColumn.HeaderText = "Review_Date"
-		Me.ReviewDateDataGridViewTextBoxColumn.Name = "ReviewDateDataGridViewTextBoxColumn"
+		Me.FailedDataGridViewTextBoxColumn.DataPropertyName = "failed"
+		Me.FailedDataGridViewTextBoxColumn.HeaderText = "failed"
+		Me.FailedDataGridViewTextBoxColumn.Name = "FailedDataGridViewTextBoxColumn"
+		Me.FailedDataGridViewTextBoxColumn.Visible = False
 		'
-		'ReviewCommentDataGridViewTextBoxColumn
+		'DataGridViewTextBoxColumn7
 		'
-		Me.ReviewCommentDataGridViewTextBoxColumn.DataPropertyName = "Review_Comment"
-		Me.ReviewCommentDataGridViewTextBoxColumn.HeaderText = "Review_Comment"
-		Me.ReviewCommentDataGridViewTextBoxColumn.Name = "ReviewCommentDataGridViewTextBoxColumn"
+		Me.DataGridViewTextBoxColumn7.DataPropertyName = "reviewer_id"
+		Me.DataGridViewTextBoxColumn7.HeaderText = "Reviewer"
+		Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+		Me.DataGridViewTextBoxColumn7.Visible = False
 		'
-		'IdDataGridViewTextBoxColumn1
+		'DataGridViewTextBoxColumn8
 		'
-		Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "Id"
-		Me.IdDataGridViewTextBoxColumn1.HeaderText = "Id"
-		Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
-		Me.IdDataGridViewTextBoxColumn1.ReadOnly = True
+		Me.DataGridViewTextBoxColumn8.DataPropertyName = "reviewdate"
+		Me.DataGridViewTextBoxColumn8.HeaderText = "Review Date"
+		Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+		Me.DataGridViewTextBoxColumn8.Visible = False
 		'
-		'ActionDataGridViewTextBoxColumn1
+		'DataGridViewTextBoxColumn9
 		'
-		Me.ActionDataGridViewTextBoxColumn1.DataPropertyName = "Action"
-		Me.ActionDataGridViewTextBoxColumn1.HeaderText = "Action"
-		Me.ActionDataGridViewTextBoxColumn1.Name = "ActionDataGridViewTextBoxColumn1"
-		Me.ActionDataGridViewTextBoxColumn1.Visible = False
+		Me.DataGridViewTextBoxColumn9.DataPropertyName = "reviewcomment"
+		Me.DataGridViewTextBoxColumn9.HeaderText = "reviewcomment"
+		Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+		Me.DataGridViewTextBoxColumn9.Visible = False
 		'
-		'ActionbyidDataGridViewTextBoxColumn1
+		'ncrIdCol
 		'
-		Me.ActionbyidDataGridViewTextBoxColumn1.DataPropertyName = "Action_by_id"
-		Me.ActionbyidDataGridViewTextBoxColumn1.HeaderText = "Action_by_id"
-		Me.ActionbyidDataGridViewTextBoxColumn1.Name = "ActionbyidDataGridViewTextBoxColumn1"
-		Me.ActionbyidDataGridViewTextBoxColumn1.Visible = False
-		'
-		'DuedateDataGridViewTextBoxColumn1
-		'
-		Me.DuedateDataGridViewTextBoxColumn1.DataPropertyName = "due_date"
-		Me.DuedateDataGridViewTextBoxColumn1.HeaderText = "due_date"
-		Me.DuedateDataGridViewTextBoxColumn1.Name = "DuedateDataGridViewTextBoxColumn1"
-		Me.DuedateDataGridViewTextBoxColumn1.Visible = False
-		'
-		'CompletionDateDataGridViewTextBoxColumn1
-		'
-		Me.CompletionDateDataGridViewTextBoxColumn1.DataPropertyName = "completion_Date"
-		Me.CompletionDateDataGridViewTextBoxColumn1.HeaderText = "completion_Date"
-		Me.CompletionDateDataGridViewTextBoxColumn1.Name = "CompletionDateDataGridViewTextBoxColumn1"
-		Me.CompletionDateDataGridViewTextBoxColumn1.Visible = False
-		'
-		'StatusDataGridViewTextBoxColumn1
-		'
-		Me.StatusDataGridViewTextBoxColumn1.DataPropertyName = "status"
-		Me.StatusDataGridViewTextBoxColumn1.HeaderText = "status"
-		Me.StatusDataGridViewTextBoxColumn1.Name = "StatusDataGridViewTextBoxColumn1"
-		Me.StatusDataGridViewTextBoxColumn1.Visible = False
-		'
-		'CCIdDataGridViewTextBoxColumn1
-		'
-		Me.CCIdDataGridViewTextBoxColumn1.DataPropertyName = "CC_Id"
-		Me.CCIdDataGridViewTextBoxColumn1.HeaderText = "CC_Id"
-		Me.CCIdDataGridViewTextBoxColumn1.Name = "CCIdDataGridViewTextBoxColumn1"
-		Me.CCIdDataGridViewTextBoxColumn1.Visible = False
-		'
-		'PassedDataGridViewCheckBoxColumn1
-		'
-		Me.PassedDataGridViewCheckBoxColumn1.DataPropertyName = "Passed"
-		Me.PassedDataGridViewCheckBoxColumn1.HeaderText = "Passed"
-		Me.PassedDataGridViewCheckBoxColumn1.Name = "PassedDataGridViewCheckBoxColumn1"
-		'
-		'FailedDataGridViewCheckBoxColumn1
-		'
-		Me.FailedDataGridViewCheckBoxColumn1.DataPropertyName = "Failed"
-		Me.FailedDataGridViewCheckBoxColumn1.HeaderText = "Failed"
-		Me.FailedDataGridViewCheckBoxColumn1.Name = "FailedDataGridViewCheckBoxColumn1"
-		'
-		'ReviewerIdDataGridViewTextBoxColumn1
-		'
-		Me.ReviewerIdDataGridViewTextBoxColumn1.DataPropertyName = "Reviewer_Id"
-		Me.ReviewerIdDataGridViewTextBoxColumn1.HeaderText = "Reviewer_Id"
-		Me.ReviewerIdDataGridViewTextBoxColumn1.Name = "ReviewerIdDataGridViewTextBoxColumn1"
-		'
-		'ReviewDateDataGridViewTextBoxColumn1
-		'
-		Me.ReviewDateDataGridViewTextBoxColumn1.DataPropertyName = "Review_Date"
-		Me.ReviewDateDataGridViewTextBoxColumn1.HeaderText = "Review_Date"
-		Me.ReviewDateDataGridViewTextBoxColumn1.Name = "ReviewDateDataGridViewTextBoxColumn1"
-		'
-		'ReviewCommentDataGridViewTextBoxColumn1
-		'
-		Me.ReviewCommentDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-		Me.ReviewCommentDataGridViewTextBoxColumn1.DataPropertyName = "Review_Comment"
-		Me.ReviewCommentDataGridViewTextBoxColumn1.HeaderText = "Review_Comment"
-		Me.ReviewCommentDataGridViewTextBoxColumn1.Name = "ReviewCommentDataGridViewTextBoxColumn1"
+		Me.ncrIdCol.DataPropertyName = "ncr_id"
+		Me.ncrIdCol.HeaderText = "ncr_id"
+		Me.ncrIdCol.Name = "ncrIdCol"
+		Me.ncrIdCol.Visible = False
 		'
 		'CcControl
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.Controls.Add(Me.TableLayoutPanel1)
+		Me.Controls.Add(Me.TableLayoutPanel2)
 		Me.Controls.Add(Me.StatusStrip1)
 		Me.Name = "CcControl"
-		Me.Size = New System.Drawing.Size(962, 411)
+		Me.Size = New System.Drawing.Size(792, 411)
 		Me.TableLayoutPanel1.ResumeLayout(False)
-		Me.FlowLayoutPanel1.ResumeLayout(False)
-		CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.TtmsDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.CcPlanGridView, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.CcBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+		Me.TableLayoutPanel2.ResumeLayout(False)
+		Me.TableLayoutPanel3.ResumeLayout(False)
+		Me.TableLayoutPanel3.PerformLayout()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
 	End Sub
 	Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-	Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
-	Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
-	Friend WithEvents Button1 As System.Windows.Forms.Button
-	Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
+	Friend WithEvents CloseBtn As System.Windows.Forms.Button
+	Friend WithEvents CcPlanGridView As System.Windows.Forms.DataGridView
 	Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
 	Friend WithEvents IdDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ActionDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -319,7 +310,6 @@ Partial Class CcControl
 	Friend WithEvents ReviewerIdDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewDateDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewCommentDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents TtmsDataSet1 As BaseModel.MySqlDataSet
 	Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ActionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ActionbyidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -332,5 +322,25 @@ Partial Class CcControl
 	Friend WithEvents ReviewerIdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewDateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewCommentDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents CcBindingSource As System.Windows.Forms.BindingSource
+	Friend WithEvents TableLayoutPanel2 As System.Windows.Forms.TableLayoutPanel
+	Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
+	Friend WithEvents NcrSubjectTb As System.Windows.Forms.TextBox
+	Friend WithEvents Label1 As System.Windows.Forms.Label
+	Friend WithEvents Label2 As System.Windows.Forms.Label
+	Friend WithEvents NcrIdTb As System.Windows.Forms.TextBox
+	Friend WithEvents seqCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents IdTb As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents ActionByCmb As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents PassedDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents FailedDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents ncrIdCol As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

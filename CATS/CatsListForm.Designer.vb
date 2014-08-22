@@ -31,6 +31,7 @@ Partial Class CatsListForm
 		Me.NewNcrBtn = New System.Windows.Forms.Button()
 		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
 		Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+		Me.UserBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.NcrDataTableBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
@@ -40,26 +41,26 @@ Partial Class CatsListForm
 		Me.UserStripLbl = New System.Windows.Forms.ToolStripStatusLabel()
 		Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
 		Me.LevelStripLbl = New System.Windows.Forms.ToolStripStatusLabel()
-		Me.UserBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.RaisedByCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.AssignedToCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.DelegatedToCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.RaiseddateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.StatusCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.StatusCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.CcidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.RcpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
 		Me.TableLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel4.SuspendLayout()
 		Me.TableLayoutPanel2.SuspendLayout()
 		CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.NcrDataTableBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.TableLayoutPanel3.SuspendLayout()
 		Me.StatusStrip1.SuspendLayout()
 		Me.StatusStrip2.SuspendLayout()
-		CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.SuspendLayout()
 		'
 		'TableLayoutPanel1
@@ -68,7 +69,7 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel1.ColumnCount = 3
 		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.573529!))
 		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.42647!))
-		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
 		Me.TableLayoutPanel1.Controls.Add(Me.Label1, 1, 0)
 		Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel4, 1, 1)
 		Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -85,7 +86,7 @@ Partial Class CatsListForm
 		Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.None
 		Me.Label1.AutoSize = True
 		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label1.Location = New System.Drawing.Point(167, 8)
+		Me.Label1.Location = New System.Drawing.Point(166, 8)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(506, 26)
 		Me.Label1.TabIndex = 0
@@ -96,7 +97,7 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel4.ColumnCount = 3
 		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.11729!))
 		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.88272!))
-		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 78.0!))
+		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79.0!))
 		Me.TableLayoutPanel4.Controls.Add(Me.CloseBtn, 2, 0)
 		Me.TableLayoutPanel4.Controls.Add(Me.NewNcrBtn, 1, 0)
 		Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
@@ -104,13 +105,13 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
 		Me.TableLayoutPanel4.RowCount = 1
 		Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-		Me.TableLayoutPanel4.Size = New System.Drawing.Size(792, 29)
+		Me.TableLayoutPanel4.Size = New System.Drawing.Size(791, 29)
 		Me.TableLayoutPanel4.TabIndex = 1
 		'
 		'CloseBtn
 		'
 		Me.CloseBtn.Anchor = System.Windows.Forms.AnchorStyles.None
-		Me.CloseBtn.Location = New System.Drawing.Point(717, 3)
+		Me.CloseBtn.Location = New System.Drawing.Point(716, 3)
 		Me.CloseBtn.Name = "CloseBtn"
 		Me.CloseBtn.Size = New System.Drawing.Size(70, 23)
 		Me.CloseBtn.TabIndex = 0
@@ -120,7 +121,7 @@ Partial Class CatsListForm
 		'NewNcrBtn
 		'
 		Me.NewNcrBtn.Anchor = System.Windows.Forms.AnchorStyles.None
-		Me.NewNcrBtn.Location = New System.Drawing.Point(635, 3)
+		Me.NewNcrBtn.Location = New System.Drawing.Point(633, 3)
 		Me.NewNcrBtn.Name = "NewNcrBtn"
 		Me.NewNcrBtn.Size = New System.Drawing.Size(71, 23)
 		Me.NewNcrBtn.TabIndex = 1
@@ -147,6 +148,7 @@ Partial Class CatsListForm
 		'
 		Me.DataGridView1.AllowUserToAddRows = False
 		Me.DataGridView1.AllowUserToDeleteRows = False
+		Me.DataGridView1.AllowUserToResizeRows = False
 		Me.DataGridView1.AutoGenerateColumns = False
 		Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
 		Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdColumn, Me.RaisedByCol, Me.AssignedToCol, Me.DelegatedToCol, Me.RaiseddateDataGridViewTextBoxColumn, Me.StatusCol, Me.CcidDataGridViewTextBoxColumn, Me.RcpidDataGridViewTextBoxColumn, Me.DescriptionDataGridViewTextBoxColumn, Me.TitleDataGridViewTextBoxColumn})
@@ -159,6 +161,11 @@ Partial Class CatsListForm
 		Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
 		Me.DataGridView1.Size = New System.Drawing.Size(797, 417)
 		Me.DataGridView1.TabIndex = 0
+		Me.ToolTip1.SetToolTip(Me.DataGridView1, "Double-Click to open item")
+		'
+		'UserBindingSource
+		'
+		Me.UserBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.userDataTable)
 		'
 		'NcrDataTableBindingSource
 		'
@@ -236,10 +243,6 @@ Partial Class CatsListForm
 		Me.LevelStripLbl.Size = New System.Drawing.Size(21, 19)
 		Me.LevelStripLbl.Text = "--"
 		'
-		'UserBindingSource
-		'
-		Me.UserBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.userDataTable)
-		'
 		'IdColumn
 		'
 		Me.IdColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
@@ -301,10 +304,12 @@ Partial Class CatsListForm
 		'StatusCol
 		'
 		Me.StatusCol.DataPropertyName = "status_id"
+		Me.StatusCol.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
 		Me.StatusCol.HeaderText = "Status"
 		Me.StatusCol.Name = "StatusCol"
 		Me.StatusCol.ReadOnly = True
 		Me.StatusCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.StatusCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
 		'
 		'CcidDataGridViewTextBoxColumn
 		'
@@ -354,6 +359,7 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel4.ResumeLayout(False)
 		Me.TableLayoutPanel2.ResumeLayout(False)
 		CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.NcrDataTableBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.TableLayoutPanel3.ResumeLayout(False)
 		Me.TableLayoutPanel3.PerformLayout()
@@ -361,7 +367,6 @@ Partial Class CatsListForm
 		Me.StatusStrip1.PerformLayout()
 		Me.StatusStrip2.ResumeLayout(False)
 		Me.StatusStrip2.PerformLayout()
-		CType(Me.UserBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -387,9 +392,10 @@ Partial Class CatsListForm
 	Friend WithEvents AssignedToCol As System.Windows.Forms.DataGridViewComboBoxColumn
 	Friend WithEvents DelegatedToCol As System.Windows.Forms.DataGridViewComboBoxColumn
 	Friend WithEvents RaiseddateDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents StatusCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents StatusCol As System.Windows.Forms.DataGridViewComboBoxColumn
 	Friend WithEvents CcidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents RcpidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DescriptionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents TitleDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 End Class

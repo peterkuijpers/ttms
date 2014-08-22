@@ -32,27 +32,21 @@ CATS
 	<param name="sender"></param>
 	<param name="e"></param>
 	<remarks></remarks>
-</member><member name="M:CATS.CatsListForm.DataGridView1_CellDoubleClick(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+</member><member name="M:CATS.NCRDetailsForm.ReloadNcr(System.Int32)">
 	<summary>
- Show details when any cell is double clicked
+ ncrid = -1 indicates new ncr
  </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
+	<param name="ncrId"></param>
 	<remarks></remarks>
-</member><member name="M:CATS.CatsListForm.ShowDetails(System.Int32)">
+</member><member name="M:CATS.NCRDetailsForm.StatusChanged(CATS.Status.Actions,System.Int32)">
 	<summary>
- Show details of selected CAR
+ Callback for StatusControl
  </summary>
 	<remarks></remarks>
-</member><member name="M:CATS.NCRDetailsForm.SelectStatus(System.Int32)">
+</member><member name="M:CATS.NCRDetailsForm.EnableStatusControl(BaseModel.User,System.Int32)">
 	<summary>
- Perform action depending on new status
- </summary>
-	<param name="stat"></param>
-	<remarks></remarks>
-</member><member name="M:CATS.NCRDetailsForm.NcrAccept">
-	<summary>
- NCR status change to Accepted. Start CC
+ Enable/disable the status control box, depending on who you are
+ and the ncr details
  </summary>
 	<remarks></remarks>
 </member><member name="M:CATS.Status.#ctor">

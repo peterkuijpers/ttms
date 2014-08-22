@@ -24,8 +24,8 @@ Partial Class StatusControl
     Private Sub InitializeComponent()
 		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
 		Me.ActionFlowPanel = New System.Windows.Forms.FlowLayoutPanel()
-		Me.UserCb = New System.Windows.Forms.ComboBox()
 		Me.Button1 = New System.Windows.Forms.Button()
+		Me.UserCb = New System.Windows.Forms.ComboBox()
 		Me.GroupBox1.SuspendLayout()
 		Me.ActionFlowPanel.SuspendLayout()
 		Me.SuspendLayout()
@@ -34,12 +34,13 @@ Partial Class StatusControl
 		'
 		Me.GroupBox1.Controls.Add(Me.ActionFlowPanel)
 		Me.GroupBox1.Controls.Add(Me.UserCb)
-		Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
+		Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
 		Me.GroupBox1.Name = "GroupBox1"
-		Me.GroupBox1.Size = New System.Drawing.Size(302, 190)
+		Me.GroupBox1.Size = New System.Drawing.Size(285, 169)
 		Me.GroupBox1.TabIndex = 6
 		Me.GroupBox1.TabStop = False
-		Me.GroupBox1.Text = "Update Status"
+		Me.GroupBox1.Text = "Action"
 		'
 		'ActionFlowPanel
 		'
@@ -48,15 +49,6 @@ Partial Class StatusControl
 		Me.ActionFlowPanel.Name = "ActionFlowPanel"
 		Me.ActionFlowPanel.Size = New System.Drawing.Size(157, 140)
 		Me.ActionFlowPanel.TabIndex = 5
-		'
-		'UserCb
-		'
-		Me.UserCb.FormattingEnabled = True
-		Me.UserCb.Items.AddRange(New Object() {"Alice", "Ben", "Charlie"})
-		Me.UserCb.Location = New System.Drawing.Point(169, 25)
-		Me.UserCb.Name = "UserCb"
-		Me.UserCb.Size = New System.Drawing.Size(109, 21)
-		Me.UserCb.TabIndex = 4
 		'
 		'Button1
 		'
@@ -69,13 +61,22 @@ Partial Class StatusControl
 		Me.Button1.Text = "Button1"
 		Me.Button1.UseVisualStyleBackColor = True
 		'
+		'UserCb
+		'
+		Me.UserCb.FormattingEnabled = True
+		Me.UserCb.Items.AddRange(New Object() {"Alice", "Ben", "Charlie"})
+		Me.UserCb.Location = New System.Drawing.Point(169, 25)
+		Me.UserCb.Name = "UserCb"
+		Me.UserCb.Size = New System.Drawing.Size(109, 21)
+		Me.UserCb.TabIndex = 4
+		'
 		'StatusControl
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
 		Me.Controls.Add(Me.GroupBox1)
 		Me.Name = "StatusControl"
-		Me.Size = New System.Drawing.Size(320, 257)
+		Me.Size = New System.Drawing.Size(285, 169)
 		Me.GroupBox1.ResumeLayout(False)
 		Me.ActionFlowPanel.ResumeLayout(False)
 		Me.ResumeLayout(False)

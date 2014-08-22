@@ -79,7 +79,9 @@ Public Class CatsListForm
 		'	Reload()
 		'	DataGridView1.Refresh()
 		'End If
-
+		Dim newForm As New NCRDetailsForm()
+		newForm.SetNcrDetails(-1, catsUser)
+		newForm.ShowDialog()
 	End Sub
 
 	Private Sub Reload()
@@ -106,27 +108,9 @@ Public Class CatsListForm
 		DelegatedToCol.ValueMember = "id"
 		DelegatedToCol.DisplayMember = "userid"
 
-		Dim statList = New Dictionary(Of Int16, String)
-		statList.Add(1, "one")
-		statList.Add(2, "two2")
-		statList.Add(3, "two3")
-		statList.Add(4, "two4")
-		statList.Add(5, "two5")
-		statList.Add(6, "two6")
-		statList.Add(7, "two7")
-		statList.Add(8, "two8")
-		statList.Add(9, "two9")
-		statList.Add(0, "two0")
-
-		'StatusCol.DataSource = Nothing
-		'StatusCol.DataSource = New BindingSource(statList, Nothing)
-		'StatusCol.ValueMember = "Key"
-		'StatusCol.DisplayMember = "Value"
-
-
-
-
-
+		StatusCol.DataSource = Status.GetStatusList()
+		StatusCol.ValueMember = "Id"
+		StatusCol.DisplayMember = "Description"
 
 	End Sub
 
@@ -149,8 +133,9 @@ Public Class CatsListForm
 	''' </summary>
 	''' <remarks></remarks>
 	Private Sub ShowDetails(selectedCarId As Integer)
-		Dim form As New NCRDetailsForm(selectedCarId)
-		form.SetCurrentUser(catsUser)
+		Dim form As New NCRDetailsForm()
+		form.SetNcrDetails(selectedCarId, catsUser)
+
 		Dim result As DialogResult = form.ShowDialog(Me)
 
 	End Sub
@@ -167,7 +152,8 @@ Public Class CatsListForm
 	Private Sub DataGridView1_CellContentDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
 
 		Dim id = CType(DataGridView1.Rows(e.RowIndex).Cells("IdColumn").Value, Integer)
-		Dim form = New NCRDetailsForm(id)
+		Dim form = New NCRDetailsForm()
+		form.SetNcrDetails(id, catsUser)
 		form.ShowDialog(Me)
 
 	End Sub

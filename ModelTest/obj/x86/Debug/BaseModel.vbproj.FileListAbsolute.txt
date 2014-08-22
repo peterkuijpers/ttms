@@ -11,4 +11,3 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\Ba
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.exe
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.vbprojResolveAssemblyReference.cache

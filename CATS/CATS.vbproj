@@ -156,6 +156,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\BaseModel.MySqlDataSet+ccitemDataTable.datasource" />
     <None Include="My Project\DataSources\BaseModel.MySqlDataSet+ncrDataTable.datasource" />
     <None Include="My Project\DataSources\BaseModel.MySqlDataSet+userDataTable.datasource" />
     <None Include="My Project\DataSources\BaseModel.MySqlDataSetTableAdapters.ncrTableAdapter.datasource" />

@@ -38,17 +38,20 @@ Partial Class NCRDetailsForm
 		Me.Label4 = New System.Windows.Forms.Label()
 		Me.TitleTb = New System.Windows.Forms.TextBox()
 		Me.RaisedByTb = New System.Windows.Forms.TextBox()
-		Me.CurStatusCmb = New System.Windows.Forms.ComboBox()
-		Me.StatusSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
-		Me.RaisedToCmb = New System.Windows.Forms.ComboBox()
 		Me.Label8 = New System.Windows.Forms.Label()
-		Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+		Me.StatusControl2 = New CATS.StatusControl()
+		Me.AssignedToTb = New System.Windows.Forms.TextBox()
+		Me.DelegatedToTb = New System.Windows.Forms.TextBox()
+		Me.CurrentStatusTb = New System.Windows.Forms.TextBox()
+		Me.CcTab = New System.Windows.Forms.TabPage()
+		Me.CcControl2 = New CATS.CcControl()
 		Me.RCP_Tab = New System.Windows.Forms.TabPage()
 		Me.PA_Tab = New System.Windows.Forms.TabPage()
 		Me.FollowupTab = New System.Windows.Forms.TabPage()
 		Me.AttachTab = New System.Windows.Forms.TabPage()
 		Me.StatusTab = New System.Windows.Forms.TabPage()
+		Me.StatusSource = New System.Windows.Forms.BindingSource(Me.components)
+		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -60,11 +63,10 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
 		Me.CloseBtn = New System.Windows.Forms.Button()
-		Me.CcTab = New System.Windows.Forms.TabPage()
-		Me.StatusControl1 = New CATS.StatusControl()
 		Me.NCRTabControl.SuspendLayout()
 		Me.DetailsTab.SuspendLayout()
 		Me.TableLayoutPanel2.SuspendLayout()
+		Me.CcTab.SuspendLayout()
 		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.ContextMenuStrip1.SuspendLayout()
@@ -120,11 +122,11 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 6)
 		Me.TableLayoutPanel2.Controls.Add(Me.TitleTb, 2, 6)
 		Me.TableLayoutPanel2.Controls.Add(Me.RaisedByTb, 2, 1)
-		Me.TableLayoutPanel2.Controls.Add(Me.CurStatusCmb, 2, 5)
-		Me.TableLayoutPanel2.Controls.Add(Me.RaisedToCmb, 2, 3)
 		Me.TableLayoutPanel2.Controls.Add(Me.Label8, 0, 4)
-		Me.TableLayoutPanel2.Controls.Add(Me.ComboBox1, 2, 4)
-		Me.TableLayoutPanel2.Controls.Add(Me.StatusControl1, 3, 0)
+		Me.TableLayoutPanel2.Controls.Add(Me.StatusControl2, 3, 0)
+		Me.TableLayoutPanel2.Controls.Add(Me.AssignedToTb, 2, 3)
+		Me.TableLayoutPanel2.Controls.Add(Me.DelegatedToTb, 2, 4)
+		Me.TableLayoutPanel2.Controls.Add(Me.CurrentStatusTb, 2, 5)
 		Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.TableLayoutPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
@@ -240,9 +242,9 @@ Partial Class NCRDetailsForm
 		'
 		'IdTb
 		'
-		Me.IdTb.Enabled = False
 		Me.IdTb.Location = New System.Drawing.Point(124, 3)
 		Me.IdTb.Name = "IdTb"
+		Me.IdTb.ReadOnly = True
 		Me.IdTb.Size = New System.Drawing.Size(42, 21)
 		Me.IdTb.TabIndex = 31
 		Me.IdTb.Text = "-"
@@ -260,6 +262,7 @@ Partial Class NCRDetailsForm
 		'
 		'TitleTb
 		'
+		Me.TitleTb.Anchor = System.Windows.Forms.AnchorStyles.Left
 		Me.TitleTb.Location = New System.Drawing.Point(124, 153)
 		Me.TitleTb.Name = "TitleTb"
 		Me.TitleTb.Size = New System.Drawing.Size(330, 21)
@@ -267,46 +270,12 @@ Partial Class NCRDetailsForm
 		'
 		'RaisedByTb
 		'
-		Me.RaisedByTb.Enabled = False
+		Me.RaisedByTb.Anchor = System.Windows.Forms.AnchorStyles.Left
 		Me.RaisedByTb.Location = New System.Drawing.Point(124, 28)
 		Me.RaisedByTb.Name = "RaisedByTb"
+		Me.RaisedByTb.ReadOnly = True
 		Me.RaisedByTb.Size = New System.Drawing.Size(121, 21)
 		Me.RaisedByTb.TabIndex = 38
-		'
-		'CurStatusCmb
-		'
-		Me.CurStatusCmb.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-				  Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-		Me.CurStatusCmb.DataSource = Me.StatusSource
-		Me.CurStatusCmb.DisplayMember = "short_description"
-		Me.CurStatusCmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-		Me.CurStatusCmb.Enabled = False
-		Me.CurStatusCmb.FormattingEnabled = True
-		Me.CurStatusCmb.Location = New System.Drawing.Point(124, 126)
-		Me.CurStatusCmb.Margin = New System.Windows.Forms.Padding(3, 1, 3, 1)
-		Me.CurStatusCmb.Name = "CurStatusCmb"
-		Me.CurStatusCmb.Size = New System.Drawing.Size(330, 23)
-		Me.CurStatusCmb.TabIndex = 39
-		Me.CurStatusCmb.ValueMember = "id"
-		'
-		'StatusSource
-		'
-		Me.StatusSource.DataSource = Me.MySqlDataSet1
-		Me.StatusSource.Position = 0
-		'
-		'MySqlDataSet1
-		'
-		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
-		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-		'
-		'RaisedToCmb
-		'
-		Me.RaisedToCmb.FormattingEnabled = True
-		Me.RaisedToCmb.Location = New System.Drawing.Point(124, 76)
-		Me.RaisedToCmb.Margin = New System.Windows.Forms.Padding(3, 1, 3, 3)
-		Me.RaisedToCmb.Name = "RaisedToCmb"
-		Me.RaisedToCmb.Size = New System.Drawing.Size(121, 23)
-		Me.RaisedToCmb.TabIndex = 40
 		'
 		'Label8
 		'
@@ -318,21 +287,67 @@ Partial Class NCRDetailsForm
 		Me.Label8.TabIndex = 41
 		Me.Label8.Text = "Delegated to"
 		'
-		'ComboBox1
+		'StatusControl2
 		'
-		Me.ComboBox1.FormattingEnabled = True
-		Me.ComboBox1.Location = New System.Drawing.Point(124, 101)
-		Me.ComboBox1.Margin = New System.Windows.Forms.Padding(3, 1, 3, 3)
-		Me.ComboBox1.Name = "ComboBox1"
-		Me.ComboBox1.Size = New System.Drawing.Size(121, 23)
-		Me.ComboBox1.TabIndex = 42
+		Me.TableLayoutPanel2.SetColumnSpan(Me.StatusControl2, 2)
+		Me.StatusControl2.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.StatusControl2.Location = New System.Drawing.Point(482, 3)
+		Me.StatusControl2.Name = "StatusControl2"
+		Me.TableLayoutPanel2.SetRowSpan(Me.StatusControl2, 6)
+		Me.StatusControl2.Size = New System.Drawing.Size(363, 144)
+		Me.StatusControl2.TabIndex = 43
+		'
+		'AssignedToTb
+		'
+		Me.AssignedToTb.Location = New System.Drawing.Point(124, 78)
+		Me.AssignedToTb.Name = "AssignedToTb"
+		Me.AssignedToTb.ReadOnly = True
+		Me.AssignedToTb.Size = New System.Drawing.Size(121, 21)
+		Me.AssignedToTb.TabIndex = 45
+		'
+		'DelegatedToTb
+		'
+		Me.DelegatedToTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.DelegatedToTb.Location = New System.Drawing.Point(124, 103)
+		Me.DelegatedToTb.Name = "DelegatedToTb"
+		Me.DelegatedToTb.ReadOnly = True
+		Me.DelegatedToTb.Size = New System.Drawing.Size(121, 21)
+		Me.DelegatedToTb.TabIndex = 44
+		'
+		'CurrentStatusTb
+		'
+		Me.CurrentStatusTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.CurrentStatusTb.Location = New System.Drawing.Point(124, 128)
+		Me.CurrentStatusTb.Name = "CurrentStatusTb"
+		Me.CurrentStatusTb.ReadOnly = True
+		Me.CurrentStatusTb.Size = New System.Drawing.Size(253, 21)
+		Me.CurrentStatusTb.TabIndex = 46
+		'
+		'CcTab
+		'
+		Me.CcTab.Controls.Add(Me.CcControl2)
+		Me.CcTab.Location = New System.Drawing.Point(4, 22)
+		Me.CcTab.Name = "CcTab"
+		Me.CcTab.Padding = New System.Windows.Forms.Padding(3)
+		Me.CcTab.Size = New System.Drawing.Size(854, 502)
+		Me.CcTab.TabIndex = 7
+		Me.CcTab.Text = "Correct & Contain"
+		Me.CcTab.UseVisualStyleBackColor = True
+		'
+		'CcControl2
+		'
+		Me.CcControl2.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.CcControl2.Location = New System.Drawing.Point(3, 3)
+		Me.CcControl2.Name = "CcControl2"
+		Me.CcControl2.Size = New System.Drawing.Size(848, 496)
+		Me.CcControl2.TabIndex = 0
 		'
 		'RCP_Tab
 		'
 		Me.RCP_Tab.Location = New System.Drawing.Point(4, 22)
 		Me.RCP_Tab.Name = "RCP_Tab"
 		Me.RCP_Tab.Padding = New System.Windows.Forms.Padding(3)
-		Me.RCP_Tab.Size = New System.Drawing.Size(854, 477)
+		Me.RCP_Tab.Size = New System.Drawing.Size(854, 502)
 		Me.RCP_Tab.TabIndex = 2
 		Me.RCP_Tab.Text = "Root Cause Prevention"
 		Me.RCP_Tab.UseVisualStyleBackColor = True
@@ -342,7 +357,7 @@ Partial Class NCRDetailsForm
 		Me.PA_Tab.Location = New System.Drawing.Point(4, 22)
 		Me.PA_Tab.Name = "PA_Tab"
 		Me.PA_Tab.Padding = New System.Windows.Forms.Padding(3)
-		Me.PA_Tab.Size = New System.Drawing.Size(854, 477)
+		Me.PA_Tab.Size = New System.Drawing.Size(854, 502)
 		Me.PA_Tab.TabIndex = 3
 		Me.PA_Tab.Text = "Preventive Action"
 		Me.PA_Tab.UseVisualStyleBackColor = True
@@ -352,7 +367,7 @@ Partial Class NCRDetailsForm
 		Me.FollowupTab.Location = New System.Drawing.Point(4, 22)
 		Me.FollowupTab.Name = "FollowupTab"
 		Me.FollowupTab.Padding = New System.Windows.Forms.Padding(3)
-		Me.FollowupTab.Size = New System.Drawing.Size(854, 477)
+		Me.FollowupTab.Size = New System.Drawing.Size(854, 502)
 		Me.FollowupTab.TabIndex = 4
 		Me.FollowupTab.Text = "Follow Up"
 		Me.FollowupTab.UseVisualStyleBackColor = True
@@ -362,7 +377,7 @@ Partial Class NCRDetailsForm
 		Me.AttachTab.Location = New System.Drawing.Point(4, 22)
 		Me.AttachTab.Name = "AttachTab"
 		Me.AttachTab.Padding = New System.Windows.Forms.Padding(3)
-		Me.AttachTab.Size = New System.Drawing.Size(854, 477)
+		Me.AttachTab.Size = New System.Drawing.Size(854, 502)
 		Me.AttachTab.TabIndex = 5
 		Me.AttachTab.Text = "Attach File"
 		Me.AttachTab.UseVisualStyleBackColor = True
@@ -372,10 +387,20 @@ Partial Class NCRDetailsForm
 		Me.StatusTab.Location = New System.Drawing.Point(4, 22)
 		Me.StatusTab.Name = "StatusTab"
 		Me.StatusTab.Padding = New System.Windows.Forms.Padding(3)
-		Me.StatusTab.Size = New System.Drawing.Size(854, 477)
+		Me.StatusTab.Size = New System.Drawing.Size(854, 502)
 		Me.StatusTab.TabIndex = 6
 		Me.StatusTab.Text = "NCR Status"
 		Me.StatusTab.UseVisualStyleBackColor = True
+		'
+		'StatusSource
+		'
+		Me.StatusSource.DataSource = Me.MySqlDataSet1
+		Me.StatusSource.Position = 0
+		'
+		'MySqlDataSet1
+		'
+		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
+		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
 		'
 		'ContextMenuStrip1
 		'
@@ -478,26 +503,6 @@ Partial Class NCRDetailsForm
 		Me.CloseBtn.Text = "Close"
 		Me.CloseBtn.UseVisualStyleBackColor = True
 		'
-		'CcTab
-		'
-		Me.CcTab.Location = New System.Drawing.Point(4, 22)
-		Me.CcTab.Name = "CcTab"
-		Me.CcTab.Padding = New System.Windows.Forms.Padding(3)
-		Me.CcTab.Size = New System.Drawing.Size(854, 477)
-		Me.CcTab.TabIndex = 7
-		Me.CcTab.Text = "Correct & Contain"
-		Me.CcTab.UseVisualStyleBackColor = True
-		'
-		'StatusControl1
-		'
-		Me.TableLayoutPanel2.SetColumnSpan(Me.StatusControl1, 2)
-		Me.StatusControl1.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.StatusControl1.Location = New System.Drawing.Point(482, 3)
-		Me.StatusControl1.Name = "StatusControl1"
-		Me.TableLayoutPanel2.SetRowSpan(Me.StatusControl1, 6)
-		Me.StatusControl1.Size = New System.Drawing.Size(363, 144)
-		Me.StatusControl1.TabIndex = 43
-		'
 		'NCRDetailsForm
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -512,6 +517,7 @@ Partial Class NCRDetailsForm
 		Me.DetailsTab.ResumeLayout(False)
 		Me.TableLayoutPanel2.ResumeLayout(False)
 		Me.TableLayoutPanel2.PerformLayout()
+		Me.CcTab.ResumeLayout(False)
 		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).EndInit()
 		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ContextMenuStrip1.ResumeLayout(False)
@@ -551,16 +557,17 @@ Partial Class NCRDetailsForm
 	Friend WithEvents NcrLog1 As CATS.NcrLog
 	Friend WithEvents StatusSource As System.Windows.Forms.BindingSource
 	Friend WithEvents RaisedByTb As System.Windows.Forms.TextBox
-	Friend WithEvents CurStatusCmb As System.Windows.Forms.ComboBox
-	Friend WithEvents RaisedToCmb As System.Windows.Forms.ComboBox
 	Friend WithEvents Label8 As System.Windows.Forms.Label
-	Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
 	Friend WithEvents ContextMenuStrip1 As System.Windows.Forms.ContextMenuStrip
 	Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 	Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 	Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
 	Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
-	Friend WithEvents StatusControl1 As CATS.StatusControl
+	Friend WithEvents StatusControl2 As CATS.StatusControl
 	Friend WithEvents MySqlDataSet1 As BaseModel.MySqlDataSet
 	Friend WithEvents CcTab As System.Windows.Forms.TabPage
+	Friend WithEvents AssignedToTb As System.Windows.Forms.TextBox
+	Friend WithEvents DelegatedToTb As System.Windows.Forms.TextBox
+	Friend WithEvents CurrentStatusTb As System.Windows.Forms.TextBox
+	Friend WithEvents CcControl2 As CATS.CcControl
 End Class

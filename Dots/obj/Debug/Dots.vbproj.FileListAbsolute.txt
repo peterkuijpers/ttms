@@ -8,6 +8,10 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Resources\Com
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Dots.dll
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Dots.pdb
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\Dots.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Resources\CompanyLogo.png
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Dots.dll
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Dots.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Dots.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.vbprojResolveAssemblyReference.cache
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.DotsForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.Resources.resources
@@ -15,7 +19,3 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.vbproj
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.dll
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\Dots\obj\Debug\Dots.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Resources\CompanyLogo.png
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Dots.dll
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Dots.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Dots.xml
