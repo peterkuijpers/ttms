@@ -28,7 +28,7 @@ Partial Class CcControl
 		Me.Button1 = New System.Windows.Forms.Button()
 		Me.DataGridView1 = New System.Windows.Forms.DataGridView()
 		Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-		Me.TtmsDataSet1 = New TTMS.TTMSDataSet()
+		Me.TtmsDataSet1 = New BaseModel.MySqlDataSet()
 		Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.ActionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.ActionbyidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -130,11 +130,6 @@ Partial Class CcControl
 		Me.DataGridView2.Name = "DataGridView2"
 		Me.DataGridView2.Size = New System.Drawing.Size(956, 147)
 		Me.DataGridView2.TabIndex = 2
-		'
-		'TtmsDataSet1
-		'
-		Me.TtmsDataSet1.DataSetName = "TTMSDataSet"
-		Me.TtmsDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
 		'
 		'IdDataGridViewTextBoxColumn
 		'
@@ -324,7 +319,7 @@ Partial Class CcControl
 	Friend WithEvents ReviewerIdDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewDateDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewCommentDataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents TtmsDataSet1 As TTMS.TTMSDataSet
+	Friend WithEvents TtmsDataSet1 As BaseModel.MySqlDataSet
 	Friend WithEvents IdDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ActionDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ActionbyidDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn

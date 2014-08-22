@@ -28,9 +28,8 @@ Public Module PluginManager
 			Dim catalog = New AggregateCatalog()
 			catalog.Catalogs.Add(New AssemblyCatalog(GetType(Program).Assembly))
 			container = New CompositionContainer(catalog)
-			catalog.Catalogs.Add(New DirectoryCatalog("C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins"))
-
 			Try
+				catalog.Catalogs.Add(New DirectoryCatalog("C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins")) '
 				container.ComposeParts(Me)
 			Catch ex As Exception
 				Console.WriteLine(ex.ToString())

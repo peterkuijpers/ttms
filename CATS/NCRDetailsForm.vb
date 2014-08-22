@@ -2,9 +2,6 @@
 Imports System.Windows.Controls
 Imports System.Xaml
 
-
-
-
 Public Class NCRDetailsForm
 
 	Private ncrId As Integer
@@ -65,7 +62,7 @@ Public Class NCRDetailsForm
 		End Select
 
 		' display the log info for this ncr
-		Me.NcrLog1.RefreshLog(Me.ncrId)
+		'Me.NcrLog1.RefreshLog(Me.ncrId)
 
 	End Sub
 
@@ -198,20 +195,20 @@ Public Class NCRDetailsForm
 
 	Private Sub NewNcrSubmit()
 		'update status in db
-		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
-		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.raised_to_id, curNcr.Id)
+		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
+		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.assignedto_id, curNcr.id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.SubmittedToAssignee, curNcr.Id)
 		'add item to log
-		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
-		Dim message As String = "New NCR Submitted to " + curNcr.RaisedToUser.Fullname
+		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
+		Dim message As String = "New NCR Submitted to " + curNcr.AssignedTo.firstname & ", " & curNcr.AssignedTo.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.Id, user.Id)
 		'refresh the log tab
 		NcrLog1.RefreshLog(curNcr.Id)
 		'add item to notifications
-		Dim notesAdapt As New TTMS.TTMSDataSetTableAdapters.NotificationsTableAdapter()
+		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.Id)
-		Dim notesResult = notesAdapt.InsertQuery(curNcr.raised_to_id, curNcr.Id, "New NCR was assigned to you. Please update its status", DateTime.Now)
+		Dim notesResult = notesAdapt.InsertQuery(curNcr.assignedto_id, curNcr.id, "New NCR was assigned to you. Please update its status", DateTime.Now)
 		'
 		StatusStrip1.Items.Clear()
 		StatusStrip1.Items.Add(message)
@@ -221,7 +218,7 @@ Public Class NCRDetailsForm
 		' check if current status is ncrsubmit
 		'If (curNcr.status_id <> Status.NewNcrSubmit) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr assignee is user
-		If (curNcr.raised_to_id <> user.Id) Then Return ErrorCode.WrongNcrOwner
+		If (curNcr.assignedto_id <> user.id) Then Return ErrorCode.WrongNcrOwner
 		Return 0
 	End Function
 	''' <summary>
@@ -230,27 +227,23 @@ Public Class NCRDetailsForm
 	''' <remarks></remarks>
 	Private Sub NcrAccept()
 		'update status in db
-		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Assigned, curNcr.Id)
 		'add item to log
-		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
-		Dim message As String = "NCR Accepted by " & user.Fullname
+		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
+		Dim message As String = "NCR Accepted by " & user.firstname & ", " & user.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.Id, user.Id)
 		'
 		RaisedToCmb.Enabled = False
 		' create cc
-		Dim cc = CreateCC(curNcr.Id)
-
-		curNcr.CCs = cc
-
 
 		'refresh the log tab
 		NcrLog1.RefreshLog(curNcr.Id)
 		'
-		Dim notesAdapt As New TTMS.TTMSDataSetTableAdapters.NotificationsTableAdapter()
+		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.Id)
-		Dim notesResult = notesAdapt.InsertQuery(curNcr.raised_to_id, curNcr.Id, "NCR was accepted by you. Please take actions", DateTime.Now)
+		Dim notesResult = notesAdapt.InsertQuery(curNcr.assignedto_id, curNcr.id, "NCR was accepted by you. Please take actions", DateTime.Now)
 		StatusStrip1.Items.Clear()
 		StatusStrip1.Items.Add(message)
 	End Sub
@@ -259,26 +252,26 @@ Public Class NCRDetailsForm
 		' check if current status is ncrsubmit
 		If (curNcr.status_id <> Status.StatusType.SubmittedToAssignee And curNcr.status_id <> Status.StatusType.SubmittedToDelegate) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr assignee is user
-		If (curNcr.raised_to_id <> user.Id) Then Return ErrorCode.WrongNcrOwner
+		If (curNcr.assignedto_id <> user.id) Then Return ErrorCode.WrongNcrOwner
 		Return 0
 	End Function
 
 	Private Sub NcrReject()
 		'update status in db
-		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
+		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result = ncrAdapt.UpdateRaisedTo(Nothing, curNcr.Id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Creating, curNcr.Id)
 		'add item to log
-		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
-		Dim message As String = "NCR Rejected by " & user.Fullname
+		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
+		Dim message As String = "NCR Rejected by " & curNcr.AssignedTo.firstname & ", " & curNcr.AssignedTo.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.Id, user.Id)
 		'refresh the log tab
 		NcrLog1.RefreshLog(curNcr.Id)
 		'
-		Dim notesAdapt As New TTMS.TTMSDataSetTableAdapters.NotificationsTableAdapter()
+		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.Id)
-		Dim notesResult = notesAdapt.InsertQuery(curNcr.raised_by_id, curNcr.Id, "NCR was rejected. Please reassign", DateTime.Now)
+		Dim notesResult = notesAdapt.InsertQuery(curNcr.raisedby_id, curNcr.id, "NCR was rejected. Please reassign", DateTime.Now)
 		StatusStrip1.Items.Clear()
 		StatusStrip1.Items.Add(message)
 	End Sub
@@ -287,18 +280,18 @@ Public Class NCRDetailsForm
 		' check if current status is ncraccepted
 		If (curNcr.status_id <> Status.StatusType.Assigned) Then Return ErrorCode.ActionNotAllowedForThisStatus
 		'check if ncr assignee is user
-		If (curNcr.raised_to_id = user.Id) Then Return ErrorCode.WrongNcrOwner
+		If (curNcr.assignedto_id = user.id) Then Return ErrorCode.WrongNcrOwner
 		Return 0
 	End Function
 
 	Private Sub NcrDelegate()
 		'update status in db
-		Dim ncrAdapt As TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter = New TTMS.TTMSDataSetTableAdapters.NCRsTableAdapter()
-		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.raised_to_id, curNcr.Id)
+		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
+		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.assignedto_id, curNcr.id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Delegated, curNcr.Id)
 		'add item to log
-		Dim logAdapt As New TTMS.TTMSDataSetTableAdapters.LogsTableAdapter()
-		Dim message As String = "NCR Delegated to " & curNcr.RaisedToUser.Fullname
+		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
+		Dim message As String = "NCR Delegated to " & curNcr.AssignedTo.firstname & ", " & curNcr.AssignedTo.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.Id, curNcr.Id)
 		'
 		RaisedToCmb.Enabled = False
@@ -306,10 +299,10 @@ Public Class NCRDetailsForm
 		'refresh the log tab
 		NcrLog1.RefreshLog(curNcr.Id)
 		'
-		Dim notesAdapt As New TTMS.TTMSDataSetTableAdapters.NotificationsTableAdapter()
+		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.Id)
-		Dim notesResult = notesAdapt.InsertQuery(curNcr.raised_to_id, curNcr.Id, "NCR was delegated to you. Please take actions", DateTime.Now)
+		Dim notesResult = notesAdapt.InsertQuery(curNcr.assignedto_id, curNcr.id, "NCR was delegated to you. Please take actions", DateTime.Now)
 		StatusStrip1.Items.Clear()
 		StatusStrip1.Items.Add(message)
 	End Sub

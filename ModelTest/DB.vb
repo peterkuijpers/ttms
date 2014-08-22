@@ -9,13 +9,13 @@
 			Dim dr = datatable.Rows(0)
 			Dim id As Integer = CType(dr.Item("id"), Integer)
 			Dim raised_by_id As Integer? = Nothing
-			If Not IsDBNull(dr.Item("raised_by_id")) Then
-				raised_by_id = CType(dr.Item("raised_by_id"), Integer)
+			If Not IsDBNull(dr.Item("raisedby_id")) Then
+				raised_by_id = CType(dr.Item("raisedby_id"), Integer)
 			End If
-			Dim raised_date = CType(dr.Item("raised_date"), DateTime)
+			Dim raised_date = CType(dr.Item("raiseddate"), DateTime)
 			Dim raised_to_id As Integer? = Nothing
-			If Not IsDBNull(dr.Item("raised_to_id")) Then
-				raised_to_id = CType(dr.Item("raised_to_id"), Integer)
+			If Not IsDBNull(dr.Item("assignedto_id")) Then
+				raised_to_id = CType(dr.Item("assignedto_id"), Integer)
 			End If
 			Dim status_id = CType(dr.Item("status_id"), Integer)
 			Dim CC_id As Integer? = Nothing

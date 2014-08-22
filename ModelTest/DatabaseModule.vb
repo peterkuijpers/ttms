@@ -23,7 +23,7 @@
 				user.department_id = userTable.Item(0).Field(Of Integer)("department_id")
 				'End If
 				user.level_id = userTable.Item(0).Field(Of Integer)("level_id")
-				user.admin = userTable.Item(0).Field(Of Boolean)("admin")
+				user.admin = userTable.Item(0).Field(Of SByte)("admin")
 				Return user
 			Else
 				Return Nothing

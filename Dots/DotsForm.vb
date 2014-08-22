@@ -1,6 +1,6 @@
 ﻿Imports System.ComponentModel.Composition
 Imports System.ComponentModel.Composition.Hosting
-Imports TTMS
+Imports BaseModel
 
 <Export(GetType(IOperation))>
 <ExportMetadata("PluginType", "dots")>
