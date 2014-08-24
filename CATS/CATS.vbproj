@@ -92,6 +92,13 @@
     <Compile Include="CcControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="CcStatus.vb" />
+    <Compile Include="CcStatusControl.Designer.vb">
+      <DependentUpon>CcStatusControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CcStatusControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="NCRDetailsForm.Designer.vb">
       <DependentUpon>NCRDetailsForm.vb</DependentUpon>
     </Compile>
@@ -133,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CcControl.resx">
       <DependentUpon>CcControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CcStatusControl.resx">
+      <DependentUpon>CcStatusControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NCRDetailsForm.resx">
       <DependentUpon>NCRDetailsForm.vb</DependentUpon>

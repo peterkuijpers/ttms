@@ -242,9 +242,9 @@ Partial Class NCRDetailsForm
 		'
 		'IdTb
 		'
+		Me.IdTb.Enabled = False
 		Me.IdTb.Location = New System.Drawing.Point(124, 3)
 		Me.IdTb.Name = "IdTb"
-		Me.IdTb.ReadOnly = True
 		Me.IdTb.Size = New System.Drawing.Size(42, 21)
 		Me.IdTb.TabIndex = 31
 		Me.IdTb.Text = "-"
@@ -271,9 +271,9 @@ Partial Class NCRDetailsForm
 		'RaisedByTb
 		'
 		Me.RaisedByTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.RaisedByTb.Enabled = False
 		Me.RaisedByTb.Location = New System.Drawing.Point(124, 28)
 		Me.RaisedByTb.Name = "RaisedByTb"
-		Me.RaisedByTb.ReadOnly = True
 		Me.RaisedByTb.Size = New System.Drawing.Size(121, 21)
 		Me.RaisedByTb.TabIndex = 38
 		'
@@ -289,37 +289,39 @@ Partial Class NCRDetailsForm
 		'
 		'StatusControl2
 		'
+		Me.StatusControl2.BackColor = System.Drawing.SystemColors.ActiveCaption
 		Me.TableLayoutPanel2.SetColumnSpan(Me.StatusControl2, 2)
 		Me.StatusControl2.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.StatusControl2.Location = New System.Drawing.Point(482, 3)
 		Me.StatusControl2.Name = "StatusControl2"
+		Me.StatusControl2.Padding = New System.Windows.Forms.Padding(1)
 		Me.TableLayoutPanel2.SetRowSpan(Me.StatusControl2, 6)
 		Me.StatusControl2.Size = New System.Drawing.Size(363, 144)
 		Me.StatusControl2.TabIndex = 43
 		'
 		'AssignedToTb
 		'
+		Me.AssignedToTb.Enabled = False
 		Me.AssignedToTb.Location = New System.Drawing.Point(124, 78)
 		Me.AssignedToTb.Name = "AssignedToTb"
-		Me.AssignedToTb.ReadOnly = True
 		Me.AssignedToTb.Size = New System.Drawing.Size(121, 21)
 		Me.AssignedToTb.TabIndex = 45
 		'
 		'DelegatedToTb
 		'
 		Me.DelegatedToTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.DelegatedToTb.Enabled = False
 		Me.DelegatedToTb.Location = New System.Drawing.Point(124, 103)
 		Me.DelegatedToTb.Name = "DelegatedToTb"
-		Me.DelegatedToTb.ReadOnly = True
 		Me.DelegatedToTb.Size = New System.Drawing.Size(121, 21)
 		Me.DelegatedToTb.TabIndex = 44
 		'
 		'CurrentStatusTb
 		'
 		Me.CurrentStatusTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.CurrentStatusTb.Enabled = False
 		Me.CurrentStatusTb.Location = New System.Drawing.Point(124, 128)
 		Me.CurrentStatusTb.Name = "CurrentStatusTb"
-		Me.CurrentStatusTb.ReadOnly = True
 		Me.CurrentStatusTb.Size = New System.Drawing.Size(253, 21)
 		Me.CurrentStatusTb.TabIndex = 46
 		'

@@ -27,9 +27,15 @@
       <End Role="ncr" EntitySet="Ncrs" />
     </AssociationSet>
     <EntitySet Name="ccitems" EntityType="BaseModel.ccitem" />
-    <AssociationSet Name="Ncrccitem" Association="BaseModel.Ncrccitem">
-      <End Role="Ncr" EntitySet="Ncrs" />
+    <EntitySet Name="cc" EntityType="BaseModel.cc" />
+    <EntitySet Name="logs" EntityType="BaseModel.log" />
+    <AssociationSet Name="ccccitem" Association="BaseModel.cc_ccitem">
+      <End Role="cc" EntitySet="cc" />
       <End Role="ccitem" EntitySet="ccitems" />
+    </AssociationSet>
+    <AssociationSet Name="Ncrcc" Association="BaseModel.Ncrcc">
+      <End Role="Ncr" EntitySet="Ncrs" />
+      <End Role="cc" EntitySet="cc" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Department">
@@ -57,7 +63,7 @@
     <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
     <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
     <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
-    <NavigationProperty Name="ccitems" Relationship="BaseModel.Ncrccitem" FromRole="Ncr" ToRole="ccitem" />
+    <NavigationProperty Name="ccs" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
   </EntityType>
   <EntityType Name="Notification">
     <Key>
@@ -166,24 +172,59 @@
     <Property Type="DateTime" Name="duedate" Nullable="false" />
     <Property Type="DateTime" Name="completiondate" />
     <Property Type="String" Name="status" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="Int32" Name="ncr_id" Nullable="false" />
+    <Property Type="Int32" Name="cc_id" Nullable="false" />
     <Property Type="Boolean" Name="passed" />
     <Property Type="Boolean" Name="failed" />
     <Property Type="Int32" Name="reviewer_id" />
     <Property Type="DateTime" Name="reviewdate" />
     <Property Type="String" Name="reviewcomment" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="corrective" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrccitem" FromRole="ccitem" ToRole="Ncr" />
+    <Property Type="Int32" Name="seq" />
+    <NavigationProperty Name="cc" Relationship="BaseModel.cc_ccitem" FromRole="ccitem" ToRole="cc" />
   </EntityType>
-  <Association Name="Ncrccitem">
-    <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="1" />
+  <EntityType Name="cc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="planapprover_id" Nullable="false" />
+    <Property Type="DateTime" Name="planapprovedate" />
+    <Property Type="DateTime" Name="completiondate" />
+    <Property Type="Int32" Name="solutionverifier_id" />
+    <Property Type="DateTime" Name="closedate" />
+    <NavigationProperty Name="ccitems" Relationship="BaseModel.cc_ccitem" FromRole="cc" ToRole="ccitem" />
+    <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrcc" FromRole="cc" ToRole="Ncr" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="timestamp" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="description" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ncr_id" Nullable="false" />
+    <Property Type="Int32" Name="user_id" />
+  </EntityType>
+  <Association Name="cc_ccitem">
+    <End Type="BaseModel.cc" Role="cc" Multiplicity="1" />
     <End Type="BaseModel.ccitem" Role="ccitem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cc">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ccitem">
+        <PropertyRef Name="cc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Ncrcc">
+    <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="1" />
+    <End Type="BaseModel.cc" Role="cc" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Ncr">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="ccitem">
-        <PropertyRef Name="ncr_id" />
+      <Dependent Role="cc">
+        <PropertyRef Name="id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

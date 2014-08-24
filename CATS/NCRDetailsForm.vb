@@ -91,23 +91,23 @@ Public Class NCRDetailsForm
 		'enable/disable objects according to the status
 		Select Case (curNcr.status_id)
 			Case Status.StatusType.Creating
-				TitleTb.ReadOnly = False
-				DescriptionTB.ReadOnly = False
+				TitleTb.Enabled = True
+				DescriptionTB.Enabled = True
 			Case Status.StatusType.Modifying
-				TitleTb.ReadOnly = False
-				DescriptionTB.ReadOnly = False
+				TitleTb.Enabled = True
+				DescriptionTB.Enabled = True
 			Case Status.StatusType.SubmittedToAssignee
-				TitleTb.ReadOnly = True
-				DescriptionTB.ReadOnly = True
+				TitleTb.Enabled = True
+				DescriptionTB.Enabled = True
 			Case Status.StatusType.Assigned
-				TitleTb.ReadOnly = True
-				DescriptionTB.ReadOnly = True
+				TitleTb.Enabled = False
+				DescriptionTB.Enabled = False
 			Case Status.StatusType.SubmittedToDelegate
-				TitleTb.ReadOnly = True
-				DescriptionTB.ReadOnly = True
+				TitleTb.Enabled = False
+				DescriptionTB.Enabled = False
 			Case Status.StatusType.Delegated
-				TitleTb.ReadOnly = True
-				DescriptionTB.ReadOnly = True
+				TitleTb.Enabled = False
+				DescriptionTB.Enabled = False
 		End Select
 		'update status item which is linked to to this ncr
 		curStat = New Status()
@@ -311,6 +311,11 @@ Public Class NCRDetailsForm
 		'refresh the log tab
 		'NcrLog1.RefreshLog(curNcr.id)
 		'
+		' Create new CC
+		Dim ccTable As MySqlDataSet.ccDataTable = New MySqlDataSet.ccDataTable()
+		Dim ccAdapt As MySqlDataSetTableAdapters.ccTableAdapter = New MySqlDataSetTableAdapters.ccTableAdapter()
+		ccAdapt.CreateById(curNcr.id, 0)
+
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.id)
@@ -410,10 +415,23 @@ Public Class NCRDetailsForm
 		showCcState = value
 		If value = True And user.id = actionUserId Then
 			CcControl2.Enabled = True
-			CcControl2.Reload(curNcr)
+			CcControl2.Reload(curNcr, user)
 		Else
 			CcControl2.Enabled = False
 		End If
 	End Sub
 
+	Private Sub EnabledBackgroundColor_Enter(sender As System.Object, e As System.EventArgs) Handles TitleTb.Enter, DescriptionTB.Enter
+		If (TypeOf sender Is TextBox) Then
+			CType(sender, TextBox).BackColor = Color.Beige
+		End If
+
+	End Sub
+
+	Private Sub DisabledBackgroundColor_Enter(sender As System.Object, e As System.EventArgs) Handles TitleTb.Leave, DescriptionTB.Leave
+		If (TypeOf sender Is TextBox) Then
+			CType(sender, TextBox).BackColor = Color.White
+		End If
+
+	End Sub
 End Class

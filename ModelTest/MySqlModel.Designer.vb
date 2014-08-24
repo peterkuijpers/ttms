@@ -18,14 +18,15 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("78c2c892-6eea-4f8b-8f89-c8fc9b5664ae")>
+<Assembly: EdmSchemaAttribute("dafae5a6-33d0-460b-a13b-4909c8523478")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("BaseModel", "userleveluser", "userlevel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Userlevel), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(User), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "departmentuser", "department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Department), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(User), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "ncruser", "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(User), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "userncr", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(User), "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "userncr1", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(User), "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
-<Assembly: EdmRelationshipAttribute("BaseModel", "Ncrccitem", "Ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Ncr), "ccitem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(ccitem), True)>
+<Assembly: EdmRelationshipAttribute("BaseModel", "cc_ccitem", "cc", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(cc), "ccitem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(ccitem), True)>
+<Assembly: EdmRelationshipAttribute("BaseModel", "Ncrcc", "Ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Ncr), "cc", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(cc), True)>
 
 #End Region
 
@@ -161,6 +162,34 @@ Public Partial Class rqtsEntities
 
     Private _ccitems As ObjectSet(Of ccitem)
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property cc() As ObjectSet(Of cc)
+        Get
+            If (_cc Is Nothing) Then
+                _cc = MyBase.CreateObjectSet(Of cc)("cc")
+            End If
+            Return _cc
+        End Get
+    End Property
+
+    Private _cc As ObjectSet(Of cc)
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    Public ReadOnly Property logs() As ObjectSet(Of log)
+        Get
+            If (_logs Is Nothing) Then
+                _logs = MyBase.CreateObjectSet(Of log)("logs")
+            End If
+            Return _logs
+        End Get
+    End Property
+
+    Private _logs As ObjectSet(Of log)
+
     #End Region
 
     #Region "AddTo Methods"
@@ -207,6 +236,20 @@ Public Partial Class rqtsEntities
         MyBase.AddObject("ccitems", ccitem)
     End Sub
 
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the cc EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddTocc(ByVal cc As cc)
+        MyBase.AddObject("cc", cc)
+    End Sub
+
+    ''' <summary>
+    ''' Deprecated Method for adding a new object to the logs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+    ''' </summary>
+    Public Sub AddTologs(ByVal log As log)
+        MyBase.AddObject("logs", log)
+    End Sub
+
     #End Region
 
 End Class
@@ -214,6 +257,241 @@ End Class
 #End Region
 
 #Region "Entities"
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="BaseModel", Name:="cc")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class cc
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new cc object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the id property.</param>
+    ''' <param name="planapprover_id">Initial value of the planapprover_id property.</param>
+    Public Shared Function Createcc(id As Global.System.Int32, planapprover_id As Global.System.Int32) As cc
+        Dim cc as cc = New cc
+        cc.id = id
+        cc.planapprover_id = planapprover_id
+        Return cc
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property id() As Global.System.Int32
+        Get
+            Return _id
+        End Get
+        Set
+            If (_id <> Value) Then
+                OnidChanging(value)
+                ReportPropertyChanging("id")
+                _id = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("id")
+                OnidChanged()
+            End If
+        End Set
+    End Property
+
+    Private _id As Global.System.Int32
+    Private Partial Sub OnidChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub OnidChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property planapprover_id() As Global.System.Int32
+        Get
+            Return _planapprover_id
+        End Get
+        Set
+            Onplanapprover_idChanging(value)
+            ReportPropertyChanging("planapprover_id")
+            _planapprover_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("planapprover_id")
+            Onplanapprover_idChanged()
+        End Set
+    End Property
+
+    Private _planapprover_id As Global.System.Int32
+    Private Partial Sub Onplanapprover_idChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub Onplanapprover_idChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property planapprovedate() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _planapprovedate
+        End Get
+        Set
+            OnplanapprovedateChanging(value)
+            ReportPropertyChanging("planapprovedate")
+            _planapprovedate = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("planapprovedate")
+            OnplanapprovedateChanged()
+        End Set
+    End Property
+
+    Private _planapprovedate As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnplanapprovedateChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnplanapprovedateChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property completiondate() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _completiondate
+        End Get
+        Set
+            OncompletiondateChanging(value)
+            ReportPropertyChanging("completiondate")
+            _completiondate = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("completiondate")
+            OncompletiondateChanged()
+        End Set
+    End Property
+
+    Private _completiondate As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OncompletiondateChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OncompletiondateChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property solutionverifier_id() As Nullable(Of Global.System.Int32)
+        Get
+            Return _solutionverifier_id
+        End Get
+        Set
+            Onsolutionverifier_idChanging(value)
+            ReportPropertyChanging("solutionverifier_id")
+            _solutionverifier_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("solutionverifier_id")
+            Onsolutionverifier_idChanged()
+        End Set
+    End Property
+
+    Private _solutionverifier_id As Nullable(Of Global.System.Int32)
+    Private Partial Sub Onsolutionverifier_idChanging(value As Nullable(Of Global.System.Int32))
+    End Sub
+
+    Private Partial Sub Onsolutionverifier_idChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property closedate() As Nullable(Of Global.System.DateTime)
+        Get
+            Return _closedate
+        End Get
+        Set
+            OnclosedateChanging(value)
+            ReportPropertyChanging("closedate")
+            _closedate = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("closedate")
+            OnclosedateChanged()
+        End Set
+    End Property
+
+    Private _closedate As Nullable(Of Global.System.DateTime)
+    Private Partial Sub OnclosedateChanging(value As Nullable(Of Global.System.DateTime))
+    End Sub
+
+    Private Partial Sub OnclosedateChanged()
+    End Sub
+
+    #End Region
+
+    #Region "Navigation Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <XmlIgnoreAttribute()>
+    <SoapIgnoreAttribute()>
+    <DataMemberAttribute()>
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "cc_ccitem", "ccitem")>
+     Public Property ccitems() As EntityCollection(Of ccitem)
+        Get
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of ccitem)("BaseModel.cc_ccitem", "ccitem")
+        End Get
+        Set
+            If (Not value Is Nothing)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of ccitem)("BaseModel.cc_ccitem", "ccitem", value)
+            End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <XmlIgnoreAttribute()>
+    <SoapIgnoreAttribute()>
+    <DataMemberAttribute()>
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "Ncrcc", "Ncr")>
+    Public Property Ncr() As Ncr
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Ncr)("BaseModel.Ncrcc", "Ncr").Value
+        End Get
+        Set
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Ncr)("BaseModel.Ncrcc", "Ncr").Value = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <BrowsableAttribute(False)>
+    <DataMemberAttribute()>
+    Public Property NcrReference() As EntityReference(Of Ncr)
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Ncr)("BaseModel.Ncrcc", "Ncr")
+        End Get
+        Set
+            If (Not value Is Nothing)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Ncr)("BaseModel.Ncrcc", "Ncr", value)
+            End If
+        End Set
+    End Property
+
+    #End Region
+
+End Class
 
 ''' <summary>
 ''' No Metadata Documentation available.
@@ -233,17 +511,15 @@ Public Partial Class ccitem
     ''' <param name="actionby_id">Initial value of the actionby_id property.</param>
     ''' <param name="duedate">Initial value of the duedate property.</param>
     ''' <param name="status">Initial value of the status property.</param>
-    ''' <param name="ncr_id">Initial value of the ncr_id property.</param>
-    ''' <param name="corrective">Initial value of the corrective property.</param>
-    Public Shared Function Createccitem(id As Global.System.Int32, action As Global.System.String, actionby_id As Global.System.Int32, duedate As Global.System.DateTime, status As Global.System.String, ncr_id As Global.System.Int32, corrective As Global.System.String) As ccitem
+    ''' <param name="cc_id">Initial value of the cc_id property.</param>
+    Public Shared Function Createccitem(id As Global.System.Int32, action As Global.System.String, actionby_id As Global.System.Int32, duedate As Global.System.DateTime, status As Global.System.String, cc_id As Global.System.Int32) As ccitem
         Dim ccitem as ccitem = New ccitem
         ccitem.id = id
         ccitem.action = action
         ccitem.actionby_id = actionby_id
         ccitem.duedate = duedate
         ccitem.status = status
-        ccitem.ncr_id = ncr_id
-        ccitem.corrective = corrective
+        ccitem.cc_id = cc_id
         Return ccitem
     End Function
 
@@ -408,24 +684,24 @@ Public Partial Class ccitem
     ''' </summary>
     <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
     <DataMemberAttribute()>
-    Public Property ncr_id() As Global.System.Int32
+    Public Property cc_id() As Global.System.Int32
         Get
-            Return _ncr_id
+            Return _cc_id
         End Get
         Set
-            Onncr_idChanging(value)
-            ReportPropertyChanging("ncr_id")
-            _ncr_id = StructuralObject.SetValidValue(value)
-            ReportPropertyChanged("ncr_id")
-            Onncr_idChanged()
+            Oncc_idChanging(value)
+            ReportPropertyChanging("cc_id")
+            _cc_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("cc_id")
+            Oncc_idChanged()
         End Set
     End Property
 
-    Private _ncr_id As Global.System.Int32
-    Private Partial Sub Onncr_idChanging(value As Global.System.Int32)
+    Private _cc_id As Global.System.Int32
+    Private Partial Sub Oncc_idChanging(value As Global.System.Int32)
     End Sub
 
-    Private Partial Sub Onncr_idChanged()
+    Private Partial Sub Oncc_idChanged()
     End Sub
 
     ''' <summary>
@@ -556,26 +832,26 @@ Public Partial Class ccitem
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property corrective() As Global.System.String
+    Public Property seq() As Nullable(Of Global.System.Int32)
         Get
-            Return _corrective
+            Return _seq
         End Get
         Set
-            OncorrectiveChanging(value)
-            ReportPropertyChanging("corrective")
-            _corrective = StructuralObject.SetValidValue(value, false)
-            ReportPropertyChanged("corrective")
-            OncorrectiveChanged()
+            OnseqChanging(value)
+            ReportPropertyChanging("seq")
+            _seq = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("seq")
+            OnseqChanged()
         End Set
     End Property
 
-    Private _corrective As Global.System.String
-    Private Partial Sub OncorrectiveChanging(value As Global.System.String)
+    Private _seq As Nullable(Of Global.System.Int32)
+    Private Partial Sub OnseqChanging(value As Nullable(Of Global.System.Int32))
     End Sub
 
-    Private Partial Sub OncorrectiveChanged()
+    Private Partial Sub OnseqChanged()
     End Sub
 
     #End Region
@@ -588,13 +864,13 @@ Public Partial Class ccitem
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "Ncrccitem", "Ncr")>
-    Public Property Ncr() As Ncr
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "cc_ccitem", "cc")>
+    Public Property cc() As cc
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Ncr)("BaseModel.Ncrccitem", "Ncr").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.cc_ccitem", "cc").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Ncr)("BaseModel.Ncrccitem", "Ncr").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.cc_ccitem", "cc").Value = value
         End Set
     End Property
     ''' <summary>
@@ -602,13 +878,13 @@ Public Partial Class ccitem
     ''' </summary>
     <BrowsableAttribute(False)>
     <DataMemberAttribute()>
-    Public Property NcrReference() As EntityReference(Of Ncr)
+    Public Property ccReference() As EntityReference(Of cc)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Ncr)("BaseModel.Ncrccitem", "Ncr")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.cc_ccitem", "cc")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Ncr)("BaseModel.Ncrccitem", "Ncr", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of cc)("BaseModel.cc_ccitem", "cc", value)
             End If
         End Set
     End Property
@@ -716,6 +992,167 @@ Public Partial Class Department
             End If
         End Set
     End Property
+
+    #End Region
+
+End Class
+
+''' <summary>
+''' No Metadata Documentation available.
+''' </summary>
+<EdmEntityTypeAttribute(NamespaceName:="BaseModel", Name:="log")>
+<Serializable()>
+<DataContractAttribute(IsReference:=True)>
+Public Partial Class log
+    Inherits EntityObject
+    #Region "Factory Method"
+
+    ''' <summary>
+    ''' Create a new log object.
+    ''' </summary>
+    ''' <param name="id">Initial value of the id property.</param>
+    ''' <param name="timestamp">Initial value of the timestamp property.</param>
+    ''' <param name="description">Initial value of the description property.</param>
+    ''' <param name="ncr_id">Initial value of the ncr_id property.</param>
+    Public Shared Function Createlog(id As Global.System.Int32, timestamp As Global.System.DateTime, description As Global.System.String, ncr_id As Global.System.Int32) As log
+        Dim log as log = New log
+        log.id = id
+        log.timestamp = timestamp
+        log.description = description
+        log.ncr_id = ncr_id
+        Return log
+    End Function
+
+    #End Region
+
+    #Region "Primitive Properties"
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property id() As Global.System.Int32
+        Get
+            Return _id
+        End Get
+        Set
+            If (_id <> Value) Then
+                OnidChanging(value)
+                ReportPropertyChanging("id")
+                _id = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("id")
+                OnidChanged()
+            End If
+        End Set
+    End Property
+
+    Private _id As Global.System.Int32
+    Private Partial Sub OnidChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub OnidChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property timestamp() As Global.System.DateTime
+        Get
+            Return _timestamp
+        End Get
+        Set
+            OntimestampChanging(value)
+            ReportPropertyChanging("timestamp")
+            _timestamp = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("timestamp")
+            OntimestampChanged()
+        End Set
+    End Property
+
+    Private _timestamp As Global.System.DateTime
+    Private Partial Sub OntimestampChanging(value As Global.System.DateTime)
+    End Sub
+
+    Private Partial Sub OntimestampChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property description() As Global.System.String
+        Get
+            Return _description
+        End Get
+        Set
+            OndescriptionChanging(value)
+            ReportPropertyChanging("description")
+            _description = StructuralObject.SetValidValue(value, false)
+            ReportPropertyChanged("description")
+            OndescriptionChanged()
+        End Set
+    End Property
+
+    Private _description As Global.System.String
+    Private Partial Sub OndescriptionChanging(value As Global.System.String)
+    End Sub
+
+    Private Partial Sub OndescriptionChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property ncr_id() As Global.System.Int32
+        Get
+            Return _ncr_id
+        End Get
+        Set
+            Onncr_idChanging(value)
+            ReportPropertyChanging("ncr_id")
+            _ncr_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("ncr_id")
+            Onncr_idChanged()
+        End Set
+    End Property
+
+    Private _ncr_id As Global.System.Int32
+    Private Partial Sub Onncr_idChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub Onncr_idChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+    <DataMemberAttribute()>
+    Public Property user_id() As Nullable(Of Global.System.Int32)
+        Get
+            Return _user_id
+        End Get
+        Set
+            Onuser_idChanging(value)
+            ReportPropertyChanging("user_id")
+            _user_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("user_id")
+            Onuser_idChanged()
+        End Set
+    End Property
+
+    Private _user_id As Nullable(Of Global.System.Int32)
+    Private Partial Sub Onuser_idChanging(value As Nullable(Of Global.System.Int32))
+    End Sub
+
+    Private Partial Sub Onuser_idChanged()
+    End Sub
 
     #End Region
 
@@ -1108,14 +1545,27 @@ Public Partial Class Ncr
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "Ncrccitem", "ccitem")>
-     Public Property ccitems() As EntityCollection(Of ccitem)
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "Ncrcc", "cc")>
+    Public Property ccs() As cc
         Get
-            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of ccitem)("BaseModel.Ncrccitem", "ccitem")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.Ncrcc", "cc").Value
+        End Get
+        Set
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.Ncrcc", "cc").Value = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <BrowsableAttribute(False)>
+    <DataMemberAttribute()>
+    Public Property ccsReference() As EntityReference(Of cc)
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.Ncrcc", "cc")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of ccitem)("BaseModel.Ncrccitem", "ccitem", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of cc)("BaseModel.Ncrcc", "cc", value)
             End If
         End Set
     End Property

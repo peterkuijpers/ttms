@@ -3,9 +3,12 @@
 Public Class CcControl
 	Dim users = DB.LoadUsers()
 	Dim ncr As Ncr
+	Dim cc As cc
 	Dim seqCounter As Integer
 	Dim ccItemTable = New MySqlDataSet.ccitemDataTable()
 	Dim ccItemAdapt = New MySqlDataSetTableAdapters.ccitemTableAdapter()
+	Dim ccTable = New MySqlDataSet.ccDataTable()
+	Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter()
 
 	Public Sub New()
 		' This call is required by the designer.
@@ -17,9 +20,10 @@ Public Class CcControl
 		seqCounter = 1
 
 	End Sub
-	Public Sub Reload(ncr As Ncr)
+	Public Sub Reload(ncr As Ncr, user As User)
 		Me.ncr = ncr
 
+		ccitem()
 		ccItemAdapt.Fill(ccItemTable, ncr.id)
 
 		Dim bindingSource = New BindingSource()
@@ -30,6 +34,21 @@ Public Class CcControl
 		seqCounter = 1
 		NcrIdTb.Text = ncr.id
 		NcrSubjectTb.Text = ncr.title
+
+		' set status controller to current status id
+		' use callback when status is changed
+		CcStatusControl1.SetupCallback(AddressOf StatusChanged)
+		CcStatusControl1.SetUsers(DB.LoadUsers)
+		'	CcStatusControl1.SetStatus(cc.status_id)
+
+	End Sub
+
+	''' <summary>
+	''' Called when the action/status control has a new status
+	''' </summary>
+	''' <remarks></remarks>
+	Public Sub StatusChanged()
+
 	End Sub
 
 	Private Sub CcPlanGridView_DefaultValuesNeeded(sender As System.Object, e As System.Windows.Forms.DataGridViewRowEventArgs) Handles CcPlanGridView.DefaultValuesNeeded

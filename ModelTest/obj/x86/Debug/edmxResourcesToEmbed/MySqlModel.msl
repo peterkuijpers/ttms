@@ -64,18 +64,41 @@
     <EntitySetMapping Name="ccitems">
       <EntityTypeMapping TypeName="BaseModel.ccitem">
         <MappingFragment StoreEntitySet="ccitem">
-          <ScalarProperty Name="corrective" ColumnName="corrective" />
+          <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+          <ScalarProperty Name="seq" ColumnName="seq" />
           <ScalarProperty Name="reviewcomment" ColumnName="reviewcomment" />
           <ScalarProperty Name="reviewdate" ColumnName="reviewdate" />
           <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
           <ScalarProperty Name="failed" ColumnName="failed" />
           <ScalarProperty Name="passed" ColumnName="passed" />
-          <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="completiondate" ColumnName="completiondate" />
           <ScalarProperty Name="duedate" ColumnName="duedate" />
           <ScalarProperty Name="actionby_id" ColumnName="actionby_id" />
           <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cc">
+      <EntityTypeMapping TypeName="BaseModel.cc">
+        <MappingFragment StoreEntitySet="cc">
+          <ScalarProperty Name="closedate" ColumnName="closedate" />
+          <ScalarProperty Name="solutionverifier_id" ColumnName="solutionverifier_id" />
+          <ScalarProperty Name="completiondate" ColumnName="completiondate" />
+          <ScalarProperty Name="planapprovedate" ColumnName="planapprovedate" />
+          <ScalarProperty Name="planapprover_id" ColumnName="planapprover_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="BaseModel.log">
+        <MappingFragment StoreEntitySet="log">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

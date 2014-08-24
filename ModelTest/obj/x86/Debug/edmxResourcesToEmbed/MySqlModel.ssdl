@@ -1,30 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WorkflowTest.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="WorkflowTestStoreContainer">
+    <EntitySet Name="cc" EntityType="WorkflowTest.Store.cc" store:Type="Tables" Schema="rqts" />
     <EntitySet Name="ccitem" EntityType="WorkflowTest.Store.ccitem" store:Type="Tables" Schema="rqts" />
     <EntitySet Name="department" EntityType="WorkflowTest.Store.department" store:Type="Tables" Schema="rqts" />
+    <EntitySet Name="log" EntityType="WorkflowTest.Store.log" store:Type="Tables" Schema="rqts" />
     <EntitySet Name="ncr" EntityType="WorkflowTest.Store.ncr" store:Type="Tables" Schema="rqts" />
     <EntitySet Name="notification" EntityType="WorkflowTest.Store.notification" store:Type="Tables" Schema="rqts" />
     <EntitySet Name="user" EntityType="WorkflowTest.Store.user" store:Type="Tables" Schema="rqts" />
     <EntitySet Name="userlevel" EntityType="WorkflowTest.Store.userlevel" store:Type="Tables" Schema="rqts" />
   </EntityContainer>
+  <EntityType Name="cc">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="planapprover_id" Type="int" Nullable="false" />
+    <Property Name="planapprovedate" Type="date" />
+    <Property Name="completiondate" Type="date" />
+    <Property Name="solutionverifier_id" Type="int" />
+    <Property Name="closedate" Type="date" />
+  </EntityType>
   <EntityType Name="ccitem">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="action" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="action" Type="varchar" MaxLength="255" />
     <Property Name="actionby_id" Type="int" Nullable="false" />
     <Property Name="duedate" Type="datetime" Nullable="false" />
     <Property Name="completiondate" Type="datetime" />
-    <Property Name="status" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="ncr_id" Type="int" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="255" />
+    <Property Name="cc_id" Type="int" Nullable="false" />
     <Property Name="passed" Type="bit" />
     <Property Name="failed" Type="bit" />
     <Property Name="reviewer_id" Type="int" />
     <Property Name="reviewdate" Type="datetime" />
     <Property Name="reviewcomment" Type="varchar" MaxLength="255" />
-    <Property Name="corrective" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="seq" Type="int" />
   </EntityType>
   <EntityType Name="department">
     <Key>
@@ -32,6 +45,16 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="log">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="ncr_id" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" />
   </EntityType>
   <EntityType Name="ncr">
     <Key>

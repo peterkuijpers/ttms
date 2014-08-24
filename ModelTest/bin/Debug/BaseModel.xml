@@ -34,6 +34,10 @@ Represents the strongly named DataTable class.
 	<summary>
 Represents the strongly named DataTable class.
 </summary>
+</member><member name="T:BaseModel.MySqlDataSet.ccDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
 </member><member name="T:BaseModel.MySqlDataSet.userRow">
 	<summary>
 Represents strongly named DataRow class.
@@ -62,6 +66,10 @@ Represents strongly named DataRow class.
 	<summary>
 Represents strongly named DataRow class.
 </summary>
+</member><member name="T:BaseModel.MySqlDataSet.ccRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
 </member><member name="T:BaseModel.MySqlDataSet.userRowChangeEvent">
 	<summary>
 Row event argument class
@@ -87,6 +95,10 @@ Row event argument class
 Row event argument class
 </summary>
 </member><member name="T:BaseModel.MySqlDataSet.ccitemRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:BaseModel.MySqlDataSet.ccRowChangeEvent">
 	<summary>
 Row event argument class
 </summary>
@@ -119,6 +131,10 @@ Represents the connection and commands used to retrieve and save data.
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member><member name="T:BaseModel.MySqlDataSetTableAdapters.ccitemTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:BaseModel.MySqlDataSetTableAdapters.ccTableAdapter">
 	<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -216,6 +232,14 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
+</member><member name="P:BaseModel.rqtsEntities.cc">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.rqtsEntities.logs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
 </member><member name="M:BaseModel.rqtsEntities.AddToDepartments(BaseModel.Department)">
 	<summary>
  Deprecated Method for adding a new object to the Departments EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
@@ -240,11 +264,65 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  Deprecated Method for adding a new object to the ccitems EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
  </summary>
+</member><member name="M:BaseModel.rqtsEntities.AddTocc(BaseModel.cc)">
+	<summary>
+ Deprecated Method for adding a new object to the cc EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="M:BaseModel.rqtsEntities.AddTologs(BaseModel.log)">
+	<summary>
+ Deprecated Method for adding a new object to the logs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
 </member><member name="T:BaseModel.rqtsEntities">
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="M:BaseModel.ccitem.Createccitem(System.Int32,System.String,System.Int32,System.DateTime,System.String,System.Int32,System.String)">
+</member><member name="M:BaseModel.cc.Createcc(System.Int32,System.Int32)">
+	<summary>
+ Create a new cc object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+	<param name="planapprover_id">Initial value of the planapprover_id property.</param>
+</member><member name="P:BaseModel.cc.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.planapprover_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.planapprovedate">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.completiondate">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.solutionverifier_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.closedate">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.ccitems">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.Ncr">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.NcrReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:BaseModel.cc">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:BaseModel.ccitem.Createccitem(System.Int32,System.String,System.Int32,System.DateTime,System.String,System.Int32)">
 	<summary>
  Create a new ccitem object.
  </summary>
@@ -253,8 +331,7 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<param name="actionby_id">Initial value of the actionby_id property.</param>
 	<param name="duedate">Initial value of the duedate property.</param>
 	<param name="status">Initial value of the status property.</param>
-	<param name="ncr_id">Initial value of the ncr_id property.</param>
-	<param name="corrective">Initial value of the corrective property.</param>
+	<param name="cc_id">Initial value of the cc_id property.</param>
 </member><member name="P:BaseModel.ccitem.id">
 	<summary>
  No Metadata Documentation available.
@@ -279,7 +356,7 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.ccitem.ncr_id">
+</member><member name="P:BaseModel.ccitem.cc_id">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -303,15 +380,15 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.ccitem.corrective">
+</member><member name="P:BaseModel.ccitem.seq">
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.ccitem.Ncr">
+</member><member name="P:BaseModel.ccitem.cc">
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.ccitem.NcrReference">
+</member><member name="P:BaseModel.ccitem.ccReference">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -338,6 +415,38 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="T:BaseModel.Department">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="M:BaseModel.log.Createlog(System.Int32,System.DateTime,System.String,System.Int32)">
+	<summary>
+ Create a new log object.
+ </summary>
+	<param name="id">Initial value of the id property.</param>
+	<param name="timestamp">Initial value of the timestamp property.</param>
+	<param name="description">Initial value of the description property.</param>
+	<param name="ncr_id">Initial value of the ncr_id property.</param>
+</member><member name="P:BaseModel.log.id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.log.timestamp">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.log.description">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.log.ncr_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.log.user_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:BaseModel.log">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -414,7 +523,11 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.Ncr.ccitems">
+</member><member name="P:BaseModel.Ncr.ccs">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.Ncr.ccsReference">
 	<summary>
  No Metadata Documentation available.
  </summary>

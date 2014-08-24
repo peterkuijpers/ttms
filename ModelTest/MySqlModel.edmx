@@ -6,30 +6,43 @@
     <edmx:StorageModels>
     <Schema Namespace="WorkflowTest.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="WorkflowTestStoreContainer">
+          <EntitySet Name="cc" EntityType="WorkflowTest.Store.cc" store:Type="Tables" Schema="rqts" />
           <EntitySet Name="ccitem" EntityType="WorkflowTest.Store.ccitem" store:Type="Tables" Schema="rqts" />
           <EntitySet Name="department" EntityType="WorkflowTest.Store.department" store:Type="Tables" Schema="rqts" />
+          <EntitySet Name="log" EntityType="WorkflowTest.Store.log" store:Type="Tables" Schema="rqts" />
           <EntitySet Name="ncr" EntityType="WorkflowTest.Store.ncr" store:Type="Tables" Schema="rqts" />
           <EntitySet Name="notification" EntityType="WorkflowTest.Store.notification" store:Type="Tables" Schema="rqts" />
           <EntitySet Name="user" EntityType="WorkflowTest.Store.user" store:Type="Tables" Schema="rqts" />
           <EntitySet Name="userlevel" EntityType="WorkflowTest.Store.userlevel" store:Type="Tables" Schema="rqts" />
         </EntityContainer>
+        <EntityType Name="cc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="planapprover_id" Type="int" Nullable="false" />
+          <Property Name="planapprovedate" Type="date" />
+          <Property Name="completiondate" Type="date" />
+          <Property Name="solutionverifier_id" Type="int" />
+          <Property Name="closedate" Type="date" />
+        </EntityType>
         <EntityType Name="ccitem">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="action" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="action" Type="varchar" MaxLength="255" />
           <Property Name="actionby_id" Type="int" Nullable="false" />
           <Property Name="duedate" Type="datetime" Nullable="false" />
           <Property Name="completiondate" Type="datetime" />
-          <Property Name="status" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="ncr_id" Type="int" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="255" />
+          <Property Name="cc_id" Type="int" Nullable="false" />
           <Property Name="passed" Type="bit" />
           <Property Name="failed" Type="bit" />
           <Property Name="reviewer_id" Type="int" />
           <Property Name="reviewdate" Type="datetime" />
           <Property Name="reviewcomment" Type="varchar" MaxLength="255" />
-          <Property Name="corrective" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="seq" Type="int" />
         </EntityType>
         <EntityType Name="department">
           <Key>
@@ -37,6 +50,16 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ncr_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
         </EntityType>
         <EntityType Name="ncr">
           <Key>
@@ -117,9 +140,15 @@
             <End Role="ncr" EntitySet="Ncrs" />
           </AssociationSet>
           <EntitySet Name="ccitems" EntityType="BaseModel.ccitem" />
-          <AssociationSet Name="Ncrccitem" Association="BaseModel.Ncrccitem">
-            <End Role="Ncr" EntitySet="Ncrs" />
+          <EntitySet Name="cc" EntityType="BaseModel.cc" />
+          <EntitySet Name="logs" EntityType="BaseModel.log" />
+          <AssociationSet Name="ccccitem" Association="BaseModel.cc_ccitem">
+            <End Role="cc" EntitySet="cc" />
             <End Role="ccitem" EntitySet="ccitems" />
+          </AssociationSet>
+          <AssociationSet Name="Ncrcc" Association="BaseModel.Ncrcc">
+            <End Role="Ncr" EntitySet="Ncrs" />
+            <End Role="cc" EntitySet="cc" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Department">
@@ -147,7 +176,7 @@
           <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
           <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
           <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
-          <NavigationProperty Name="ccitems" Relationship="BaseModel.Ncrccitem" FromRole="Ncr" ToRole="ccitem" />
+          <NavigationProperty Name="ccs" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -256,24 +285,59 @@
           <Property Type="DateTime" Name="duedate" Nullable="false" />
           <Property Type="DateTime" Name="completiondate" />
           <Property Type="String" Name="status" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="ncr_id" Nullable="false" />
+          <Property Type="Int32" Name="cc_id" Nullable="false" />
           <Property Type="Boolean" Name="passed" />
           <Property Type="Boolean" Name="failed" />
           <Property Type="Int32" Name="reviewer_id" />
           <Property Type="DateTime" Name="reviewdate" />
           <Property Type="String" Name="reviewcomment" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="corrective" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrccitem" FromRole="ccitem" ToRole="Ncr" />
+          <Property Type="Int32" Name="seq" />
+          <NavigationProperty Name="cc" Relationship="BaseModel.cc_ccitem" FromRole="ccitem" ToRole="cc" />
         </EntityType>
-        <Association Name="Ncrccitem">
-          <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="1" />
+        <EntityType Name="cc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="planapprover_id" Nullable="false" />
+          <Property Type="DateTime" Name="planapprovedate" />
+          <Property Type="DateTime" Name="completiondate" />
+          <Property Type="Int32" Name="solutionverifier_id" />
+          <Property Type="DateTime" Name="closedate" />
+          <NavigationProperty Name="ccitems" Relationship="BaseModel.cc_ccitem" FromRole="cc" ToRole="ccitem" />
+          <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrcc" FromRole="cc" ToRole="Ncr" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="timestamp" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ncr_id" Nullable="false" />
+          <Property Type="Int32" Name="user_id" />
+        </EntityType>
+        <Association Name="cc_ccitem">
+          <End Type="BaseModel.cc" Role="cc" Multiplicity="1" />
           <End Type="BaseModel.ccitem" Role="ccitem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ccitem">
+              <PropertyRef Name="cc_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ncrcc">
+          <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="1" />
+          <End Type="BaseModel.cc" Role="cc" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Ncr">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="ccitem">
-              <PropertyRef Name="ncr_id" />
+            <Dependent Role="cc">
+              <PropertyRef Name="id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,18 +410,41 @@
           <EntitySetMapping Name="ccitems">
             <EntityTypeMapping TypeName="BaseModel.ccitem">
               <MappingFragment StoreEntitySet="ccitem">
-                <ScalarProperty Name="corrective" ColumnName="corrective" />
+                <ScalarProperty Name="cc_id" ColumnName="cc_id" />
+                <ScalarProperty Name="seq" ColumnName="seq" />
                 <ScalarProperty Name="reviewcomment" ColumnName="reviewcomment" />
                 <ScalarProperty Name="reviewdate" ColumnName="reviewdate" />
                 <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
                 <ScalarProperty Name="failed" ColumnName="failed" />
                 <ScalarProperty Name="passed" ColumnName="passed" />
-                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="completiondate" ColumnName="completiondate" />
                 <ScalarProperty Name="duedate" ColumnName="duedate" />
                 <ScalarProperty Name="actionby_id" ColumnName="actionby_id" />
                 <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cc">
+            <EntityTypeMapping TypeName="BaseModel.cc">
+              <MappingFragment StoreEntitySet="cc">
+                <ScalarProperty Name="closedate" ColumnName="closedate" />
+                <ScalarProperty Name="solutionverifier_id" ColumnName="solutionverifier_id" />
+                <ScalarProperty Name="completiondate" ColumnName="completiondate" />
+                <ScalarProperty Name="planapprovedate" ColumnName="planapprovedate" />
+                <ScalarProperty Name="planapprover_id" ColumnName="planapprover_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logs">
+            <EntityTypeMapping TypeName="BaseModel.log">
+              <MappingFragment StoreEntitySet="log">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="ncr_id" ColumnName="ncr_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -383,7 +470,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="MySqlModel" ZoomLevel="63">
+      <Diagram Name="MySqlModel" ZoomLevel="69">
         <EntityTypeShape EntityType="BaseModel.Department" Width="1.5" PointX="3.25" PointY="0.875" Height="1.59568359375" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Ncr" Width="1.5" PointX="9" PointY="0.875" Height="3.5186979166666656" IsExpanded="true" />
         <EntityTypeShape EntityType="BaseModel.Notification" Width="1.5" PointX="0.5" PointY="0.5" Height="1.9802864583333326" IsExpanded="true" />
@@ -409,10 +496,16 @@
           <ConnectorPoint PointX="7.125" PointY="3.5765234374999992" />
           <ConnectorPoint PointX="9" PointY="3.5765234374999992" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="BaseModel.ccitem" Width="1.5" PointX="12.125" PointY="0.875" Height="3.5186979166666674" />
-        <AssociationConnector Association="BaseModel.Ncrccitem">
-          <ConnectorPoint PointX="10.5" PointY="2.7304996744791659" />
-          <ConnectorPoint PointX="12.125" PointY="2.7304996744791659" />
+        <EntityTypeShape EntityType="BaseModel.ccitem" Width="1.5" PointX="15.375" PointY="0.875" Height="3.7109993489583317" />
+        <EntityTypeShape EntityType="BaseModel.cc" Width="1.5" PointX="12.375" PointY="0.875" Height="2.5571907552083331" />
+        <EntityTypeShape EntityType="BaseModel.log" Width="1.5" PointX="2.75" PointY="5.75" Height="1.9802864583333317" />
+        <AssociationConnector Association="BaseModel.cc_ccitem">
+          <ConnectorPoint PointX="13.875" PointY="2.1535953776041667" />
+          <ConnectorPoint PointX="15.375" PointY="2.1535953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="BaseModel.Ncrcc">
+          <ConnectorPoint PointX="10.5" PointY="2.1535953776041667" />
+          <ConnectorPoint PointX="12.375" PointY="2.1535953776041667" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -1,9 +1,9 @@
-﻿Public Class Status
+﻿Public Class CcStatus
 
 	Public Structure StatusStruct
 		Public Property Id As Integer
 		Public Property Description As StatusType
-		Sub New(p1 As Integer, statusType As Status.StatusType)
+		Sub New(p1 As Integer, statusType As CcStatus.StatusType)
 			Id = p1
 			Description = statusType
 		End Sub
@@ -11,50 +11,46 @@
 
 	Public Enum StatusType
 		Creating = 0
-		Modifying = 1
-		SubmittedToAssignee = 2
-		Assigned = 3
-		SubmittedToDelegate = 4
-		Delegated = 5
+		SubmittedToApprover = 1
+		PlanExecution = 2
+		SolutionVerification = 3
+		Closed = 4
 	End Enum
-	Public Shared StatusTypes As StatusType() = {
-	  StatusType.Creating,
-	  StatusType.Modifying,
-	  StatusType.SubmittedToAssignee,
-	  StatusType.Assigned,
-	  StatusType.SubmittedToDelegate,
-	  StatusType.Delegated
-	}
 
+	Public Shared CcStatusTypes As StatusType() = {
+	  StatusType.Creating,
+	  StatusType.SubmittedToApprover,
+	  StatusType.PlanExecution,
+	  StatusType.SolutionVerification,
+	  StatusType.Closed
+	}
+	Public Shared Property StatMessages As String() = {"CC is being Created", "CC Plan is submitted to Approver", "CC Plan Approved and Executing", "CC Solution Verification", "CC Verified and Closed"}
 
 	Public Enum Actions
 		Create = 0
 		Submit = 1
-		RejectByAssignee = 2
-		AcceptByAssignee = 3
-		Delegat = 4
-		RejectByDelegate = 5
-		AcceptByDelegate = 6
-		Save = 7
-		Drop = 8
+		RejectByApprover = 2
+		AcceptByApprover = 3
+		ExecutionFinished = 4
+		VerificationPassed = 5
+		VerificationFailed = 6
 	End Enum
+
 	Public Shared ActionsArray As Actions() = {
 	 Actions.Create,
 	 Actions.Submit,
-	 Actions.RejectByAssignee,
-	 Actions.AcceptByAssignee,
-	 Actions.Delegat,
-	 Actions.RejectByDelegate,
-	 Actions.AcceptByDelegate,
-	 Actions.Save,
-	 Actions.Drop
+	 Actions.RejectByApprover,
+	 Actions.AcceptByApprover,
+	 Actions.ExecutionFinished,
+	 Actions.VerificationPassed,
+	 Actions.VerificationFailed
 	}
+	Public Property ActionMessages As String() = {"CC Creating", "CC submitted to approver", "CC Plan Rejected by Approver", "CC Plan Accepted by Approver", "CC Execution finished", "CC Verification Passed", "CC Verification Failed"}
+	Public Shared Property ActionRequiresUsername As Boolean() = {False, True, False, False, False, False, False}
 
 	Private status
 	Private _state As StatusType
-	Public Shared Property ActionRequiresUsername As Boolean() = {False, True, False, False, True, False, False, False, False}
-	Public Shared Property StatMessages As String() = {"NCR is being Created", "NCR Modifying", "NCR is submitted to Assignee", "NCR is Assigned", "NCR is submitted to Delegate", "NCR is delegated"}
-	Public Property ActionMessages As String() = {"NCR Created", "NCR submitted to assignee", "Rejected by Assignee", "Accepted by Assignee", "Delegated", "Rejected by Delegate", "Accepted by Delegate", "NCR Saved", "NCR Dropped"}
+
 	Public Property State As StatusType
 		Get
 			Return _state
@@ -74,7 +70,7 @@
 
 	Private emailList As List(Of String)
 
-	Private statusItemList As List(Of Status.StatusType)
+	Private statusItemList As List(Of CcStatus.StatusType)
 
 	''' <summary>
 	''' Constructor
@@ -95,17 +91,16 @@
 	End Function
 
 	Public Shared Function GetStatusTypes() As StatusType()
-		Return StatusTypes
+		Return CcStatusTypes
 	End Function
 
 	Public Shared Function GetStatusList() As List(Of StatusStruct)
 		Dim result = New List(Of StatusStruct)()
 		result.Add(New StatusStruct(0, StatusType.Creating))
-		result.Add(New StatusStruct(1, StatusType.Modifying))
-		result.Add(New StatusStruct(2, StatusType.SubmittedToAssignee))
-		result.Add(New StatusStruct(3, StatusType.Assigned))
-		result.Add(New StatusStruct(4, StatusType.SubmittedToDelegate))
-		result.Add(New StatusStruct(5, StatusType.Delegated))
+		result.Add(New StatusStruct(1, StatusType.SubmittedToApprover))
+		result.Add(New StatusStruct(2, StatusType.PlanExecution))
+		result.Add(New StatusStruct(3, StatusType.SolutionVerification))
+		result.Add(New StatusStruct(4, StatusType.Closed))
 		Return result
 	End Function
 
