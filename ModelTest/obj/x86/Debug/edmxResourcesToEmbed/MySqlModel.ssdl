@@ -15,11 +15,12 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="planapprover_id" Type="int" Nullable="false" />
+    <Property Name="planapprover_id" Type="int" />
     <Property Name="planapprovedate" Type="date" />
     <Property Name="completiondate" Type="date" />
     <Property Name="solutionverifier_id" Type="int" />
     <Property Name="closedate" Type="date" />
+    <Property Name="status_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ccitem">
     <Key>

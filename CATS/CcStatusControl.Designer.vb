@@ -66,7 +66,7 @@ Partial Class CcStatusControl
 		'
 		Me.UserCb.FormattingEnabled = True
 		Me.UserCb.Items.AddRange(New Object() {"Alice", "Ben", "Charlie"})
-		Me.UserCb.Location = New System.Drawing.Point(169, 25)
+		Me.UserCb.Location = New System.Drawing.Point(166, 22)
 		Me.UserCb.Name = "UserCb"
 		Me.UserCb.Size = New System.Drawing.Size(109, 21)
 		Me.UserCb.TabIndex = 4

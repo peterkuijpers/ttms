@@ -83,6 +83,7 @@
     <EntitySetMapping Name="cc">
       <EntityTypeMapping TypeName="BaseModel.cc">
         <MappingFragment StoreEntitySet="cc">
+          <ScalarProperty Name="status_id" ColumnName="status_id" />
           <ScalarProperty Name="closedate" ColumnName="closedate" />
           <ScalarProperty Name="solutionverifier_id" ColumnName="solutionverifier_id" />
           <ScalarProperty Name="completiondate" ColumnName="completiondate" />

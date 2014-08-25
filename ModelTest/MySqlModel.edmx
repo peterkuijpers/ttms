@@ -20,11 +20,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="planapprover_id" Type="int" Nullable="false" />
+          <Property Name="planapprover_id" Type="int" />
           <Property Name="planapprovedate" Type="date" />
           <Property Name="completiondate" Type="date" />
           <Property Name="solutionverifier_id" Type="int" />
           <Property Name="closedate" Type="date" />
+          <Property Name="status_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ccitem">
           <Key>
@@ -176,7 +177,7 @@
           <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
           <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
           <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
-          <NavigationProperty Name="ccs" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
+          <NavigationProperty Name="cc" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
         </EntityType>
         <EntityType Name="Notification">
           <Key>
@@ -299,13 +300,14 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="planapprover_id" Nullable="false" />
+          <Property Type="Int32" Name="planapprover_id" Nullable="true" />
           <Property Type="DateTime" Name="planapprovedate" />
           <Property Type="DateTime" Name="completiondate" />
           <Property Type="Int32" Name="solutionverifier_id" />
           <Property Type="DateTime" Name="closedate" />
           <NavigationProperty Name="ccitems" Relationship="BaseModel.cc_ccitem" FromRole="cc" ToRole="ccitem" />
           <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrcc" FromRole="cc" ToRole="Ncr" />
+          <Property Type="Int32" Name="status_id" Nullable="false" DefaultValue="0" />
         </EntityType>
         <EntityType Name="log">
           <Key>
@@ -429,6 +431,7 @@
           <EntitySetMapping Name="cc">
             <EntityTypeMapping TypeName="BaseModel.cc">
               <MappingFragment StoreEntitySet="cc">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
                 <ScalarProperty Name="closedate" ColumnName="closedate" />
                 <ScalarProperty Name="solutionverifier_id" ColumnName="solutionverifier_id" />
                 <ScalarProperty Name="completiondate" ColumnName="completiondate" />
@@ -497,15 +500,15 @@
           <ConnectorPoint PointX="9" PointY="3.5765234374999992" />
         </AssociationConnector>
         <EntityTypeShape EntityType="BaseModel.ccitem" Width="1.5" PointX="15.375" PointY="0.875" Height="3.7109993489583317" />
-        <EntityTypeShape EntityType="BaseModel.cc" Width="1.5" PointX="12.375" PointY="0.875" Height="2.5571907552083331" />
+        <EntityTypeShape EntityType="BaseModel.cc" Width="1.5" PointX="12.375" PointY="0.875" Height="2.7494921875" />
         <EntityTypeShape EntityType="BaseModel.log" Width="1.5" PointX="2.75" PointY="5.75" Height="1.9802864583333317" />
         <AssociationConnector Association="BaseModel.cc_ccitem">
-          <ConnectorPoint PointX="13.875" PointY="2.1535953776041667" />
-          <ConnectorPoint PointX="15.375" PointY="2.1535953776041667" />
+          <ConnectorPoint PointX="13.875" PointY="2.24974609375" />
+          <ConnectorPoint PointX="15.375" PointY="2.24974609375" />
         </AssociationConnector>
         <AssociationConnector Association="BaseModel.Ncrcc">
-          <ConnectorPoint PointX="10.5" PointY="2.1535953776041667" />
-          <ConnectorPoint PointX="12.375" PointY="2.1535953776041667" />
+          <ConnectorPoint PointX="10.5" PointY="2.24974609375" />
+          <ConnectorPoint PointX="12.375" PointY="2.24974609375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

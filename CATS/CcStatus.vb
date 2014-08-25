@@ -46,7 +46,7 @@
 	 Actions.VerificationFailed
 	}
 	Public Property ActionMessages As String() = {"CC Creating", "CC submitted to approver", "CC Plan Rejected by Approver", "CC Plan Accepted by Approver", "CC Execution finished", "CC Verification Passed", "CC Verification Failed"}
-	Public Shared Property ActionRequiresUsername As Boolean() = {False, True, False, False, False, False, False}
+	Public Shared Property ActionRequiresUsername As Boolean() = {False, True, False, False, True, False, False}
 
 	Private status
 	Private _state As StatusType

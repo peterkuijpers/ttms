@@ -8,14 +8,14 @@
 		Else
 			Dim dr = datatable.Rows(0)
 			Dim id As Integer = CType(dr.Item("id"), Integer)
-			Dim raised_by_id As Integer? = Nothing
+			Dim raisedby_id As Integer? = Nothing
 			If Not IsDBNull(dr.Item("raisedby_id")) Then
-				raised_by_id = CType(dr.Item("raisedby_id"), Integer)
+				raisedby_id = CType(dr.Item("raisedby_id"), Integer)
 			End If
 			Dim raised_date = CType(dr.Item("raiseddate"), DateTime)
-			Dim raised_to_id As Integer? = Nothing
+			Dim assignedto_id As Integer? = Nothing
 			If Not IsDBNull(dr.Item("assignedto_id")) Then
-				raised_to_id = CType(dr.Item("assignedto_id"), Integer)
+				assignedto_id = CType(dr.Item("assignedto_id"), Integer)
 			End If
 			Dim status_id = CType(dr.Item("status_id"), Integer)
 			Dim CC_id As Integer? = Nothing
@@ -31,9 +31,9 @@
 			'Dim thisNcr As NCR = NCR.CreateNCR(id, raised_by_id, raised_date, raised_to_id, status_id, description, title)
 			Dim thisNcr As Ncr = New Ncr()
 			thisNcr.id = id
-			thisNcr.raisedby_id = raised_by_id
+			thisNcr.raisedby_id = raisedby_id
 			thisNcr.raiseddate = raised_date
-			thisNcr.assignedto_id = raised_to_id
+			thisNcr.assignedto_id = assignedto_id
 			thisNcr.status_id = status_id
 			thisNcr.rcp_id = RCP_id
 			thisNcr.description = description
@@ -95,26 +95,61 @@
 		Return dt
 	End Function
 
-	''' <summary>
-	''' Load datatable with all status from database
-	''' </summary>
-	''' <returns></returns>
-	''' <remarks></remarks>
-	'Public Shared Function LoadStatus() As MySqlDataSet.NCR_Status1DataTable
-	'	MySqlDataSet.ncr
-	'	'Dim dt As TTMSDataSet.NCR_StatusDataTable = New TTMSDataSet.NCR_StatusDataTable()
-	'	'dt.Clear()
-	'	'Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_StatusTableAdapter()
-	'	Dim dt As TTMS.TTMSDataSet.NCR_Status1DataTable = New TTMS.TTMSDataSet.NCR_Status1DataTable()
-	'	dt.Clear()
-	'	Dim statusAdapt = New TTMS.TTMSDataSetTableAdapters.NCR_Status1TableAdapter()
-	'	dt = statusAdapt.GetData()
-	'	Return dt
-	'End Function
 
-	'Public Shared Function LoadActions(statusId As Integer) As TTMS.TTMSDataSet.ActionsDataTable
-	'	Dim actionsAdapt = New TTMS.TTMSDataSetTableAdapters.ActionsTableAdapter()
-	'	Dim dt = actionsAdapt.GetDataByStatusId(statusId)
-	'	Return dt
-	'End Function
+	Public Shared Function LoadCc(ccId As Integer) As cc
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim datatable = ccAdapt.GetDataById(ccId)
+		If datatable.Rows.Count <> 1 Then
+			Return Nothing
+		Else
+			Dim dr = datatable.Rows(0)
+			Dim id As Integer = CType(dr.Item("id"), Integer)
+			Dim status_id = CType(dr.Item("status_id"), Integer)
+			Dim planapprover_id As Integer = Nothing
+			If Not IsDBNull(dr.Item("planapprover_id")) Then
+				planapprover_id = CType(dr.Item("planapprover_id"), Integer)
+			End If
+			Dim solutionverifier_id = Nothing
+			If Not IsDBNull(dr.Item("solutionverifier_id")) Then
+				solutionverifier_id = CType(dr.Item("solutionverifier_id"), Integer)
+			End If
+
+			Dim thisCc As cc = New cc()
+			thisCc.id = id
+			thisCc.status_id = status_id
+			thisCc.planapprover_id = planapprover_id
+			thisCc.solutionverifier_id = solutionverifier_id
+			Return thisCc
+		End If
+	End Function
+
+	Public Shared Function UpdateCcStatus(ccId As Integer, newStatus As Integer) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateStatus(newStatus, ccId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	
+	Public Shared Function SetCcPlanApprover(ccId As Integer, planApproverId As Integer) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdatePlanApprover(planApproverId, ccid)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+	Public Shared Function SetCcSolutionVerifier(ccId As Integer, solutionVerifierId As Integer) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateSolutionVerifier(solutionVerifierId, ccId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
 End Class

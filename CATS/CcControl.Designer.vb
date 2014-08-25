@@ -37,7 +37,7 @@ Partial Class CcControl
 		Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ncrIdCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.ccIdCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.CcBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
 		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
@@ -46,7 +46,9 @@ Partial Class CcControl
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.Label2 = New System.Windows.Forms.Label()
 		Me.NcrIdTb = New System.Windows.Forms.TextBox()
-		Me.CcStatusControl1 = New CATS.CcStatusControl()
+		Me.Label3 = New System.Windows.Forms.Label()
+		Me.StatusTb = New System.Windows.Forms.TextBox()
+		Me.CcStatusCntr = New CATS.CcStatusControl()
 		Me.TableLayoutPanel1.SuspendLayout()
 		CType(Me.CcPlanGridView, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.CcBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,7 +77,7 @@ Partial Class CcControl
 		'
 		Me.CcPlanGridView.AutoGenerateColumns = False
 		Me.CcPlanGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.CcPlanGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.seqCol, Me.IdTb, Me.DataGridViewTextBoxColumn2, Me.ActionByCmb, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.PassedDataGridViewTextBoxColumn, Me.FailedDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.ncrIdCol})
+		Me.CcPlanGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.seqCol, Me.IdTb, Me.DataGridViewTextBoxColumn2, Me.ActionByCmb, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.PassedDataGridViewTextBoxColumn, Me.FailedDataGridViewTextBoxColumn, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.ccIdCol})
 		Me.CcPlanGridView.DataSource = Me.CcBindingSource
 		Me.CcPlanGridView.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.CcPlanGridView.Location = New System.Drawing.Point(13, 14)
@@ -170,12 +172,12 @@ Partial Class CcControl
 		Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
 		Me.DataGridViewTextBoxColumn9.Visible = False
 		'
-		'ncrIdCol
+		'ccIdCol
 		'
-		Me.ncrIdCol.DataPropertyName = "cc_id"
-		Me.ncrIdCol.HeaderText = "cc_id"
-		Me.ncrIdCol.Name = "ncrIdCol"
-		Me.ncrIdCol.Visible = False
+		Me.ccIdCol.DataPropertyName = "cc_id"
+		Me.ccIdCol.HeaderText = "cc_id"
+		Me.ccIdCol.Name = "ccIdCol"
+		Me.ccIdCol.Visible = False
 		'
 		'CcBindingSource
 		'
@@ -195,7 +197,7 @@ Partial Class CcControl
 		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.13131!))
 		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.86869!))
 		Me.TableLayoutPanel2.Controls.Add(Me.TableLayoutPanel3, 0, 0)
-		Me.TableLayoutPanel2.Controls.Add(Me.CcStatusControl1, 1, 0)
+		Me.TableLayoutPanel2.Controls.Add(Me.CcStatusCntr, 1, 0)
 		Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top
 		Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 0)
 		Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
@@ -215,19 +217,23 @@ Partial Class CcControl
 		Me.TableLayoutPanel3.Controls.Add(Me.Label1, 0, 0)
 		Me.TableLayoutPanel3.Controls.Add(Me.Label2, 2, 0)
 		Me.TableLayoutPanel3.Controls.Add(Me.NcrIdTb, 1, 0)
+		Me.TableLayoutPanel3.Controls.Add(Me.Label3, 2, 1)
+		Me.TableLayoutPanel3.Controls.Add(Me.StatusTb, 3, 1)
 		Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.TableLayoutPanel3.Location = New System.Drawing.Point(3, 3)
 		Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-		Me.TableLayoutPanel3.RowCount = 1
+		Me.TableLayoutPanel3.RowCount = 3
 		Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-		Me.TableLayoutPanel3.Size = New System.Drawing.Size(494, 101)
+		Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28.0!))
+		Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38.0!))
+		Me.TableLayoutPanel3.Size = New System.Drawing.Size(493, 101)
 		Me.TableLayoutPanel3.TabIndex = 1
 		'
 		'NcrSubjectTb
 		'
 		Me.NcrSubjectTb.Anchor = System.Windows.Forms.AnchorStyles.Left
 		Me.NcrSubjectTb.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.NcrSubjectTb.Location = New System.Drawing.Point(228, 39)
+		Me.NcrSubjectTb.Location = New System.Drawing.Point(228, 6)
 		Me.NcrSubjectTb.Name = "NcrSubjectTb"
 		Me.NcrSubjectTb.ReadOnly = True
 		Me.NcrSubjectTb.Size = New System.Drawing.Size(215, 23)
@@ -238,7 +244,7 @@ Partial Class CcControl
 		Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Right
 		Me.Label1.AutoSize = True
 		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label1.Location = New System.Drawing.Point(17, 42)
+		Me.Label1.Location = New System.Drawing.Point(17, 9)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(30, 17)
 		Me.Label1.TabIndex = 0
@@ -249,7 +255,7 @@ Partial Class CcControl
 		Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Right
 		Me.Label2.AutoSize = True
 		Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label2.Location = New System.Drawing.Point(167, 42)
+		Me.Label2.Location = New System.Drawing.Point(167, 9)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(55, 17)
 		Me.Label2.TabIndex = 1
@@ -259,20 +265,41 @@ Partial Class CcControl
 		'
 		Me.NcrIdTb.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.NcrIdTb.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.NcrIdTb.Location = New System.Drawing.Point(53, 39)
+		Me.NcrIdTb.Location = New System.Drawing.Point(53, 6)
 		Me.NcrIdTb.Name = "NcrIdTb"
 		Me.NcrIdTb.ReadOnly = True
 		Me.NcrIdTb.Size = New System.Drawing.Size(94, 23)
 		Me.NcrIdTb.TabIndex = 2
 		'
-		'CcStatusControl1
+		'Label3
 		'
-		Me.CcStatusControl1.BackColor = System.Drawing.SystemColors.ActiveCaption
-		Me.CcStatusControl1.Dock = System.Windows.Forms.DockStyle.Right
-		Me.CcStatusControl1.Location = New System.Drawing.Point(538, 3)
-		Me.CcStatusControl1.Name = "CcStatusControl1"
-		Me.CcStatusControl1.Size = New System.Drawing.Size(251, 101)
-		Me.CcStatusControl1.TabIndex = 2
+		Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Right
+		Me.Label3.AutoSize = True
+		Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label3.Location = New System.Drawing.Point(174, 35)
+		Me.Label3.Name = "Label3"
+		Me.Label3.Size = New System.Drawing.Size(48, 28)
+		Me.Label3.TabIndex = 4
+		Me.Label3.Text = "CC Status"
+		'
+		'StatusTb
+		'
+		Me.StatusTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.StatusTb.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.StatusTb.Location = New System.Drawing.Point(228, 38)
+		Me.StatusTb.Name = "StatusTb"
+		Me.StatusTb.ReadOnly = True
+		Me.StatusTb.Size = New System.Drawing.Size(215, 23)
+		Me.StatusTb.TabIndex = 5
+		'
+		'CcStatusCntr
+		'
+		Me.CcStatusCntr.BackColor = System.Drawing.SystemColors.ActiveCaption
+		Me.CcStatusCntr.Dock = System.Windows.Forms.DockStyle.Right
+		Me.CcStatusCntr.Location = New System.Drawing.Point(502, 3)
+		Me.CcStatusCntr.Name = "CcStatusCntr"
+		Me.CcStatusCntr.Size = New System.Drawing.Size(287, 101)
+		Me.CcStatusCntr.TabIndex = 2
 		'
 		'CcControl
 		'
@@ -327,6 +354,7 @@ Partial Class CcControl
 	Friend WithEvents Label1 As System.Windows.Forms.Label
 	Friend WithEvents Label2 As System.Windows.Forms.Label
 	Friend WithEvents NcrIdTb As System.Windows.Forms.TextBox
+	Friend WithEvents CcStatusCntr As CATS.CcStatusControl
 	Friend WithEvents seqCol As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents IdTb As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -339,7 +367,8 @@ Partial Class CcControl
 	Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents ncrIdCol As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents CcStatusControl1 As CATS.CcStatusControl
+	Friend WithEvents ccIdCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents Label3 As System.Windows.Forms.Label
+	Friend WithEvents StatusTb As System.Windows.Forms.TextBox
 
 End Class

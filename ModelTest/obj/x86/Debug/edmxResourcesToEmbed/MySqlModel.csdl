@@ -63,7 +63,7 @@
     <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
     <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
     <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
-    <NavigationProperty Name="ccs" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
+    <NavigationProperty Name="cc" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
   </EntityType>
   <EntityType Name="Notification">
     <Key>
@@ -186,13 +186,14 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="planapprover_id" Nullable="false" />
+    <Property Type="Int32" Name="planapprover_id" Nullable="true" />
     <Property Type="DateTime" Name="planapprovedate" />
     <Property Type="DateTime" Name="completiondate" />
     <Property Type="Int32" Name="solutionverifier_id" />
     <Property Type="DateTime" Name="closedate" />
     <NavigationProperty Name="ccitems" Relationship="BaseModel.cc_ccitem" FromRole="cc" ToRole="ccitem" />
     <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrcc" FromRole="cc" ToRole="Ncr" />
+    <Property Type="Int32" Name="status_id" Nullable="false" DefaultValue="0" />
   </EntityType>
   <EntityType Name="log">
     <Key>

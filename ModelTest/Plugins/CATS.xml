@@ -6,12 +6,7 @@ CATS
 </name>
 </assembly>
 <members>
-<member name="M:CATS.CcStatus.#ctor">
-	<summary>
- Constructor
- </summary>
-	<remarks></remarks>
-</member><member name="M:CATS.CatsListForm.ShowPluginForm(BaseModel.User,System.Int32)">
+<member name="M:CATS.CatsListForm.ShowPluginForm(BaseModel.User,System.Int32)">
 	<summary>
  Show this form as a Plugin
  </summary>
@@ -84,9 +79,20 @@ CATS
 	<summary>
  A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
-</member><member name="M:CATS.CcControl.StatusChanged">
+</member><member name="M:CATS.CcControl.EnableStatusControl(BaseModel.User,System.Int32)">
+	<summary>
+ Enable/disable the status control box, depending on who you are
+ and the ncr details
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATS.CcControl.StatusChanged(CATS.CcStatus.Actions,System.Int32)">
 	<summary>
  Called when the action/status control has a new status
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATS.CcStatus.#ctor">
+	<summary>
+ Constructor
  </summary>
 	<remarks></remarks>
 </member>

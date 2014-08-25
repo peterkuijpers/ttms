@@ -124,11 +124,7 @@ Public Class NCRDetailsForm
 		End If
 		'Update Status Control Display
 		Dim actionUserId = GetActionUser(curNcr)
-		If (Not IsNothing(user)) Then
-			EnableStatusControl(user, actionUserId)
-		Else
-			EnableStatusControl(user, actionUserId)
-		End If
+		EnableStatusControl(user, actionUserId)
 		'Update CC control
 		If (curNcr.status_id = Status.StatusType.Modifying Or curNcr.status_id = Status.StatusType.Creating Or curNcr.status_id = Status.StatusType.SubmittedToAssignee) Then
 			showCcState = False

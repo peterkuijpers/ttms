@@ -276,12 +276,11 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="M:BaseModel.cc.Createcc(System.Int32,System.Int32)">
+</member><member name="M:BaseModel.cc.Createcc(System.Int32)">
 	<summary>
  Create a new cc object.
  </summary>
 	<param name="id">Initial value of the id property.</param>
-	<param name="planapprover_id">Initial value of the planapprover_id property.</param>
 </member><member name="P:BaseModel.cc.id">
 	<summary>
  No Metadata Documentation available.
@@ -303,6 +302,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.cc.closedate">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.status_id">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -523,11 +526,11 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.Ncr.ccs">
+</member><member name="P:BaseModel.Ncr.cc">
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.Ncr.ccsReference">
+</member><member name="P:BaseModel.Ncr.ccReference">
 	<summary>
  No Metadata Documentation available.
  </summary>

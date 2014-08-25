@@ -18,7 +18,7 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("dafae5a6-33d0-460b-a13b-4909c8523478")>
+<Assembly: EdmSchemaAttribute("d2815433-87e2-4e0a-8c42-16f69141e3d2")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("BaseModel", "userleveluser", "userlevel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Userlevel), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(User), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "departmentuser", "department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Department), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(User), True)>
@@ -272,11 +272,9 @@ Public Partial Class cc
     ''' Create a new cc object.
     ''' </summary>
     ''' <param name="id">Initial value of the id property.</param>
-    ''' <param name="planapprover_id">Initial value of the planapprover_id property.</param>
-    Public Shared Function Createcc(id As Global.System.Int32, planapprover_id As Global.System.Int32) As cc
+    Public Shared Function Createcc(id As Global.System.Int32) As cc
         Dim cc as cc = New cc
         cc.id = id
-        cc.planapprover_id = planapprover_id
         Return cc
     End Function
 
@@ -314,9 +312,9 @@ Public Partial Class cc
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
     <DataMemberAttribute()>
-    Public Property planapprover_id() As Global.System.Int32
+    Public Property planapprover_id() As Nullable(Of Global.System.Int32)
         Get
             Return _planapprover_id
         End Get
@@ -329,8 +327,8 @@ Public Partial Class cc
         End Set
     End Property
 
-    Private _planapprover_id As Global.System.Int32
-    Private Partial Sub Onplanapprover_idChanging(value As Global.System.Int32)
+    Private _planapprover_id As Nullable(Of Global.System.Int32)
+    Private Partial Sub Onplanapprover_idChanging(value As Nullable(Of Global.System.Int32))
     End Sub
 
     Private Partial Sub Onplanapprover_idChanged()
@@ -434,6 +432,31 @@ Public Partial Class cc
     End Sub
 
     Private Partial Sub OnclosedateChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property status_id() As Global.System.Int32
+        Get
+            Return _status_id
+        End Get
+        Set
+            Onstatus_idChanging(value)
+            ReportPropertyChanging("status_id")
+            _status_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("status_id")
+            Onstatus_idChanged()
+        End Set
+    End Property
+
+    Private _status_id As Global.System.Int32 = 0
+    Private Partial Sub Onstatus_idChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub Onstatus_idChanged()
     End Sub
 
     #End Region
@@ -1546,7 +1569,7 @@ Public Partial Class Ncr
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
     <EdmRelationshipNavigationPropertyAttribute("BaseModel", "Ncrcc", "cc")>
-    Public Property ccs() As cc
+    Public Property cc() As cc
         Get
             Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.Ncrcc", "cc").Value
         End Get
@@ -1559,7 +1582,7 @@ Public Partial Class Ncr
     ''' </summary>
     <BrowsableAttribute(False)>
     <DataMemberAttribute()>
-    Public Property ccsReference() As EntityReference(Of cc)
+    Public Property ccReference() As EntityReference(Of cc)
         Get
             Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of cc)("BaseModel.Ncrcc", "cc")
         End Get
