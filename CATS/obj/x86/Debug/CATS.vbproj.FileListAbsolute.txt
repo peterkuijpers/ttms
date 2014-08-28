@@ -9,6 +9,11 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\CATS.dll.conf
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\CATS.dll
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\CATS.pdb
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\TTMS\Plugins\CATS.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Resources\CompanyLogo.png
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.dll.config
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.dll
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.vbprojResolveAssemblyReference.cache
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.CatsListForm.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.CcControl.resources
@@ -18,11 +23,6 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.Nc
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.Resources.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.StatusControl.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.vbproj.GenerateResource.Cache
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\Resources\CompanyLogo.png
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.dll.config
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.dll
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\Plugins\CATS.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.dll
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\CATS\obj\x86\Debug\CATS.pdb

@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Ncrs">
       <EntityTypeMapping TypeName="BaseModel.Ncr">
         <MappingFragment StoreEntitySet="ncr">
+          <ScalarProperty Name="owner_id" ColumnName="owner_id" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="raisedby_id" ColumnName="raisedby_id" />
           <ScalarProperty Name="assignedto_id" ColumnName="assignedto_id" />
@@ -83,6 +84,7 @@
     <EntitySetMapping Name="cc">
       <EntityTypeMapping TypeName="BaseModel.cc">
         <MappingFragment StoreEntitySet="cc">
+          <ScalarProperty Name="owner_id" ColumnName="owner_id" />
           <ScalarProperty Name="status_id" ColumnName="status_id" />
           <ScalarProperty Name="closedate" ColumnName="closedate" />
           <ScalarProperty Name="solutionverifier_id" ColumnName="solutionverifier_id" />

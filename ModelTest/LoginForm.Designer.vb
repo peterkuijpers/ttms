@@ -31,7 +31,7 @@ Partial Class LoginForm
 		Me.PwdTb = New System.Windows.Forms.TextBox()
 		Me.Label3 = New System.Windows.Forms.Label()
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-		Me.MySqlDataSet1 = New MySqlDataSet()
+		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
 		Me.FlowLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
 		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,7 +105,7 @@ Partial Class LoginForm
 		Me.UserIdTb.Name = "UserIdTb"
 		Me.UserIdTb.Size = New System.Drawing.Size(128, 20)
 		Me.UserIdTb.TabIndex = 2
-		Me.UserIdTb.Text = "pkuijp1"
+		Me.UserIdTb.Text = "peter.kuijpers"
 		'
 		'PwdTb
 		'
@@ -116,7 +116,7 @@ Partial Class LoginForm
 		Me.PwdTb.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
 		Me.PwdTb.Size = New System.Drawing.Size(76, 20)
 		Me.PwdTb.TabIndex = 3
-		Me.PwdTb.Text = "pkp123"
+		Me.PwdTb.Text = "peter123"
 		'
 		'Label3
 		'

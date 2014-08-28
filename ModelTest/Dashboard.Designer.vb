@@ -65,14 +65,14 @@ Partial Class Dashboard
 		Me.GroupBox4 = New System.Windows.Forms.GroupBox()
 		Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
 		Me.NotificationsGridView = New System.Windows.Forms.DataGridView()
-		Me.user_idCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ncr_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.MessageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.timestampCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.NotificationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.MySqlDataSet = New BaseModel.MySqlDataSet()
 		Me.Label4 = New System.Windows.Forms.Label()
 		Me.NotificationTableAdapter = New BaseModel.MySqlDataSetTableAdapters.notificationTableAdapter()
+		Me.user_idCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.ncr_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.MessageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.timestampCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.Panel1.SuspendLayout()
 		Me.TableLayoutPanel2.SuspendLayout()
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -524,45 +524,6 @@ Partial Class Dashboard
 		Me.NotificationsGridView.Size = New System.Drawing.Size(684, 108)
 		Me.NotificationsGridView.TabIndex = 2
 		'
-		'user_idCol
-		'
-		Me.user_idCol.DataPropertyName = "user_id"
-		Me.user_idCol.HeaderText = "user_id"
-		Me.user_idCol.Name = "user_idCol"
-		Me.user_idCol.ReadOnly = True
-		Me.user_idCol.Visible = False
-		Me.user_idCol.Width = 66
-		'
-		'ncr_id
-		'
-		Me.ncr_id.DataPropertyName = "ncr_id"
-		Me.ncr_id.FillWeight = 50.0!
-		Me.ncr_id.HeaderText = "ncr_id"
-		Me.ncr_id.MinimumWidth = 50
-		Me.ncr_id.Name = "ncr_id"
-		Me.ncr_id.ReadOnly = True
-		Me.ncr_id.Width = 122
-		'
-		'MessageDataGridViewImageColumn
-		'
-		Me.MessageDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-		Me.MessageDataGridViewImageColumn.DataPropertyName = "message"
-		Me.MessageDataGridViewImageColumn.HeaderText = "message"
-		Me.MessageDataGridViewImageColumn.Name = "MessageDataGridViewImageColumn"
-		Me.MessageDataGridViewImageColumn.ReadOnly = True
-		Me.MessageDataGridViewImageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.MessageDataGridViewImageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-		'
-		'timestampCol
-		'
-		Me.timestampCol.DataPropertyName = "timestamp"
-		Me.timestampCol.FillWeight = 130.0!
-		Me.timestampCol.HeaderText = "timestamp"
-		Me.timestampCol.MinimumWidth = 130
-		Me.timestampCol.Name = "timestampCol"
-		Me.timestampCol.ReadOnly = True
-		Me.timestampCol.Width = 316
-		'
 		'NotificationBindingSource
 		'
 		Me.NotificationBindingSource.DataMember = "notification"
@@ -587,6 +548,46 @@ Partial Class Dashboard
 		'NotificationTableAdapter
 		'
 		Me.NotificationTableAdapter.ClearBeforeFill = True
+		'
+		'user_idCol
+		'
+		Me.user_idCol.DataPropertyName = "user_id"
+		Me.user_idCol.HeaderText = "user_id"
+		Me.user_idCol.Name = "user_idCol"
+		Me.user_idCol.ReadOnly = True
+		Me.user_idCol.Visible = False
+		Me.user_idCol.Width = 66
+		'
+		'ncr_id
+		'
+		Me.ncr_id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.ncr_id.DataPropertyName = "ncr_id"
+		Me.ncr_id.FillWeight = 50.0!
+		Me.ncr_id.HeaderText = "ncr_id"
+		Me.ncr_id.MinimumWidth = 50
+		Me.ncr_id.Name = "ncr_id"
+		Me.ncr_id.ReadOnly = True
+		Me.ncr_id.Width = 50
+		'
+		'MessageDataGridViewImageColumn
+		'
+		Me.MessageDataGridViewImageColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		Me.MessageDataGridViewImageColumn.DataPropertyName = "message"
+		Me.MessageDataGridViewImageColumn.HeaderText = "message"
+		Me.MessageDataGridViewImageColumn.Name = "MessageDataGridViewImageColumn"
+		Me.MessageDataGridViewImageColumn.ReadOnly = True
+		Me.MessageDataGridViewImageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.MessageDataGridViewImageColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+		'
+		'timestampCol
+		'
+		Me.timestampCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.timestampCol.DataPropertyName = "timestamp"
+		Me.timestampCol.FillWeight = 130.0!
+		Me.timestampCol.HeaderText = "timestamp"
+		Me.timestampCol.MinimumWidth = 100
+		Me.timestampCol.Name = "timestampCol"
+		Me.timestampCol.ReadOnly = True
 		'
 		'Dashboard
 		'

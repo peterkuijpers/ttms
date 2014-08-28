@@ -204,6 +204,12 @@
   <ItemGroup>
     <Folder Include="Plugins\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Calendar\Calendar.vbproj">
+      <Project>{42587509-3E9F-40BB-B1D0-5148471C6BFE}</Project>
+      <Name>Calendar</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

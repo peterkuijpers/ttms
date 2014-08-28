@@ -7,6 +7,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Dots", "Dots\Dots.vbproj", 
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BaseModel", "ModelTest\BaseModel.vbproj", "{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Calendar", "Calendar\Calendar.vbproj", "{42587509-3E9F-40BB-B1D0-5148471C6BFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,16 @@ Global
 		{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}.Release|Mixed Platforms.Build.0 = Release|x86
 		{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}.Release|x86.ActiveCfg = Release|x86
 		{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}.Release|x86.Build.0 = Release|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Debug|x86.ActiveCfg = Debug|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Debug|x86.Build.0 = Debug|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Release|Any CPU.ActiveCfg = Release|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Release|Mixed Platforms.Build.0 = Release|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Release|x86.ActiveCfg = Release|x86
+		{42587509-3E9F-40BB-B1D0-5148471C6BFE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel.Composition
 Imports System.ComponentModel.Composition.Hosting
 Imports BaseModel
+Imports Calendar
 
 Public Enum ErrorCode As Integer
 	WrongNcrOwner = 1
@@ -85,6 +86,16 @@ Public Class CatsListForm
 	End Sub
 
 	Private Sub Reload()
+		Dim col As New CalendarColumn()
+		Me.DataGridView1.Columns.Add(col)
+
+		Dim rows = DataGridView1.SelectedRows
+		Dim curRowIndex As Integer
+		If rows.Count = 1 Then
+			curRowIndex = rows(0).Index
+		Else
+			curRowIndex = -1
+		End If
 
 		DataGridView1.AutoGenerateColumns = False
 		Dim NCRsTableAdapter = New BaseModel.MySqlDataSetTableAdapters.ncrTableAdapter
@@ -111,6 +122,10 @@ Public Class CatsListForm
 		StatusCol.DataSource = Status.GetStatusList()
 		StatusCol.ValueMember = "Id"
 		StatusCol.DisplayMember = "Description"
+		If (curRowIndex >= 0) Then
+			DataGridView1.ClearSelection()
+			DataGridView1.Rows(curRowIndex).Selected = True
+		End If
 
 	End Sub
 
@@ -155,7 +170,7 @@ Public Class CatsListForm
 		Dim form = New NCRDetailsForm()
 		form.SetNcrDetails(id, catsUser)
 		form.ShowDialog(Me)
-
+		Reload()
 	End Sub
 End Class
 

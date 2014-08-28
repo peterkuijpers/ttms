@@ -43,6 +43,8 @@ Partial Class NCRDetailsForm
 		Me.AssignedToTb = New System.Windows.Forms.TextBox()
 		Me.DelegatedToTb = New System.Windows.Forms.TextBox()
 		Me.CurrentStatusTb = New System.Windows.Forms.TextBox()
+		Me.OwnerTb = New System.Windows.Forms.TextBox()
+		Me.Label10 = New System.Windows.Forms.Label()
 		Me.CcTab = New System.Windows.Forms.TabPage()
 		Me.CcControl2 = New CATS.CcControl()
 		Me.RCP_Tab = New System.Windows.Forms.TabPage()
@@ -50,8 +52,6 @@ Partial Class NCRDetailsForm
 		Me.FollowupTab = New System.Windows.Forms.TabPage()
 		Me.AttachTab = New System.Windows.Forms.TabPage()
 		Me.StatusTab = New System.Windows.Forms.TabPage()
-		Me.StatusSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,16 +63,18 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
 		Me.CloseBtn = New System.Windows.Forms.Button()
+		Me.StatusSource = New System.Windows.Forms.BindingSource(Me.components)
+		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
 		Me.NCRTabControl.SuspendLayout()
 		Me.DetailsTab.SuspendLayout()
 		Me.TableLayoutPanel2.SuspendLayout()
 		Me.CcTab.SuspendLayout()
-		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.ContextMenuStrip1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel3.SuspendLayout()
 		Me.FlowLayoutPanel1.SuspendLayout()
+		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.SuspendLayout()
 		'
 		'NCRTabControl
@@ -110,8 +112,8 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
 		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100.0!))
 		Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 269.0!))
-		Me.TableLayoutPanel2.Controls.Add(Me.DescriptionTB, 2, 7)
-		Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 7)
+		Me.TableLayoutPanel2.Controls.Add(Me.DescriptionTB, 2, 8)
+		Me.TableLayoutPanel2.Controls.Add(Me.Label1, 0, 8)
 		Me.TableLayoutPanel2.Controls.Add(Me.Label9, 0, 5)
 		Me.TableLayoutPanel2.Controls.Add(Me.Label6, 0, 3)
 		Me.TableLayoutPanel2.Controls.Add(Me.Label5, 0, 2)
@@ -119,19 +121,22 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel2.Controls.Add(Me.RaisedDatePicker, 2, 2)
 		Me.TableLayoutPanel2.Controls.Add(Me.Label3, 0, 0)
 		Me.TableLayoutPanel2.Controls.Add(Me.IdTb, 2, 0)
-		Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 6)
-		Me.TableLayoutPanel2.Controls.Add(Me.TitleTb, 2, 6)
+		Me.TableLayoutPanel2.Controls.Add(Me.Label4, 0, 7)
+		Me.TableLayoutPanel2.Controls.Add(Me.TitleTb, 2, 7)
 		Me.TableLayoutPanel2.Controls.Add(Me.RaisedByTb, 2, 1)
 		Me.TableLayoutPanel2.Controls.Add(Me.Label8, 0, 4)
 		Me.TableLayoutPanel2.Controls.Add(Me.StatusControl2, 3, 0)
 		Me.TableLayoutPanel2.Controls.Add(Me.AssignedToTb, 2, 3)
 		Me.TableLayoutPanel2.Controls.Add(Me.DelegatedToTb, 2, 4)
 		Me.TableLayoutPanel2.Controls.Add(Me.CurrentStatusTb, 2, 5)
+		Me.TableLayoutPanel2.Controls.Add(Me.OwnerTb, 2, 6)
+		Me.TableLayoutPanel2.Controls.Add(Me.Label10, 0, 6)
 		Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.TableLayoutPanel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.TableLayoutPanel2.Location = New System.Drawing.Point(3, 3)
 		Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-		Me.TableLayoutPanel2.RowCount = 8
+		Me.TableLayoutPanel2.RowCount = 9
+		Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
 		Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
 		Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
 		Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
@@ -150,7 +155,7 @@ Partial Class NCRDetailsForm
 				  Or System.Windows.Forms.AnchorStyles.Left) _
 				  Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.TableLayoutPanel2.SetColumnSpan(Me.DescriptionTB, 2)
-		Me.DescriptionTB.Location = New System.Drawing.Point(124, 178)
+		Me.DescriptionTB.Location = New System.Drawing.Point(124, 203)
 		Me.DescriptionTB.Margin = New System.Windows.Forms.Padding(3, 3, 10, 3)
 		Me.DescriptionTB.MaxLength = 300
 		Me.DescriptionTB.MinimumSize = New System.Drawing.Size(4, 50)
@@ -165,7 +170,7 @@ Partial Class NCRDetailsForm
 		Me.Label1.AutoSize = True
 		Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.Label1.Location = New System.Drawing.Point(3, 175)
+		Me.Label1.Location = New System.Drawing.Point(3, 200)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(94, 321)
 		Me.Label1.TabIndex = 28
@@ -253,17 +258,17 @@ Partial Class NCRDetailsForm
 		'
 		Me.Label4.AutoSize = True
 		Me.Label4.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.Label4.Location = New System.Drawing.Point(3, 150)
+		Me.Label4.Location = New System.Drawing.Point(3, 175)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(94, 25)
 		Me.Label4.TabIndex = 32
-		Me.Label4.Text = "Title"
+		Me.Label4.Text = "Subject"
 		Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
 		'TitleTb
 		'
 		Me.TitleTb.Anchor = System.Windows.Forms.AnchorStyles.Left
-		Me.TitleTb.Location = New System.Drawing.Point(124, 153)
+		Me.TitleTb.Location = New System.Drawing.Point(124, 178)
 		Me.TitleTb.Name = "TitleTb"
 		Me.TitleTb.Size = New System.Drawing.Size(330, 21)
 		Me.TitleTb.TabIndex = 33
@@ -324,6 +329,25 @@ Partial Class NCRDetailsForm
 		Me.CurrentStatusTb.Name = "CurrentStatusTb"
 		Me.CurrentStatusTb.Size = New System.Drawing.Size(253, 21)
 		Me.CurrentStatusTb.TabIndex = 46
+		'
+		'OwnerTb
+		'
+		Me.OwnerTb.Anchor = System.Windows.Forms.AnchorStyles.Left
+		Me.OwnerTb.Enabled = False
+		Me.OwnerTb.Location = New System.Drawing.Point(124, 153)
+		Me.OwnerTb.Name = "OwnerTb"
+		Me.OwnerTb.Size = New System.Drawing.Size(253, 21)
+		Me.OwnerTb.TabIndex = 47
+		'
+		'Label10
+		'
+		Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
+		Me.Label10.AutoSize = True
+		Me.Label10.Location = New System.Drawing.Point(54, 155)
+		Me.Label10.Name = "Label10"
+		Me.Label10.Size = New System.Drawing.Size(43, 15)
+		Me.Label10.TabIndex = 48
+		Me.Label10.Text = "Owner"
 		'
 		'CcTab
 		'
@@ -393,16 +417,6 @@ Partial Class NCRDetailsForm
 		Me.StatusTab.TabIndex = 6
 		Me.StatusTab.Text = "NCR Status"
 		Me.StatusTab.UseVisualStyleBackColor = True
-		'
-		'StatusSource
-		'
-		Me.StatusSource.DataSource = Me.MySqlDataSet1
-		Me.StatusSource.Position = 0
-		'
-		'MySqlDataSet1
-		'
-		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
-		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
 		'
 		'ContextMenuStrip1
 		'
@@ -505,6 +519,16 @@ Partial Class NCRDetailsForm
 		Me.CloseBtn.Text = "Close"
 		Me.CloseBtn.UseVisualStyleBackColor = True
 		'
+		'StatusSource
+		'
+		Me.StatusSource.DataSource = Me.MySqlDataSet1
+		Me.StatusSource.Position = 0
+		'
+		'MySqlDataSet1
+		'
+		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
+		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+		'
 		'NCRDetailsForm
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -520,13 +544,13 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel2.ResumeLayout(False)
 		Me.TableLayoutPanel2.PerformLayout()
 		Me.CcTab.ResumeLayout(False)
-		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ContextMenuStrip1.ResumeLayout(False)
 		Me.TableLayoutPanel1.ResumeLayout(False)
 		Me.TableLayoutPanel1.PerformLayout()
 		Me.TableLayoutPanel3.ResumeLayout(False)
 		Me.FlowLayoutPanel1.ResumeLayout(False)
+		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -572,4 +596,6 @@ Partial Class NCRDetailsForm
 	Friend WithEvents DelegatedToTb As System.Windows.Forms.TextBox
 	Friend WithEvents CurrentStatusTb As System.Windows.Forms.TextBox
 	Friend WithEvents CcControl2 As CATS.CcControl
+	Friend WithEvents OwnerTb As System.Windows.Forms.TextBox
+	Friend WithEvents Label10 As System.Windows.Forms.Label
 End Class

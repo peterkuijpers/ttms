@@ -18,9 +18,18 @@ Public Class CcControl
 		ActionByCmb.DataSource = users
 		ActionByCmb.ValueMember = "id"
 		ActionByCmb.DisplayMember = "userid"
+
+		ReviewByCol.DataSource = users
+		ReviewByCol.ValueMember = "id"
+		ReviewByCol.DisplayMember = "userid"
+
 		seqCounter = 1
 
 	End Sub
+	Public Sub SetOwner(ccId As Int32, ownerId As Int32)
+		DB.SetCcOwner(ccId, ownerId)
+	End Sub
+
 	Public Sub Reload(curNcr As Ncr, curUser As User)
 		Me.curNcr = curNcr
 		Me.curUser = curUser
@@ -35,6 +44,31 @@ Public Class CcControl
 
 		Select Case curCc.status_id
 			Case CcStatus.StatusType.Creating
+				seqTextCol.ReadOnly = False
+				actionTextCol.ReadOnly = False
+				ActionByCmb.ReadOnly = False
+				DueDateCal.ReadOnly = False
+				ComplDateCal.ReadOnly = True
+				ReviewGridView.Hide()
+
+			Case CcStatus.StatusType.SubmittedToApprover
+				PlanGridView.Enabled = False
+				ReviewGridView.Enabled = False
+			Case CcStatus.StatusType.PlanExecution
+				seqTextCol.ReadOnly = True
+				actionTextCol.ReadOnly = True
+				ActionByCmb.ReadOnly = True
+				DueDateCal.ReadOnly = True
+				ComplDateCal.ReadOnly = False
+				ReviewGridView.Hide()
+			Case CcStatus.StatusType.SolutionVerification
+				PlanGridView.Enabled = False
+				ReviewGridView.Show()
+				ReviewGridView.Enabled = True
+			Case CcStatus.StatusType.Closed
+				PlanGridView.Enabled = False
+				ReviewGridView.Show()
+				ReviewGridView.Enabled = False
 
 		End Select
 
@@ -42,10 +76,16 @@ Public Class CcControl
 
 		Dim bindingSource = New BindingSource()
 		bindingSource.DataSource = ccItemTable
-		CcPlanGridView.DataSource = bindingSource
-		CcPlanGridView.Refresh()
+		PlanGridView.DataSource = bindingSource
+		PlanGridView.Refresh()
 
 		seqCounter = 1
+
+		Dim bindingSource2 = New BindingSource()
+		bindingSource2.DataSource = ccItemTable
+		ReviewGridView.DataSource = bindingSource2
+		ReviewGridView.Refresh()
+
 
 		' set status controller to current status id
 		' use callback when status is changed
@@ -53,12 +93,7 @@ Public Class CcControl
 		CcStatusCntr.SetUsers(DB.LoadUsers)
 		CcStatusCntr.SetStatus(curCc.status_id)
 		'Update Status Control Display
-		Dim actionUserId = GetActionUser(curCc)
-		'TODO next lines needs replaced!
-		If actionUserId = 0 Then
-			actionUserId = curNcr.raisedby_id
-		End If
-		EnableStatusControl(curUser, actionUserId)
+		EnableStatusControl(curUser, curCc.owner_id)
 		' display current status
 		StatusTb.Text = CcStatus.StatMessages(curCc.status_id)
 
@@ -73,8 +108,7 @@ Public Class CcControl
 		If (IsNothing(user)) Then
 			CcStatusCntr.Hide()
 		Else
-			Dim userAllowed As Boolean = False
-			If (user.id = actionUserId) Then
+			If (user.id = curCc.owner_id) Then
 				CcStatusCntr.Visible = True
 			Else
 				CcStatusCntr.Visible = False
@@ -100,27 +134,34 @@ Public Class CcControl
 			Case CcStatus.Actions.Submit
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.SubmittedToApprover)
 				DB.SetCcPlanApprover(curCc.id, newUserid)
+				'update user in db
+				DB.SetCcOwner(curCc.id, newUserid)
 				'NewSubmitNcr(userId)
 			Case CcStatus.Actions.RejectByApprover
 				'RejectByApprover()
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Creating)
 				DB.SetCcPlanApprover(curCc.id, Nothing)
+				' reset owner back to ncr owner
+				DB.SetCcOwner(curCc.id, curNcr.owner_id)
 			Case CcStatus.Actions.AcceptByApprover
 				'AcceptByApprover()
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.PlanExecution)
 			Case CcStatus.Actions.ExecutionFinished
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.SolutionVerification)
 				DB.SetCcSolutionVerifier(curCc.id, newUserid)
+				DB.SetCcOwner(curCc.id, newUserid)
 			Case CcStatus.Actions.VerificationPassed
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Closed)
 			Case CcStatus.Actions.VerificationFailed
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Creating)
 				DB.SetCcSolutionVerifier(curCc.id, Nothing)
+				'reset cc owner back to ncr owner
+				DB.SetCcOwner(curCc.id, curNcr.owner_id)
 		End Select
 		ReloadCc(curCc.id)
 	End Sub
 
-	Private Sub CcPlanGridView_DefaultValuesNeeded(sender As System.Object, e As System.Windows.Forms.DataGridViewRowEventArgs) Handles CcPlanGridView.DefaultValuesNeeded
+	Private Sub CcPlanGridView_DefaultValuesNeeded(sender As System.Object, e As System.Windows.Forms.DataGridViewRowEventArgs) Handles PlanGridView.DefaultValuesNeeded
 		Dim row = e.Row
 		row.Cells("SeqCol").Value = seqCounter
 		row.Cells("ccIdCol").Value = curNcr.id
@@ -134,20 +175,22 @@ Public Class CcControl
 	'	End If
 	'End Sub
 
-	Private Sub CcPlanGridView_RowValidated(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles CcPlanGridView.RowValidated
-		Dim rowindex As Integer
-		rowindex = e.RowIndex
+	Private Sub CcPlanGridView_RowValidated(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PlanGridView.RowValidated
 		ccItemAdapt.Update(ccItemTable)
+		If (e.ColumnIndex = 5) Then
+			Console.WriteLine("Row validated: " & e.RowIndex & "-" & e.ColumnIndex)
+			CheckExecutionCompleted()
+		End If
 
 	End Sub
 
 
-	Private Sub CcPlanGridView_DataError(sender As System.Object, e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles CcPlanGridView.DataError
+	Private Sub CcPlanGridView_DataError(sender As System.Object, e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles PlanGridView.DataError
 		MessageBox.Show("This row has an error")
 
 	End Sub
 
-	Private Sub CcPlanGridView_RowDirtyStateNeeded(sender As System.Object, e As System.Windows.Forms.QuestionEventArgs) Handles CcPlanGridView.RowDirtyStateNeeded
+	Private Sub CcPlanGridView_RowDirtyStateNeeded(sender As System.Object, e As System.Windows.Forms.QuestionEventArgs) Handles PlanGridView.RowDirtyStateNeeded
 		MessageBox.Show("Dirty row")
 	End Sub
 
@@ -156,7 +199,7 @@ Public Class CcControl
 
 	End Sub
 
-	Private Sub CcPlanGridView_UserDeletingRow(sender As System.Object, e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles CcPlanGridView.UserDeletingRow
+	Private Sub CcPlanGridView_UserDeletingRow(sender As System.Object, e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles PlanGridView.UserDeletingRow
 		Dim result As Integer = MessageBox.Show("Are you sure you want to delete this row?", "Deleting", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 		If (result <> DialogResult.OK) Then
 			e.Cancel = True
@@ -164,16 +207,14 @@ Public Class CcControl
 
 	End Sub
 
-	Private Function GetActionUser(curCc As cc) As Integer
-		Dim actionUser As Integer = -1
-		If Not IsNothing(curCc.solutionverifier_id) Then
-			actionUser = curCc.solutionverifier_id
-		ElseIf Not IsNothing(curCc.planapprover_id) Then
-			actionUser = curCc.planapprover_id
-		Else
-			actionUser = -1
-		End If
-		Return actionUser
-	End Function
+	
 
+	Private Sub CheckExecutionCompleted()
+		Dim result = ccItemAdapt.CheckCompleted(curCc.id)
+		If (result = 0) Then
+			MessageBox.Show(Me, "All CC items completed. Execution of CC is now finished", "CC Execution finished", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
+			ccAdapt.UpdateStatus(CcStatus.StatusType.SolutionVerification, curCc.id)
+			ReloadCc(curCc.id)
+		End If
+	End Sub
 End Class

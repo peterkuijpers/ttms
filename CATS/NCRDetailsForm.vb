@@ -23,23 +23,11 @@ Public Class NCRDetailsForm
 	Public Sub SetNcrDetails(ncrId As Integer, user As User)
 		Me.user = user
 		ReloadNcr(ncrId)
-		Dim actionUserId As Integer = GetActionUser(curNcr)
-		EnableStatusControl(user, actionUserId)
-	End Sub
+		'		Dim actionUserId As Integer = GetActionUser(curNcr)
+		'		EnableStatusControl(user, actionUserId)
+		EnableStatusControl(user, curNcr.owner_id)
 
-	Private Function GetActionUser(curNcr As Ncr) As Integer
-		Dim actionUser As Integer = -1
-		If Not IsNothing(curNcr.delegatedto_id) Then
-			actionUser = curNcr.delegatedto_id
-		ElseIf Not IsNothing(curNcr.assignedto_id) Then
-			actionUser = curNcr.assignedto_id
-		ElseIf Not IsNothing(curNcr.raisedby_id) Then
-			actionUser = curNcr.raisedby_id
-		Else
-			actionUser = -1
-		End If
-		Return actionUser
-	End Function
+	End Sub
 
 	''' <summary>
 	''' ncrid = -1 indicates new ncr
@@ -54,6 +42,7 @@ Public Class NCRDetailsForm
 			curNcr.raiseddate = DateTime.Now
 			curNcr.raisedby_id = user.id
 			curNcr.RaisedBy = user
+			curNcr.owner_id = user.id
 			Me.IdTb.Text = "--"
 		Else
 			curNcr = DB.LoadNcr(ncrId)
@@ -65,6 +54,7 @@ Public Class NCRDetailsForm
 				curNcr.AssignedTo = DB.LoadUser(curNcr.assignedto_id)
 			End If
 			Me.IdTb.Text = curNcr.id
+
 		End If
 		Me.CurrentStatusTb.Text = Status.StatMessages(curNcr.status_id)
 		Me.DescriptionTB.Text = curNcr.description
@@ -123,15 +113,14 @@ Public Class NCRDetailsForm
 			curStat.DelegatedTo = curNcr.delegatedto_id
 		End If
 		'Update Status Control Display
-		Dim actionUserId = GetActionUser(curNcr)
-		EnableStatusControl(user, actionUserId)
+		EnableStatusControl(user, curNcr.owner_id)
 		'Update CC control
 		If (curNcr.status_id = Status.StatusType.Modifying Or curNcr.status_id = Status.StatusType.Creating Or curNcr.status_id = Status.StatusType.SubmittedToAssignee) Then
 			showCcState = False
 		Else
 			showCcState = True
 		End If
-		ShowCC(showCcState, user, actionUserId)
+		ShowCC(showCcState, user)
 	End Sub
 
 	Private Sub CloseBtn_Click(sender As System.Object, e As System.EventArgs) Handles CloseBtn.Click
@@ -227,9 +216,10 @@ Public Class NCRDetailsForm
 		curNcr.status_id = Status.StatusType.Modifying
 		curNcr.title = TitleTb.Text
 		curNcr.description = DescriptionTB.Text
+		curNcr.owner_id = user.id
 		curStat.State = Status.StatusType.Modifying
 		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
-		Dim statusresult = ncrAdapt.InsertQuery(curNcr.raisedby_id, DateTime.Now, Nothing, Nothing, curNcr.status_id, curNcr.description, curNcr.title)
+		Dim statusresult = ncrAdapt.InsertQuery(curNcr.raisedby_id, DateTime.Now, Nothing, Nothing, curNcr.status_id, curNcr.description, curNcr.title, curNcr.owner_id)
 		' get the inserted ncr-id
 		If (statusresult > 0) Then
 			curNcr.id = ncrAdapt.LastInsertedId()
@@ -255,10 +245,12 @@ Public Class NCRDetailsForm
 		'update status in db
 		curNcr.AssignedTo = DB.LoadUser(assigneeId)
 		curNcr.assignedto_id = assigneeId
+		curNcr.owner_id = assigneeId
 		'
 		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result = ncrAdapt.UpdateRaisedTo(curNcr.assignedto_id, curNcr.id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.SubmittedToAssignee, curNcr.id)
+		Dim ownerResult = ncrAdapt.UpdateOwner(assigneeId, curNcr.id)
 		'add item to log
 		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
 		Dim message As String = "NCR Submitted to " + curNcr.AssignedTo.firstname + ", " + curNcr.AssignedTo.surname
@@ -280,6 +272,9 @@ Public Class NCRDetailsForm
 		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result = ncrAdapt.UpdateRaisedTo(Nothing, curNcr.id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Modifying, curNcr.id)
+		' set owner back to Raiser
+		Dim ownerResult = ncrAdapt.UpdateOwner(curNcr.raisedby_id, curNcr.id)
+
 		'add item to log
 		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
 		Dim message As String = "NCR Rejected by " & user.firstname & ", " & user.surname
@@ -311,7 +306,8 @@ Public Class NCRDetailsForm
 		Dim ccTable As MySqlDataSet.ccDataTable = New MySqlDataSet.ccDataTable()
 		Dim ccAdapt As MySqlDataSetTableAdapters.ccTableAdapter = New MySqlDataSetTableAdapters.ccTableAdapter()
 		ccAdapt.CreateById(curNcr.id, 0)
-
+		' set the owner to current user
+		ccAdapt.UpdateOwner(user.id, curNcr.id)
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.id)
@@ -328,6 +324,7 @@ Public Class NCRDetailsForm
 		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result = ncrAdapt.UpdateDelegatedTo(curNcr.delegatedto_id, curNcr.id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Delegated, curNcr.id)
+		Dim ownerResult = ncrAdapt.UpdateOwner(delegateId, curNcr.id)
 		'add item to log
 		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
 		Dim message As String = "NCR Delegated to " & curNcr.AssignedTo.firstname & ", " & curNcr.AssignedTo.surname
@@ -373,6 +370,8 @@ Public Class NCRDetailsForm
 		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result = ncrAdapt.UpdateDelegatedTo(Nothing, curNcr.id)
 		Dim statusResult = ncrAdapt.UpdateStatus(Status.StatusType.Assigned, curNcr.id)
+		' set owner back to assignee
+		Dim ownerResult = ncrAdapt.UpdateOwner(curNcr.assignedto_id, curNcr.id)
 		'add item to log
 		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
 		Dim message As String = "NCR Delegation rejected by " & user.firstname & ", " & user.surname
@@ -394,12 +393,12 @@ Public Class NCRDetailsForm
 	''' and the ncr details
 	''' </summary>
 	''' <remarks></remarks>
-	Private Sub EnableStatusControl(user As User, actionUserId As Integer)
+	Private Sub EnableStatusControl(user As User, ncrOwner As Integer)
 		If (IsNothing(user)) Then
 			StatusControl2.Hide()
 		Else
 			Dim userAllowed As Boolean = False
-			If (user.id = actionUserId) Then
+			If (user.id = ncrOwner) Then
 				StatusControl2.Visible = True
 			Else
 				StatusControl2.Visible = False
@@ -407,14 +406,14 @@ Public Class NCRDetailsForm
 		End If
 	End Sub
 
-	Private Sub ShowCC(value As Boolean, user As User, actionUserId As Integer)
+	Private Sub ShowCC(value As Boolean, user As User)
 		showCcState = value
-		If value = True And user.id = actionUserId Then
+		If showCcState Then
 			CcControl2.Enabled = True
-			CcControl2.Reload(curNcr, user)
 		Else
 			CcControl2.Enabled = False
 		End If
+		CcControl2.Reload(curNcr, user)
 	End Sub
 
 	Private Sub EnabledBackgroundColor_Enter(sender As System.Object, e As System.EventArgs) Handles TitleTb.Enter, DescriptionTB.Enter
@@ -430,4 +429,5 @@ Public Class NCRDetailsForm
 		End If
 
 	End Sub
+
 End Class

@@ -18,13 +18,13 @@
       <End Role="ncr" EntitySet="Ncrs" />
       <End Role="user" EntitySet="Users" />
     </AssociationSet>
-    <AssociationSet Name="userncr" Association="BaseModel.userncr">
+    <AssociationSet Name="userncr" Association="BaseModel.raisedby">
       <End Role="user" EntitySet="Users" />
       <End Role="ncr" EntitySet="Ncrs" />
     </AssociationSet>
-    <AssociationSet Name="userncr1" Association="BaseModel.userncr1">
+    <AssociationSet Name="userncr1" Association="BaseModel.owner">
       <End Role="user" EntitySet="Users" />
-      <End Role="ncr" EntitySet="Ncrs" />
+      <End Role="delegate" EntitySet="Ncrs" />
     </AssociationSet>
     <EntitySet Name="ccitems" EntityType="BaseModel.ccitem" />
     <EntitySet Name="cc" EntityType="BaseModel.cc" />
@@ -36,6 +36,10 @@
     <AssociationSet Name="Ncrcc" Association="BaseModel.Ncrcc">
       <End Role="Ncr" EntitySet="Ncrs" />
       <End Role="cc" EntitySet="cc" />
+    </AssociationSet>
+    <AssociationSet Name="UserNcr11" Association="BaseModel.OwnerAssociation">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Ncr" EntitySet="Ncrs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Department">
@@ -61,9 +65,11 @@
     <Property Name="description" Type="String" Nullable="false" MaxLength="512" Unicode="false" FixedLength="false" />
     <Property Name="title" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <NavigationProperty Name="AssignedTo" Relationship="BaseModel.ncruser" FromRole="ncr" ToRole="user" />
-    <NavigationProperty Name="RaisedBy" Relationship="BaseModel.userncr" FromRole="ncr" ToRole="user" />
-    <NavigationProperty Name="Delegate" Relationship="BaseModel.userncr1" FromRole="ncr" ToRole="user" />
+    <NavigationProperty Name="RaisedBy" Relationship="BaseModel.raisedby" FromRole="ncr" ToRole="user" />
+    <NavigationProperty Name="Delegate" Relationship="BaseModel.owner" FromRole="delegate" ToRole="user" />
     <NavigationProperty Name="cc" Relationship="BaseModel.Ncrcc" FromRole="Ncr" ToRole="cc" />
+    <Property Type="Int32" Name="owner_id" Nullable="false" />
+    <NavigationProperty Name="OwnerUser" Relationship="BaseModel.OwnerAssociation" FromRole="Ncr" ToRole="User" />
   </EntityType>
   <EntityType Name="Notification">
     <Key>
@@ -82,7 +88,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="firstname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
     <Property Name="surname" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
-    <Property Name="userid" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="userid" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
     <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="active" Type="SByte" Nullable="false" />
     <Property Name="level_id" Type="Int32" Nullable="false" />
@@ -91,7 +97,8 @@
     <Property Name="admin" Type="SByte" Nullable="false" />
     <NavigationProperty Name="userlevel" Relationship="BaseModel.userleveluser" FromRole="user" ToRole="userlevel" />
     <NavigationProperty Name="department" Relationship="BaseModel.departmentuser" FromRole="user" ToRole="department" />
-    <NavigationProperty Name="ncr" Relationship="BaseModel.ncruser" FromRole="user" ToRole="ncr" />
+    <NavigationProperty Name="assigned" Relationship="BaseModel.ncruser" FromRole="user" ToRole="ncr" />
+    <NavigationProperty Name="Ncrs" Relationship="BaseModel.OwnerAssociation" FromRole="User" ToRole="Ncr" />
   </EntityType>
   <EntityType Name="Userlevel">
     <Key>
@@ -138,7 +145,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="userncr">
+  <Association Name="raisedby">
     <End Type="BaseModel.User" Role="user" Multiplicity="1" />
     <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
     <ReferentialConstraint>
@@ -150,14 +157,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="userncr1">
+  <Association Name="owner">
     <End Type="BaseModel.User" Role="user" Multiplicity="0..1" />
-    <End Type="BaseModel.Ncr" Role="ncr" Multiplicity="*" />
+    <End Type="BaseModel.Ncr" Role="delegate" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="user">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="ncr">
+      <Dependent Role="delegate">
         <PropertyRef Name="delegatedto_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -194,6 +201,7 @@
     <NavigationProperty Name="ccitems" Relationship="BaseModel.cc_ccitem" FromRole="cc" ToRole="ccitem" />
     <NavigationProperty Name="Ncr" Relationship="BaseModel.Ncrcc" FromRole="cc" ToRole="Ncr" />
     <Property Type="Int32" Name="status_id" Nullable="false" DefaultValue="0" />
+    <Property Type="Int32" Name="owner_id" Nullable="false" />
   </EntityType>
   <EntityType Name="log">
     <Key>
@@ -226,6 +234,18 @@
       </Principal>
       <Dependent Role="cc">
         <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OwnerAssociation">
+    <End Type="BaseModel.User" Role="User" Multiplicity="1" />
+    <End Type="BaseModel.Ncr" Role="Ncr" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Ncr">
+        <PropertyRef Name="owner_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

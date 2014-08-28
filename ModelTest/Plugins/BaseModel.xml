@@ -175,13 +175,6 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  plugin 
  </summary>
 	<remarks></remarks>
-</member><member name="M:BaseModel.DatabaseModule.Database.LoadUser(System.Int32)">
-	<summary>
- Get the user from database by userid
- </summary>
-	<param name="userid"></param>
-	<returns></returns>
-	<remarks></remarks>
 </member><member name="M:BaseModel.DatabaseModule.Database.LoadDepartment(BaseModel.User)">
 	<summary>
  Get the department from the database for the user
@@ -276,11 +269,12 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="M:BaseModel.cc.Createcc(System.Int32)">
+</member><member name="M:BaseModel.cc.Createcc(System.Int32,System.Int32)">
 	<summary>
  Create a new cc object.
  </summary>
 	<param name="id">Initial value of the id property.</param>
+	<param name="owner_id">Initial value of the owner_id property.</param>
 </member><member name="P:BaseModel.cc.id">
 	<summary>
  No Metadata Documentation available.
@@ -306,6 +300,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.cc.status_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.cc.owner_id">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -453,7 +451,7 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="M:BaseModel.Ncr.CreateNcr(System.Int32,System.Int32,System.Int32,System.String,System.String)">
+</member><member name="M:BaseModel.Ncr.CreateNcr(System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32)">
 	<summary>
  Create a new Ncr object.
  </summary>
@@ -462,6 +460,7 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<param name="status_id">Initial value of the status_id property.</param>
 	<param name="description">Initial value of the description property.</param>
 	<param name="title">Initial value of the title property.</param>
+	<param name="owner_id">Initial value of the owner_id property.</param>
 </member><member name="P:BaseModel.Ncr.id">
 	<summary>
  No Metadata Documentation available.
@@ -502,6 +501,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
+</member><member name="P:BaseModel.Ncr.owner_id">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
 </member><member name="P:BaseModel.Ncr.AssignedTo">
 	<summary>
  No Metadata Documentation available.
@@ -531,6 +534,14 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.Ncr.ccReference">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.Ncr.OwnerUser">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.Ncr.OwnerUserReference">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -640,7 +651,11 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="P:BaseModel.User.ncr">
+</member><member name="P:BaseModel.User.assigned">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="P:BaseModel.User.Ncrs">
 	<summary>
  No Metadata Documentation available.
  </summary>

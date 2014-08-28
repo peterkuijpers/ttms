@@ -28,7 +28,7 @@
 				description = CType(dr.Item("Description"), String)
 			End If
 			Dim title = CType(dr.Item("title"), String)
-			'Dim thisNcr As NCR = NCR.CreateNCR(id, raised_by_id, raised_date, raised_to_id, status_id, description, title)
+			Dim owner_id = CType(dr.Item("owner_id"), Integer)
 			Dim thisNcr As Ncr = New Ncr()
 			thisNcr.id = id
 			thisNcr.raisedby_id = raisedby_id
@@ -38,6 +38,7 @@
 			thisNcr.rcp_id = RCP_id
 			thisNcr.description = description
 			thisNcr.title = title
+			thisNcr.owner_id = owner_id
 			Return thisNcr
 		End If
 
@@ -113,12 +114,13 @@
 			If Not IsDBNull(dr.Item("solutionverifier_id")) Then
 				solutionverifier_id = CType(dr.Item("solutionverifier_id"), Integer)
 			End If
-
+			Dim owner_id = CType(dr.Item("owner_id"), Integer)
 			Dim thisCc As cc = New cc()
 			thisCc.id = id
 			thisCc.status_id = status_id
 			thisCc.planapprover_id = planapprover_id
 			thisCc.solutionverifier_id = solutionverifier_id
+			thisCc.owner_id = owner_id
 			Return thisCc
 		End If
 	End Function
@@ -152,4 +154,26 @@
 			Return False
 		End If
 	End Function
+
+	Public Shared Function SetCcOwner(ccId As Integer, ownerId As Integer) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateOwner(ownerId, ccId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	Public Shared Function SetNcrOwner(ncrId As Integer, ownerid As Integer) As Boolean
+		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter
+		Dim result = ncrAdapt.UpdateOwner(ownerid, ncrId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+
 End Class

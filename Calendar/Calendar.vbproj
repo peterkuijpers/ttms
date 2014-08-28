@@ -6,26 +6,25 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BD4CE7CA-0A24-4997-8FE0-8BDAB8386DE4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <StartupObject>
-    </StartupObject>
-    <RootNamespace>CATS</RootNamespace>
-    <AssemblyName>CATS</AssemblyName>
+    <ProjectGuid>{42587509-3E9F-40BB-B1D0-5148471C6BFE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Calendar.My.MyApplication</StartupObject>
+    <RootNamespace>Calendar</RootNamespace>
+    <AssemblyName>Calendar</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\ModelTest\Plugins\</OutputPath>
-    <DocumentationFile>CATS.xml</DocumentationFile>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Calendar.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -35,7 +34,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CATS.xml</DocumentationFile>
+    <DocumentationFile>Calendar.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -51,21 +50,15 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -80,36 +73,15 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatsListForm.Designer.vb">
-      <DependentUpon>CatsListForm.vb</DependentUpon>
+    <Compile Include="CalendarColumn.vb">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CatsListForm.vb">
+    <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CcControl.Designer.vb">
-      <DependentUpon>CcControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CcControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CcStatus.vb" />
-    <Compile Include="CcStatusControl.Designer.vb">
-      <DependentUpon>CcStatusControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CcStatusControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="NCRDetailsForm.Designer.vb">
-      <DependentUpon>NCRDetailsForm.vb</DependentUpon>
-    </Compile>
-    <Compile Include="NCRDetailsForm.vb">
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NcrLog.Designer.vb">
-      <DependentUpon>NcrLog.vb</DependentUpon>
-    </Compile>
-    <Compile Include="NcrLog.vb">
-      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -126,71 +98,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Status.vb" />
-    <Compile Include="StatusControl.Designer.vb">
-      <DependentUpon>StatusControl.vb</DependentUpon>
-    </Compile>
-    <Compile Include="StatusControl.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CatsListForm.resx">
-      <DependentUpon>CatsListForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CcControl.resx">
-      <DependentUpon>CcControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CcStatusControl.resx">
-      <DependentUpon>CcStatusControl.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NCRDetailsForm.resx">
-      <DependentUpon>NCRDetailsForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NcrLog.resx">
-      <DependentUpon>NcrLog.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="StatusControl.resx">
-      <DependentUpon>StatusControl.vb</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
-    <None Include="My Project\DataSources\BaseModel.MySqlDataSet+ccitemDataTable.datasource" />
-    <None Include="My Project\DataSources\BaseModel.MySqlDataSet+ncrDataTable.datasource" />
-    <None Include="My Project\DataSources\BaseModel.MySqlDataSet+userDataTable.datasource" />
-    <None Include="My Project\DataSources\BaseModel.MySqlDataSetTableAdapters.ncrTableAdapter.datasource" />
-    <None Include="My Project\DataSources\BaseModel.Ncr.datasource" />
-    <None Include="My Project\DataSources\TTMS.NCR.datasource" />
-    <None Include="My Project\DataSources\TTMS.NCR_Status.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Calendar\Calendar.vbproj">
-      <Project>{42587509-3E9F-40BB-B1D0-5148471C6BFE}</Project>
-      <Name>Calendar</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ModelTest\BaseModel.vbproj">
-      <Project>{21115543-B7FE-4D09-9F0E-F00ADF6CEE43}</Project>
-      <Name>BaseModel</Name>
-    </ProjectReference>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

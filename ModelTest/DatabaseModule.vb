@@ -7,17 +7,17 @@
 		''' <param name="userid"></param>
 		''' <returns></returns>
 		''' <remarks></remarks>
-		Public Shared Function LoadUser(userid As Integer) As User
+		Public Shared Function LoadUser(id As Integer) As User
 			Dim userAdapter As New MySqlDataSetTableAdapters.userTableAdapter()
 			Dim userTable As New MySqlDataSet.userDataTable()
-			Dim result As Integer = userAdapter.FillById(userTable, userid)
+			Dim result As Integer = userAdapter.FillById(userTable, id)
 
 			If (result = 1) Then
 				Dim user As New User
-				user.Firstname = userTable.Item(0).Field(Of String)("FirstName")
-				user.Surname = userTable.Item(0).Field(Of String)("surname")
+				user.firstname = userTable.Item(0).Field(Of String)("FirstName")
+				user.surname = userTable.Item(0).Field(Of String)("surname")
 				'user.Fullname = user.Surname + ", " + user.Firstname
-				user.Id = userTable.Item(0).Field(Of Integer)("id")
+				user.id = userTable.Item(0).Field(Of Integer)("id")
 				'
 				'If (Not userTable.Item(0).Isdepartment_idNull) Then
 				user.department_id = userTable.Item(0).Field(Of Integer)("department_id")

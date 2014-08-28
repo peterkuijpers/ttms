@@ -31,7 +31,17 @@ Partial Class CatsListForm
 		Me.NewNcrBtn = New System.Windows.Forms.Button()
 		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
 		Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+		Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.RaisedByCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
 		Me.UserBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+		Me.AssignedToCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.DelegatedToCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.RaiseddateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.StatusCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.CcidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.RcpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.NcrDataTableBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
@@ -41,16 +51,6 @@ Partial Class CatsListForm
 		Me.UserStripLbl = New System.Windows.Forms.ToolStripStatusLabel()
 		Me.ToolStripStatusLabel3 = New System.Windows.Forms.ToolStripStatusLabel()
 		Me.LevelStripLbl = New System.Windows.Forms.ToolStripStatusLabel()
-		Me.IdColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.RaisedByCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.AssignedToCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.DelegatedToCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.RaiseddateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.StatusCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.CcidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.RcpidDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DescriptionDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.TitleDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
 		Me.TableLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel4.SuspendLayout()
@@ -69,7 +69,7 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel1.ColumnCount = 3
 		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.573529!))
 		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.42647!))
-		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
+		Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
 		Me.TableLayoutPanel1.Controls.Add(Me.Label1, 1, 0)
 		Me.TableLayoutPanel1.Controls.Add(Me.TableLayoutPanel4, 1, 1)
 		Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -97,7 +97,7 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel4.ColumnCount = 3
 		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 88.11729!))
 		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.88272!))
-		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79.0!))
+		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80.0!))
 		Me.TableLayoutPanel4.Controls.Add(Me.CloseBtn, 2, 0)
 		Me.TableLayoutPanel4.Controls.Add(Me.NewNcrBtn, 1, 0)
 		Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
@@ -105,13 +105,13 @@ Partial Class CatsListForm
 		Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
 		Me.TableLayoutPanel4.RowCount = 1
 		Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-		Me.TableLayoutPanel4.Size = New System.Drawing.Size(791, 29)
+		Me.TableLayoutPanel4.Size = New System.Drawing.Size(790, 29)
 		Me.TableLayoutPanel4.TabIndex = 1
 		'
 		'CloseBtn
 		'
 		Me.CloseBtn.Anchor = System.Windows.Forms.AnchorStyles.None
-		Me.CloseBtn.Location = New System.Drawing.Point(716, 3)
+		Me.CloseBtn.Location = New System.Drawing.Point(714, 3)
 		Me.CloseBtn.Name = "CloseBtn"
 		Me.CloseBtn.Size = New System.Drawing.Size(70, 23)
 		Me.CloseBtn.TabIndex = 0
@@ -121,7 +121,7 @@ Partial Class CatsListForm
 		'NewNcrBtn
 		'
 		Me.NewNcrBtn.Anchor = System.Windows.Forms.AnchorStyles.None
-		Me.NewNcrBtn.Location = New System.Drawing.Point(633, 3)
+		Me.NewNcrBtn.Location = New System.Drawing.Point(631, 3)
 		Me.NewNcrBtn.Name = "NewNcrBtn"
 		Me.NewNcrBtn.Size = New System.Drawing.Size(71, 23)
 		Me.NewNcrBtn.TabIndex = 1
@@ -161,87 +161,8 @@ Partial Class CatsListForm
 		Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
 		Me.DataGridView1.Size = New System.Drawing.Size(797, 417)
 		Me.DataGridView1.TabIndex = 0
+		Me.DataGridView1.Tag = ""
 		Me.ToolTip1.SetToolTip(Me.DataGridView1, "Double-Click to open item")
-		'
-		'UserBindingSource
-		'
-		Me.UserBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.userDataTable)
-		'
-		'NcrDataTableBindingSource
-		'
-		Me.NcrDataTableBindingSource.AllowNew = False
-		Me.NcrDataTableBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.ncrDataTable)
-		'
-		'TableLayoutPanel3
-		'
-		Me.TableLayoutPanel3.ColumnCount = 2
-		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.4814!))
-		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5186!))
-		Me.TableLayoutPanel3.Controls.Add(Me.StatusStrip1, 1, 0)
-		Me.TableLayoutPanel3.Controls.Add(Me.StatusStrip2, 0, 0)
-		Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom
-		Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 500)
-		Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
-		Me.TableLayoutPanel3.RowCount = 1
-		Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-		Me.TableLayoutPanel3.Size = New System.Drawing.Size(843, 25)
-		Me.TableLayoutPanel3.TabIndex = 2
-		'
-		'StatusStrip1
-		'
-		Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VersionStripLbl})
-		Me.StatusStrip1.Location = New System.Drawing.Point(762, 3)
-		Me.StatusStrip1.Name = "StatusStrip1"
-		Me.StatusStrip1.Size = New System.Drawing.Size(81, 22)
-		Me.StatusStrip1.TabIndex = 0
-		Me.StatusStrip1.Text = "StatusStrip1"
-		'
-		'VersionStripLbl
-		'
-		Me.VersionStripLbl.Name = "VersionStripLbl"
-		Me.VersionStripLbl.Size = New System.Drawing.Size(55, 17)
-		Me.VersionStripLbl.Text = "NCTS 1.1"
-		'
-		'StatusStrip2
-		'
-		Me.StatusStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.UserStripLbl, Me.ToolStripStatusLabel3, Me.LevelStripLbl})
-		Me.StatusStrip2.Location = New System.Drawing.Point(0, 1)
-		Me.StatusStrip2.Name = "StatusStrip2"
-		Me.StatusStrip2.Size = New System.Drawing.Size(762, 24)
-		Me.StatusStrip2.TabIndex = 1
-		Me.StatusStrip2.Text = "StatusStrip2"
-		'
-		'ToolStripStatusLabel1
-		'
-		Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-		Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(30, 19)
-		Me.ToolStripStatusLabel1.Text = "User"
-		'
-		'UserStripLbl
-		'
-		Me.UserStripLbl.BackColor = System.Drawing.Color.Khaki
-		Me.UserStripLbl.BorderSides = CType((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) _
-				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) _
-				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
-		Me.UserStripLbl.Name = "UserStripLbl"
-		Me.UserStripLbl.Size = New System.Drawing.Size(21, 19)
-		Me.UserStripLbl.Text = "--"
-		'
-		'ToolStripStatusLabel3
-		'
-		Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
-		Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(34, 19)
-		Me.ToolStripStatusLabel3.Text = "Level"
-		'
-		'LevelStripLbl
-		'
-		Me.LevelStripLbl.BackColor = System.Drawing.Color.Khaki
-		Me.LevelStripLbl.BorderSides = CType((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) _
-				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) _
-				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
-		Me.LevelStripLbl.Name = "LevelStripLbl"
-		Me.LevelStripLbl.Size = New System.Drawing.Size(21, 19)
-		Me.LevelStripLbl.Text = "--"
 		'
 		'IdColumn
 		'
@@ -265,6 +186,10 @@ Partial Class CatsListForm
 		Me.RaisedByCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
 		Me.RaisedByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
 		Me.RaisedByCol.ValueMember = "id"
+		'
+		'UserBindingSource
+		'
+		Me.UserBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.userDataTable)
 		'
 		'AssignedToCol
 		'
@@ -343,6 +268,82 @@ Partial Class CatsListForm
 		Me.TitleDataGridViewTextBoxColumn.MinimumWidth = 100
 		Me.TitleDataGridViewTextBoxColumn.Name = "TitleDataGridViewTextBoxColumn"
 		Me.TitleDataGridViewTextBoxColumn.ReadOnly = True
+		'
+		'NcrDataTableBindingSource
+		'
+		Me.NcrDataTableBindingSource.AllowNew = False
+		Me.NcrDataTableBindingSource.DataSource = GetType(BaseModel.MySqlDataSet.ncrDataTable)
+		'
+		'TableLayoutPanel3
+		'
+		Me.TableLayoutPanel3.ColumnCount = 2
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.4814!))
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.5186!))
+		Me.TableLayoutPanel3.Controls.Add(Me.StatusStrip1, 1, 0)
+		Me.TableLayoutPanel3.Controls.Add(Me.StatusStrip2, 0, 0)
+		Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Bottom
+		Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 500)
+		Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+		Me.TableLayoutPanel3.RowCount = 1
+		Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+		Me.TableLayoutPanel3.Size = New System.Drawing.Size(843, 25)
+		Me.TableLayoutPanel3.TabIndex = 2
+		'
+		'StatusStrip1
+		'
+		Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.VersionStripLbl})
+		Me.StatusStrip1.Location = New System.Drawing.Point(762, 3)
+		Me.StatusStrip1.Name = "StatusStrip1"
+		Me.StatusStrip1.Size = New System.Drawing.Size(81, 22)
+		Me.StatusStrip1.TabIndex = 0
+		Me.StatusStrip1.Text = "StatusStrip1"
+		'
+		'VersionStripLbl
+		'
+		Me.VersionStripLbl.Name = "VersionStripLbl"
+		Me.VersionStripLbl.Size = New System.Drawing.Size(55, 17)
+		Me.VersionStripLbl.Text = "NCTS 1.1"
+		'
+		'StatusStrip2
+		'
+		Me.StatusStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1, Me.UserStripLbl, Me.ToolStripStatusLabel3, Me.LevelStripLbl})
+		Me.StatusStrip2.Location = New System.Drawing.Point(0, 1)
+		Me.StatusStrip2.Name = "StatusStrip2"
+		Me.StatusStrip2.Size = New System.Drawing.Size(762, 24)
+		Me.StatusStrip2.TabIndex = 1
+		Me.StatusStrip2.Text = "StatusStrip2"
+		'
+		'ToolStripStatusLabel1
+		'
+		Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+		Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(30, 19)
+		Me.ToolStripStatusLabel1.Text = "User"
+		'
+		'UserStripLbl
+		'
+		Me.UserStripLbl.BackColor = System.Drawing.Color.Khaki
+		Me.UserStripLbl.BorderSides = CType((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) _
+				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) _
+				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
+		Me.UserStripLbl.Name = "UserStripLbl"
+		Me.UserStripLbl.Size = New System.Drawing.Size(21, 19)
+		Me.UserStripLbl.Text = "--"
+		'
+		'ToolStripStatusLabel3
+		'
+		Me.ToolStripStatusLabel3.Name = "ToolStripStatusLabel3"
+		Me.ToolStripStatusLabel3.Size = New System.Drawing.Size(34, 19)
+		Me.ToolStripStatusLabel3.Text = "Level"
+		'
+		'LevelStripLbl
+		'
+		Me.LevelStripLbl.BackColor = System.Drawing.Color.Khaki
+		Me.LevelStripLbl.BorderSides = CType((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) _
+				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) _
+				  Or System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom), System.Windows.Forms.ToolStripStatusLabelBorderSides)
+		Me.LevelStripLbl.Name = "LevelStripLbl"
+		Me.LevelStripLbl.Size = New System.Drawing.Size(21, 19)
+		Me.LevelStripLbl.Text = "--"
 		'
 		'CatsListForm
 		'

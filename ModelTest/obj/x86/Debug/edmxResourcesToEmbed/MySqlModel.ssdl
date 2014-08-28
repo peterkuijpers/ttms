@@ -21,6 +21,7 @@
     <Property Name="solutionverifier_id" Type="int" />
     <Property Name="closedate" Type="date" />
     <Property Name="status_id" Type="int" Nullable="false" />
+    <Property Name="owner_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ccitem">
     <Key>
@@ -71,6 +72,7 @@
     <Property Name="rcp_id" Type="int" />
     <Property Name="description" Type="varchar" Nullable="false" MaxLength="512" />
     <Property Name="title" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="owner_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="notification">
     <Key>
@@ -89,7 +91,7 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="firstname" Type="varchar" Nullable="false" MaxLength="45" />
     <Property Name="surname" Type="varchar" Nullable="false" MaxLength="45" />
-    <Property Name="userid" Type="varchar" Nullable="false" MaxLength="10" />
+    <Property Name="userid" Type="varchar" Nullable="false" MaxLength="30" />
     <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="active" Type="tinyint" Nullable="false" />
     <Property Name="level_id" Type="int" Nullable="false" />

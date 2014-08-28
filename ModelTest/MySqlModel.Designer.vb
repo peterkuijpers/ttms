@@ -18,15 +18,16 @@ Imports System.Runtime.Serialization
 Imports System.Xml.Serialization
 
 
-<Assembly: EdmSchemaAttribute("d2815433-87e2-4e0a-8c42-16f69141e3d2")>
+<Assembly: EdmSchemaAttribute("59029b1d-0cef-485a-82b2-59864a3818ac")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("BaseModel", "userleveluser", "userlevel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Userlevel), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(User), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "departmentuser", "department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Department), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(User), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "ncruser", "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(User), True)>
-<Assembly: EdmRelationshipAttribute("BaseModel", "userncr", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(User), "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
-<Assembly: EdmRelationshipAttribute("BaseModel", "userncr1", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(User), "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
+<Assembly: EdmRelationshipAttribute("BaseModel", "raisedby", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(User), "ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
+<Assembly: EdmRelationshipAttribute("BaseModel", "owner", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(User), "delegate", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "cc_ccitem", "cc", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(cc), "ccitem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(ccitem), True)>
 <Assembly: EdmRelationshipAttribute("BaseModel", "Ncrcc", "Ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Ncr), "cc", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(cc), True)>
+<Assembly: EdmRelationshipAttribute("BaseModel", "OwnerAssociation", "User", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(User), "Ncr", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Ncr), True)>
 
 #End Region
 
@@ -272,9 +273,11 @@ Public Partial Class cc
     ''' Create a new cc object.
     ''' </summary>
     ''' <param name="id">Initial value of the id property.</param>
-    Public Shared Function Createcc(id As Global.System.Int32) As cc
+    ''' <param name="owner_id">Initial value of the owner_id property.</param>
+    Public Shared Function Createcc(id As Global.System.Int32, owner_id As Global.System.Int32) As cc
         Dim cc as cc = New cc
         cc.id = id
+        cc.owner_id = owner_id
         Return cc
     End Function
 
@@ -457,6 +460,31 @@ Public Partial Class cc
     End Sub
 
     Private Partial Sub Onstatus_idChanged()
+    End Sub
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property owner_id() As Global.System.Int32
+        Get
+            Return _owner_id
+        End Get
+        Set
+            Onowner_idChanging(value)
+            ReportPropertyChanging("owner_id")
+            _owner_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("owner_id")
+            Onowner_idChanged()
+        End Set
+    End Property
+
+    Private _owner_id As Global.System.Int32
+    Private Partial Sub Onowner_idChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub Onowner_idChanged()
     End Sub
 
     #End Region
@@ -1199,13 +1227,15 @@ Public Partial Class Ncr
     ''' <param name="status_id">Initial value of the status_id property.</param>
     ''' <param name="description">Initial value of the description property.</param>
     ''' <param name="title">Initial value of the title property.</param>
-    Public Shared Function CreateNcr(id As Global.System.Int32, raisedby_id As Global.System.Int32, status_id As Global.System.Int32, description As Global.System.String, title As Global.System.String) As Ncr
+    ''' <param name="owner_id">Initial value of the owner_id property.</param>
+    Public Shared Function CreateNcr(id As Global.System.Int32, raisedby_id As Global.System.Int32, status_id As Global.System.Int32, description As Global.System.String, title As Global.System.String, owner_id As Global.System.Int32) As Ncr
         Dim ncr as Ncr = New Ncr
         ncr.id = id
         ncr.raisedby_id = raisedby_id
         ncr.status_id = status_id
         ncr.description = description
         ncr.title = title
+        ncr.owner_id = owner_id
         Return ncr
     End Function
 
@@ -1465,6 +1495,31 @@ Public Partial Class Ncr
     Private Partial Sub OntitleChanged()
     End Sub
 
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+    <DataMemberAttribute()>
+    Public Property owner_id() As Global.System.Int32
+        Get
+            Return _owner_id
+        End Get
+        Set
+            Onowner_idChanging(value)
+            ReportPropertyChanging("owner_id")
+            _owner_id = StructuralObject.SetValidValue(value)
+            ReportPropertyChanged("owner_id")
+            Onowner_idChanged()
+        End Set
+    End Property
+
+    Private _owner_id As Global.System.Int32
+    Private Partial Sub Onowner_idChanging(value As Global.System.Int32)
+    End Sub
+
+    Private Partial Sub Onowner_idChanged()
+    End Sub
+
     #End Region
 
     #Region "Navigation Properties"
@@ -1506,13 +1561,13 @@ Public Partial Class Ncr
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "userncr", "user")>
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "raisedby", "user")>
     Public Property RaisedBy() As User
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.userncr", "user").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.raisedby", "user").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.userncr", "user").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.raisedby", "user").Value = value
         End Set
     End Property
     ''' <summary>
@@ -1522,11 +1577,11 @@ Public Partial Class Ncr
     <DataMemberAttribute()>
     Public Property RaisedByReference() As EntityReference(Of User)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.userncr", "user")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.raisedby", "user")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of User)("BaseModel.userncr", "user", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of User)("BaseModel.raisedby", "user", value)
             End If
         End Set
     End Property
@@ -1537,13 +1592,13 @@ Public Partial Class Ncr
     <XmlIgnoreAttribute()>
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
-    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "userncr1", "user")>
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "owner", "user")>
     Public Property [Delegate]() As User
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.userncr1", "user").Value
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.owner", "user").Value
         End Get
         Set
-            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.userncr1", "user").Value = value
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.owner", "user").Value = value
         End Set
     End Property
     ''' <summary>
@@ -1553,11 +1608,11 @@ Public Partial Class Ncr
     <DataMemberAttribute()>
     Public Property DelegateReference() As EntityReference(Of User)
         Get
-            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.userncr1", "user")
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.owner", "user")
         End Get
         Set
             If (Not value Is Nothing)
-                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of User)("BaseModel.userncr1", "user", value)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of User)("BaseModel.owner", "user", value)
             End If
         End Set
     End Property
@@ -1589,6 +1644,37 @@ Public Partial Class Ncr
         Set
             If (Not value Is Nothing)
                 CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of cc)("BaseModel.Ncrcc", "cc", value)
+            End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <XmlIgnoreAttribute()>
+    <SoapIgnoreAttribute()>
+    <DataMemberAttribute()>
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "OwnerAssociation", "User")>
+    Public Property OwnerUser() As User
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.OwnerAssociation", "User").Value
+        End Get
+        Set
+            CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.OwnerAssociation", "User").Value = value
+        End Set
+    End Property
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <BrowsableAttribute(False)>
+    <DataMemberAttribute()>
+    Public Property OwnerUserReference() As EntityReference(Of User)
+        Get
+            Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of User)("BaseModel.OwnerAssociation", "User")
+        End Get
+        Set
+            If (Not value Is Nothing)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of User)("BaseModel.OwnerAssociation", "User", value)
             End If
         End Set
     End Property
@@ -2125,13 +2211,31 @@ Public Partial Class User
     <SoapIgnoreAttribute()>
     <DataMemberAttribute()>
     <EdmRelationshipNavigationPropertyAttribute("BaseModel", "ncruser", "ncr")>
-     Public Property ncr() As EntityCollection(Of Ncr)
+     Public Property assigned() As EntityCollection(Of Ncr)
         Get
             Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Ncr)("BaseModel.ncruser", "ncr")
         End Get
         Set
             If (Not value Is Nothing)
                 CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Ncr)("BaseModel.ncruser", "ncr", value)
+            End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <XmlIgnoreAttribute()>
+    <SoapIgnoreAttribute()>
+    <DataMemberAttribute()>
+    <EdmRelationshipNavigationPropertyAttribute("BaseModel", "OwnerAssociation", "Ncr")>
+     Public Property Ncrs() As EntityCollection(Of Ncr)
+        Get
+            Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Ncr)("BaseModel.OwnerAssociation", "Ncr")
+        End Get
+        Set
+            If (Not value Is Nothing)
+                CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Ncr)("BaseModel.OwnerAssociation", "Ncr", value)
             End If
         End Set
     End Property
