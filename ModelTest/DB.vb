@@ -145,6 +145,7 @@
 			Return False
 		End If
 	End Function
+
 	Public Shared Function SetCcSolutionVerifier(ccId As Integer, solutionVerifierId As Integer) As Boolean
 		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
 		Dim result = ccAdapt.UpdateSolutionVerifier(solutionVerifierId, ccId)
@@ -168,6 +169,46 @@
 	Public Shared Function SetNcrOwner(ncrId As Integer, ownerid As Integer) As Boolean
 		Dim ncrAdapt = New MySqlDataSetTableAdapters.ncrTableAdapter
 		Dim result = ncrAdapt.UpdateOwner(ownerid, ncrId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	Public Shared Function UpdateCcPlanApprovaDate(ccId As Integer, updDate As DateTime) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateCcPlanApproveDate(updDate, ccId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	Public Shared Function UpdateCcPlanApproveDate(ccId As Integer, updDate As DateTime) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateCcPlanApproveDate(updDate, ccId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	Public Shared Function UpdateCcCompletionDate(ccId As Integer, updDate As DateTime) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateCompletionDate(updDate, ccId)
+		If result > 0 Then
+			Return True
+		Else
+			Return False
+		End If
+	End Function
+
+	Public Shared Function UpdateCcVerificationDate(ccId As Integer, updDate As DateTime) As Boolean
+		Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter
+		Dim result = ccAdapt.UpdateVerificationDate(updDate, ccId)
 		If result > 0 Then
 			Return True
 		Else

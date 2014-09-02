@@ -52,6 +52,11 @@ Partial Class NCRDetailsForm
 		Me.FollowupTab = New System.Windows.Forms.TabPage()
 		Me.AttachTab = New System.Windows.Forms.TabPage()
 		Me.StatusTab = New System.Windows.Forms.TabPage()
+		Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
+		Me.NcrLogCtrl = New CATS.NcrLogControl()
+		Me.LogBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+		Me.StatusSource = New System.Windows.Forms.BindingSource(Me.components)
+		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
 		Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
 		Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
 		Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,18 +68,19 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
 		Me.CloseBtn = New System.Windows.Forms.Button()
-		Me.StatusSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.MySqlDataSet1 = New BaseModel.MySqlDataSet()
 		Me.NCRTabControl.SuspendLayout()
 		Me.DetailsTab.SuspendLayout()
 		Me.TableLayoutPanel2.SuspendLayout()
 		Me.CcTab.SuspendLayout()
+		Me.StatusTab.SuspendLayout()
+		Me.TableLayoutPanel4.SuspendLayout()
+		CType(Me.LogBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.ContextMenuStrip1.SuspendLayout()
 		Me.TableLayoutPanel1.SuspendLayout()
 		Me.TableLayoutPanel3.SuspendLayout()
 		Me.FlowLayoutPanel1.SuspendLayout()
-		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).BeginInit()
-		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.SuspendLayout()
 		'
 		'NCRTabControl
@@ -410,6 +416,7 @@ Partial Class NCRDetailsForm
 		'
 		'StatusTab
 		'
+		Me.StatusTab.Controls.Add(Me.TableLayoutPanel4)
 		Me.StatusTab.Location = New System.Drawing.Point(4, 22)
 		Me.StatusTab.Name = "StatusTab"
 		Me.StatusTab.Padding = New System.Windows.Forms.Padding(3)
@@ -417,6 +424,45 @@ Partial Class NCRDetailsForm
 		Me.StatusTab.TabIndex = 6
 		Me.StatusTab.Text = "NCR Status"
 		Me.StatusTab.UseVisualStyleBackColor = True
+		'
+		'TableLayoutPanel4
+		'
+		Me.TableLayoutPanel4.ColumnCount = 3
+		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+		Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+		Me.TableLayoutPanel4.Controls.Add(Me.NcrLogCtrl, 1, 1)
+		Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.TableLayoutPanel4.Location = New System.Drawing.Point(3, 3)
+		Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+		Me.TableLayoutPanel4.RowCount = 3
+		Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+		Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+		Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+		Me.TableLayoutPanel4.Size = New System.Drawing.Size(848, 496)
+		Me.TableLayoutPanel4.TabIndex = 0
+		'
+		'NcrLogCtrl
+		'
+		Me.NcrLogCtrl.Location = New System.Drawing.Point(23, 23)
+		Me.NcrLogCtrl.Name = "NcrLogCtrl"
+		Me.NcrLogCtrl.Size = New System.Drawing.Size(796, 436)
+		Me.NcrLogCtrl.TabIndex = 0
+		'
+		'LogBindingSource
+		'
+		Me.LogBindingSource.DataMember = "log"
+		Me.LogBindingSource.DataSource = Me.StatusSource
+		'
+		'StatusSource
+		'
+		Me.StatusSource.DataSource = Me.MySqlDataSet1
+		Me.StatusSource.Position = 0
+		'
+		'MySqlDataSet1
+		'
+		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
+		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
 		'
 		'ContextMenuStrip1
 		'
@@ -519,16 +565,6 @@ Partial Class NCRDetailsForm
 		Me.CloseBtn.Text = "Close"
 		Me.CloseBtn.UseVisualStyleBackColor = True
 		'
-		'StatusSource
-		'
-		Me.StatusSource.DataSource = Me.MySqlDataSet1
-		Me.StatusSource.Position = 0
-		'
-		'MySqlDataSet1
-		'
-		Me.MySqlDataSet1.DataSetName = "MySqlDataSet"
-		Me.MySqlDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-		'
 		'NCRDetailsForm
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -544,13 +580,16 @@ Partial Class NCRDetailsForm
 		Me.TableLayoutPanel2.ResumeLayout(False)
 		Me.TableLayoutPanel2.PerformLayout()
 		Me.CcTab.ResumeLayout(False)
+		Me.StatusTab.ResumeLayout(False)
+		Me.TableLayoutPanel4.ResumeLayout(False)
+		CType(Me.LogBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ContextMenuStrip1.ResumeLayout(False)
 		Me.TableLayoutPanel1.ResumeLayout(False)
 		Me.TableLayoutPanel1.PerformLayout()
 		Me.TableLayoutPanel3.ResumeLayout(False)
 		Me.FlowLayoutPanel1.ResumeLayout(False)
-		CType(Me.StatusSource, System.ComponentModel.ISupportInitialize).EndInit()
-		CType(Me.MySqlDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ResumeLayout(False)
 		Me.PerformLayout()
 
@@ -580,7 +619,7 @@ Partial Class NCRDetailsForm
 	Friend WithEvents TableLayoutPanel3 As System.Windows.Forms.TableLayoutPanel
 	Friend WithEvents FlowLayoutPanel1 As System.Windows.Forms.FlowLayoutPanel
 	Friend WithEvents CloseBtn As System.Windows.Forms.Button
-	Friend WithEvents NcrLog1 As CATS.NcrLog
+	Friend WithEvents NcrLog1 As CATS.NcrLogControl
 	Friend WithEvents StatusSource As System.Windows.Forms.BindingSource
 	Friend WithEvents RaisedByTb As System.Windows.Forms.TextBox
 	Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -598,4 +637,7 @@ Partial Class NCRDetailsForm
 	Friend WithEvents CcControl2 As CATS.CcControl
 	Friend WithEvents OwnerTb As System.Windows.Forms.TextBox
 	Friend WithEvents Label10 As System.Windows.Forms.Label
+	Friend WithEvents TableLayoutPanel4 As System.Windows.Forms.TableLayoutPanel
+	Friend WithEvents LogBindingSource As System.Windows.Forms.BindingSource
+	Friend WithEvents NcrLogCtrl As CATS.NcrLogControl
 End Class

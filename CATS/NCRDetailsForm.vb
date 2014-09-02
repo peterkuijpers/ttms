@@ -35,6 +35,7 @@ Public Class NCRDetailsForm
 	''' <param name="ncrId"></param>
 	''' <remarks></remarks>
 	Private Sub ReloadNcr(ncrId As Integer)
+		NcrLogCtrl.RefreshLog(ncrId)
 		Me.ncrId = ncrId
 		' new ncr
 		If (ncrId = -1) Then
@@ -178,7 +179,7 @@ Public Class NCRDetailsForm
 			Dim message As String = "NCR Saved"
 			Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 			'refresh the log tab
-			' NcrLog1.RefreshLog(curNcr.id)
+			NcrLogCtrl.RefreshLog(curNcr.id)
 			'
 			StatusStrip1.Items.Clear()
 			StatusStrip1.Items.Add(message)
@@ -200,7 +201,7 @@ Public Class NCRDetailsForm
 				Dim message As String = "NCR Saved"
 				Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 				'refresh the log tab
-				' NcrLog1.RefreshLog(curNcr.id)
+				NcrLogCtrl.RefreshLog(curNcr.id)
 				'
 				StatusStrip1.Items.Clear()
 				StatusStrip1.Items.Add(message)
@@ -230,12 +231,12 @@ Public Class NCRDetailsForm
 		Dim message As String = "NCR Created"
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 		'refresh the log tab
-		' NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'add item to notifications
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.id)
-		'Dim notesResult = notesAdapt.InsertQuery(curNcr.assignedto_id, curNcr.id, "New NCR was created by you. Please assign it to somebody", DateTime.Now)
+		Dim notesResult = notesAdapt.InsertQuery(curNcr.raisedby_id, curNcr.id, "New NCR was created by you. Please assign it to somebody", DateTime.Now)
 		'
 		StatusStrip1.Items.Clear()
 		StatusStrip1.Items.Add(message)
@@ -256,7 +257,7 @@ Public Class NCRDetailsForm
 		Dim message As String = "NCR Submitted to " + curNcr.AssignedTo.firstname + ", " + curNcr.AssignedTo.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 		'refresh the log tab
-		' NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'add item to notifications
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
@@ -280,7 +281,7 @@ Public Class NCRDetailsForm
 		Dim message As String = "NCR Rejected by " & user.firstname & ", " & user.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 		'refresh the log tab
-		'NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
@@ -300,7 +301,7 @@ Public Class NCRDetailsForm
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 		'
 		'refresh the log tab
-		'NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'
 		' Create new CC
 		Dim ccTable As MySqlDataSet.ccDataTable = New MySqlDataSet.ccDataTable()
@@ -319,7 +320,7 @@ Public Class NCRDetailsForm
 	Private Sub DelegateNcr(delegateId As Integer)
 		'update status in db
 		curNcr.Delegate = DB.LoadUser(delegateId)
-		curNcr.assignedto_id = delegateId
+		curNcr.delegatedto_id = delegateId
 		'
 		Dim ncrAdapt As MySqlDataSetTableAdapters.ncrTableAdapter = New MySqlDataSetTableAdapters.ncrTableAdapter()
 		Dim result = ncrAdapt.UpdateDelegatedTo(curNcr.delegatedto_id, curNcr.id)
@@ -332,7 +333,7 @@ Public Class NCRDetailsForm
 		'
 
 		'refresh the log tab
-		'NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
@@ -355,7 +356,7 @@ Public Class NCRDetailsForm
 		' 
 		'
 		'refresh the log tab
-		'NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
@@ -377,12 +378,12 @@ Public Class NCRDetailsForm
 		Dim message As String = "NCR Delegation rejected by " & user.firstname & ", " & user.surname
 		Dim logResult = logAdapt.InsertQuery(DateTime.Now, message, curNcr.id, user.id)
 		'refresh the log tab
-		'NcrLog1.RefreshLog(curNcr.id)
+		NcrLogCtrl.RefreshLog(curNcr.id)
 		'
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
 		' remove previous messages for this ncr
 		notesAdapt.DeleteAllNotificationsForNcr(curNcr.id)
-		Dim notesResult = notesAdapt.InsertQuery(curNcr.raisedby_id, curNcr.id, "NCR Delegation was rejected.", DateTime.Now)
+		Dim notesResult = notesAdapt.InsertQuery(curNcr.assignedto_id, curNcr.id, "NCR Delegation was rejected.", DateTime.Now)
 		StatusStrip1.Items.Clear()
 		StatusStrip1.Items.Add(message)
 	End Sub
@@ -410,10 +411,12 @@ Public Class NCRDetailsForm
 		showCcState = value
 		If showCcState Then
 			CcControl2.Enabled = True
+			CcControl2.Reload(curNcr, user)
 		Else
 			CcControl2.Enabled = False
+
 		End If
-		CcControl2.Reload(curNcr, user)
+
 	End Sub
 
 	Private Sub EnabledBackgroundColor_Enter(sender As System.Object, e As System.EventArgs) Handles TitleTb.Enter, DescriptionTB.Enter
@@ -430,4 +433,7 @@ Public Class NCRDetailsForm
 
 	End Sub
 
+	Private Sub CcControl2_Load(sender As System.Object, e As System.EventArgs) Handles CcControl2.Load
+
+	End Sub
 End Class

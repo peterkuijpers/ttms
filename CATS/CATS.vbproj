@@ -105,10 +105,10 @@
     <Compile Include="NCRDetailsForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="NcrLog.Designer.vb">
-      <DependentUpon>NcrLog.vb</DependentUpon>
+    <Compile Include="NcrLogControl.Designer.vb">
+      <DependentUpon>NcrLogControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="NcrLog.vb">
+    <Compile Include="NcrLogControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -147,8 +147,8 @@
     <EmbeddedResource Include="NCRDetailsForm.resx">
       <DependentUpon>NCRDetailsForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NcrLog.resx">
-      <DependentUpon>NcrLog.vb</DependentUpon>
+    <EmbeddedResource Include="NcrLogControl.resx">
+      <DependentUpon>NcrLogControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

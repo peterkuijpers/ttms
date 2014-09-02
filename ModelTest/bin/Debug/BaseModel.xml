@@ -38,6 +38,10 @@ Represents the strongly named DataTable class.
 	<summary>
 Represents the strongly named DataTable class.
 </summary>
+</member><member name="T:BaseModel.MySqlDataSet.projectDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
 </member><member name="T:BaseModel.MySqlDataSet.userRow">
 	<summary>
 Represents strongly named DataRow class.
@@ -67,6 +71,10 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member><member name="T:BaseModel.MySqlDataSet.ccRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:BaseModel.MySqlDataSet.projectRow">
 	<summary>
 Represents strongly named DataRow class.
 </summary>
@@ -102,9 +110,9 @@ Row event argument class
 	<summary>
 Row event argument class
 </summary>
-</member><member name="T:BaseModel.MySqlDataSet">
+</member><member name="T:BaseModel.MySqlDataSet.projectRowChangeEvent">
 	<summary>
-Represents a strongly typed in-memory cache of data.
+Row event argument class
 </summary>
 </member><member name="T:BaseModel.MySqlDataSetTableAdapters.userTableAdapter">
 	<summary>
@@ -135,6 +143,10 @@ Represents the connection and commands used to retrieve and save data.
 Represents the connection and commands used to retrieve and save data.
 </summary>
 </member><member name="T:BaseModel.MySqlDataSetTableAdapters.ccTableAdapter">
+	<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member><member name="T:BaseModel.MySqlDataSetTableAdapters.projectTableAdapter">
 	<summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -173,6 +185,11 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 </member><member name="T:BaseModel.PluginManager.Program">
 	<summary>
  plugin 
+ </summary>
+	<remarks></remarks>
+</member><member name="M:BaseModel.Dashboard.UpdateCallback">
+	<summary>
+ Called when polling has detected an database update
  </summary>
 	<remarks></remarks>
 </member><member name="M:BaseModel.DatabaseModule.Database.LoadDepartment(BaseModel.User)">
@@ -264,10 +281,6 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 </member><member name="M:BaseModel.rqtsEntities.AddTologs(BaseModel.log)">
 	<summary>
  Deprecated Method for adding a new object to the logs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
- </summary>
-</member><member name="T:BaseModel.rqtsEntities">
-	<summary>
- No Metadata Documentation available.
  </summary>
 </member><member name="M:BaseModel.cc.Createcc(System.Int32,System.Int32)">
 	<summary>
@@ -545,10 +558,6 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="T:BaseModel.Ncr">
-	<summary>
- No Metadata Documentation available.
- </summary>
 </member><member name="M:BaseModel.Notification.CreateNotification(System.Int32,System.Int32,System.Int32,System.String,System.DateTime)">
 	<summary>
  Create a new Notification object.
@@ -575,10 +584,6 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.Notification.timestamp">
-	<summary>
- No Metadata Documentation available.
- </summary>
-</member><member name="T:BaseModel.Notification">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -659,10 +664,6 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
-</member><member name="T:BaseModel.User">
-	<summary>
- No Metadata Documentation available.
- </summary>
 </member><member name="M:BaseModel.Userlevel.CreateUserlevel(System.Int32)">
 	<summary>
  Create a new Userlevel object.
@@ -681,10 +682,6 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.Userlevel.users">
-	<summary>
- No Metadata Documentation available.
- </summary>
-</member><member name="T:BaseModel.Userlevel">
 	<summary>
  No Metadata Documentation available.
  </summary>

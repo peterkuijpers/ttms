@@ -65,14 +65,18 @@ Partial Class Dashboard
 		Me.GroupBox4 = New System.Windows.Forms.GroupBox()
 		Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
 		Me.NotificationsGridView = New System.Windows.Forms.DataGridView()
-		Me.NotificationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-		Me.MySqlDataSet = New BaseModel.MySqlDataSet()
-		Me.Label4 = New System.Windows.Forms.Label()
-		Me.NotificationTableAdapter = New BaseModel.MySqlDataSetTableAdapters.notificationTableAdapter()
 		Me.user_idCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.ncr_id = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.MessageDataGridViewImageColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.timestampCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.NotificationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+		Me.MySqlDataSet = New BaseModel.MySqlDataSet()
+		Me.Label4 = New System.Windows.Forms.Label()
+		Me.NotificationTableAdapter = New BaseModel.MySqlDataSetTableAdapters.notificationTableAdapter()
+		Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.Panel1.SuspendLayout()
 		Me.TableLayoutPanel2.SuspendLayout()
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,7 +188,7 @@ Partial Class Dashboard
 		Me.TableLayoutPanel1.RowCount = 2
 		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24.0!))
 		Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25.0!))
-		Me.TableLayoutPanel1.Size = New System.Drawing.Size(849, 51)
+		Me.TableLayoutPanel1.Size = New System.Drawing.Size(848, 51)
 		Me.TableLayoutPanel1.TabIndex = 1
 		'
 		'Label3
@@ -293,7 +297,7 @@ Partial Class Dashboard
 		Me.GroupBox1.Margin = New System.Windows.Forms.Padding(0)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Padding = New System.Windows.Forms.Padding(3, 0, 3, 3)
-		Me.GroupBox1.Size = New System.Drawing.Size(855, 67)
+		Me.GroupBox1.Size = New System.Drawing.Size(854, 67)
 		Me.GroupBox1.TabIndex = 1
 		Me.GroupBox1.TabStop = False
 		'
@@ -465,7 +469,7 @@ Partial Class Dashboard
 		Me.TableLayoutPanel3.ColumnCount = 3
 		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.57355!))
 		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.42645!))
-		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119.0!))
+		Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120.0!))
 		Me.TableLayoutPanel3.Controls.Add(Me.GroupBox1, 0, 0)
 		Me.TableLayoutPanel3.Controls.Add(Me.GroupBox3, 0, 1)
 		Me.TableLayoutPanel3.Controls.Add(Me.GroupBox4, 1, 1)
@@ -524,31 +528,6 @@ Partial Class Dashboard
 		Me.NotificationsGridView.Size = New System.Drawing.Size(684, 108)
 		Me.NotificationsGridView.TabIndex = 2
 		'
-		'NotificationBindingSource
-		'
-		Me.NotificationBindingSource.DataMember = "notification"
-		Me.NotificationBindingSource.DataSource = Me.MySqlDataSet
-		Me.NotificationBindingSource.Filter = ""
-		Me.NotificationBindingSource.Sort = ""
-		'
-		'MySqlDataSet
-		'
-		Me.MySqlDataSet.DataSetName = "MySqlDataSet"
-		Me.MySqlDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-		'
-		'Label4
-		'
-		Me.Label4.AutoSize = True
-		Me.Label4.Location = New System.Drawing.Point(3, 0)
-		Me.Label4.Name = "Label4"
-		Me.Label4.Size = New System.Drawing.Size(96, 13)
-		Me.Label4.TabIndex = 0
-		Me.Label4.Text = "CATS Notifications"
-		'
-		'NotificationTableAdapter
-		'
-		Me.NotificationTableAdapter.ClearBeforeFill = True
-		'
 		'user_idCol
 		'
 		Me.user_idCol.DataPropertyName = "user_id"
@@ -588,6 +567,67 @@ Partial Class Dashboard
 		Me.timestampCol.MinimumWidth = 100
 		Me.timestampCol.Name = "timestampCol"
 		Me.timestampCol.ReadOnly = True
+		'
+		'NotificationBindingSource
+		'
+		Me.NotificationBindingSource.DataMember = "notification"
+		Me.NotificationBindingSource.DataSource = Me.MySqlDataSet
+		Me.NotificationBindingSource.Filter = ""
+		Me.NotificationBindingSource.Sort = ""
+		'
+		'MySqlDataSet
+		'
+		Me.MySqlDataSet.DataSetName = "MySqlDataSet"
+		Me.MySqlDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+		'
+		'Label4
+		'
+		Me.Label4.AutoSize = True
+		Me.Label4.Location = New System.Drawing.Point(3, 0)
+		Me.Label4.Name = "Label4"
+		Me.Label4.Size = New System.Drawing.Size(96, 13)
+		Me.Label4.TabIndex = 0
+		Me.Label4.Text = "CATS Notifications"
+		'
+		'NotificationTableAdapter
+		'
+		Me.NotificationTableAdapter.ClearBeforeFill = True
+		'
+		'DataGridViewTextBoxColumn1
+		'
+		Me.DataGridViewTextBoxColumn1.DataPropertyName = "user_id"
+		Me.DataGridViewTextBoxColumn1.HeaderText = "user_id"
+		Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+		Me.DataGridViewTextBoxColumn1.Visible = False
+		Me.DataGridViewTextBoxColumn1.Width = 66
+		'
+		'DataGridViewTextBoxColumn2
+		'
+		Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.DataGridViewTextBoxColumn2.DataPropertyName = "ncr_id"
+		Me.DataGridViewTextBoxColumn2.FillWeight = 50.0!
+		Me.DataGridViewTextBoxColumn2.HeaderText = "ncr_id"
+		Me.DataGridViewTextBoxColumn2.MinimumWidth = 50
+		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+		Me.DataGridViewTextBoxColumn2.Width = 50
+		'
+		'DataGridViewTextBoxColumn3
+		'
+		Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		Me.DataGridViewTextBoxColumn3.DataPropertyName = "message"
+		Me.DataGridViewTextBoxColumn3.HeaderText = "message"
+		Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+		Me.DataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.DataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+		'
+		'DataGridViewTextBoxColumn4
+		'
+		Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.DataGridViewTextBoxColumn4.DataPropertyName = "timestamp"
+		Me.DataGridViewTextBoxColumn4.FillWeight = 130.0!
+		Me.DataGridViewTextBoxColumn4.HeaderText = "timestamp"
+		Me.DataGridViewTextBoxColumn4.MinimumWidth = 100
+		Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
 		'
 		'Dashboard
 		'
@@ -670,5 +710,9 @@ Partial Class Dashboard
 	Friend WithEvents ncr_id As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents MessageDataGridViewImageColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents timestampCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

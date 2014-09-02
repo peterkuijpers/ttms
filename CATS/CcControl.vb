@@ -41,7 +41,7 @@ Public Class CcControl
 	Private Sub ReloadCc(ccId As Integer)
 		' per definition cc-id is equal to ncr-id
 		curCc = DB.LoadCc(ccId)
-
+		PlanGridView.AllowUserToAddRows = False
 		Select Case curCc.status_id
 			Case CcStatus.StatusType.Creating
 				seqTextCol.ReadOnly = False
@@ -50,11 +50,16 @@ Public Class CcControl
 				DueDateCal.ReadOnly = False
 				ComplDateCal.ReadOnly = True
 				ReviewGridView.Hide()
-
+				If (curUser.id = curCc.owner_id) Then
+					PlanGridView.AllowUserToAddRows = True
+				End If
 			Case CcStatus.StatusType.SubmittedToApprover
 				PlanGridView.Enabled = False
+				PlanGridView.AllowUserToAddRows = False
 				ReviewGridView.Enabled = False
+				ReviewGridView.Hide()
 			Case CcStatus.StatusType.PlanExecution
+				PlanGridView.AllowUserToAddRows = False
 				seqTextCol.ReadOnly = True
 				actionTextCol.ReadOnly = True
 				ActionByCmb.ReadOnly = True
@@ -69,10 +74,10 @@ Public Class CcControl
 				PlanGridView.Enabled = False
 				ReviewGridView.Show()
 				ReviewGridView.Enabled = False
-
 		End Select
 
 		ccItemAdapt.Fill(ccItemTable, curCc.id)
+		'if no items than create a first item
 
 		Dim bindingSource = New BindingSource()
 		bindingSource.DataSource = ccItemTable
@@ -96,7 +101,6 @@ Public Class CcControl
 		EnableStatusControl(curUser, curCc.owner_id)
 		' display current status
 		StatusTb.Text = CcStatus.StatMessages(curCc.status_id)
-
 	End Sub
 
 	''' <summary>
@@ -126,8 +130,13 @@ Public Class CcControl
 		HandleAction(action, newUserid)
 	End Sub
 
+	''' <summary>
+	''' Handle the action
+	''' </summary>
+	''' <param name="action"></param>
+	''' <param name="newUserid"></param>
+	''' <remarks></remarks>
 	Private Sub HandleAction(action As CcStatus.Actions, newUserid As Integer)
-
 		Select Case action
 			Case CcStatus.Actions.Create
 				'CreateNewNcr()
@@ -146,12 +155,15 @@ Public Class CcControl
 			Case CcStatus.Actions.AcceptByApprover
 				'AcceptByApprover()
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.PlanExecution)
+				DB.UpdateCcPlanApproveDate(curCc.id, DateTime.Now)
 			Case CcStatus.Actions.ExecutionFinished
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.SolutionVerification)
 				DB.SetCcSolutionVerifier(curCc.id, newUserid)
 				DB.SetCcOwner(curCc.id, newUserid)
+				DB.UpdateCcCompletionDate(curCc.id, DateTime.Now)
 			Case CcStatus.Actions.VerificationPassed
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Closed)
+				DB.UpdateCcVerificationDate(curCc.id, DateTime.Now)
 			Case CcStatus.Actions.VerificationFailed
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Creating)
 				DB.SetCcSolutionVerifier(curCc.id, Nothing)
@@ -161,22 +173,23 @@ Public Class CcControl
 		ReloadCc(curCc.id)
 	End Sub
 
-	Private Sub CcPlanGridView_DefaultValuesNeeded(sender As System.Object, e As System.Windows.Forms.DataGridViewRowEventArgs) Handles PlanGridView.DefaultValuesNeeded
+	Private Sub PlanGridView_DefaultValuesNeeded(sender As System.Object, e As System.Windows.Forms.DataGridViewRowEventArgs) Handles PlanGridView.DefaultValuesNeeded
 		Dim row = e.Row
-		row.Cells("SeqCol").Value = seqCounter
+		row.Cells("SeqTextCol").Value = seqCounter
 		row.Cells("ccIdCol").Value = curNcr.id
 		seqCounter += 1
 	End Sub
 
-
-	'Private Sub CcPlanGridView_RowEnter(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles CcPlanGridView.RowEnter
-	'	If (CcPlanGridView.Rows(e.RowIndex).IsNewRow) Then
-	'   CcPlanGridView.Rows(e.RowIndex).Cells(0).Value = 1
-	'	End If
-	'End Sub
-
-	Private Sub CcPlanGridView_RowValidated(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PlanGridView.RowValidated
+	''' <summary>
+	''' Update the row  in the database
+	''' and check if all actions are completed which indicates execution of cc is finished
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <remarks></remarks>
+	Private Sub PlanGridView_RowValidated(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles PlanGridView.RowValidated
 		ccItemAdapt.Update(ccItemTable)
+		' was the completiondate updated?
 		If (e.ColumnIndex = 5) Then
 			Console.WriteLine("Row validated: " & e.RowIndex & "-" & e.ColumnIndex)
 			CheckExecutionCompleted()
@@ -184,37 +197,86 @@ Public Class CcControl
 
 	End Sub
 
-
 	Private Sub CcPlanGridView_DataError(sender As System.Object, e As System.Windows.Forms.DataGridViewDataErrorEventArgs) Handles PlanGridView.DataError
 		MessageBox.Show("This row has an error")
-
 	End Sub
 
-	Private Sub CcPlanGridView_RowDirtyStateNeeded(sender As System.Object, e As System.Windows.Forms.QuestionEventArgs) Handles PlanGridView.RowDirtyStateNeeded
-		MessageBox.Show("Dirty row")
-	End Sub
-
-
-	Private Sub NewItemBtn_Click(sender As System.Object, e As System.EventArgs)
-
-	End Sub
-
-	Private Sub CcPlanGridView_UserDeletingRow(sender As System.Object, e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles PlanGridView.UserDeletingRow
+	Private Sub PlanGridView_UserDeletingRow(sender As System.Object, e As System.Windows.Forms.DataGridViewRowCancelEventArgs) Handles PlanGridView.UserDeletingRow
 		Dim result As Integer = MessageBox.Show("Are you sure you want to delete this row?", "Deleting", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
 		If (result <> DialogResult.OK) Then
 			e.Cancel = True
 		End If
-
 	End Sub
 
-	
-
+	''' <summary>
+	''' If all action items are completed than the cc should move from status execution to verifying
+	''' </summary>
+	''' <remarks></remarks>
 	Private Sub CheckExecutionCompleted()
 		Dim result = ccItemAdapt.CheckCompleted(curCc.id)
 		If (result = 0) Then
 			MessageBox.Show(Me, "All CC items completed. Execution of CC is now finished", "CC Execution finished", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
 			ccAdapt.UpdateStatus(CcStatus.StatusType.SolutionVerification, curCc.id)
 			ReloadCc(curCc.id)
+		End If
+	End Sub
+
+	Private Sub ReviewGridView_RowValidated(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles ReviewGridView.RowValidated
+		ccItemAdapt.Update(ccItemTable)
+		Dim uncompleted = ccItemAdapt.GetTotalUncompleted(curCc.id)
+		If uncompleted = 0 Then
+			MessageBox.Show("Verification complete")
+		End If
+
+
+	End Sub
+
+	''' <summary>
+	''' Validating verification row:
+	''' if Pass: must have review_by, review_date
+	''' if Fail: must have review_by, review_date and comment
+	''' </summary>
+	''' <param name="sender"></param>
+	''' <param name="e"></param>
+	''' <remarks></remarks>
+	Private Sub ReviewGridView_RowValidating(sender As System.Object, e As System.Windows.Forms.DataGridViewCellCancelEventArgs) Handles ReviewGridView.RowValidating
+		Dim valid = True
+		Dim row = ReviewGridView.Rows(e.RowIndex)
+		Dim pass = CType(row.Cells("passCol").Value, Boolean)
+		Dim fail = CType(row.Cells("failCol").Value, Boolean)
+		If (pass) Then
+			If (IsDBNull(row.Cells("ReviewByCol")) Or IsDBNull(row.Cells("ReviewDateCol"))) Then
+				MessageBox.Show("For passed items please select Reviewer and Review date")
+				valid = False
+			End If
+		End If
+		If (fail) Then
+			If (IsDBNull(row.Cells("ReviewByCol")) Or IsDBNull(row.Cells("ReviewDateCol")) Or IsDBNull(row.Cells("CommentCol"))) Then
+				MessageBox.Show("For passed items please select Reviewer, Review date and Comment")
+				valid = False
+			End If
+		End If
+		If (Not valid) Then
+			e.Cancel = True
+		End If
+
+	End Sub
+
+	Private Sub ReviewGridView_CellValueChanged(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs)
+	
+	End Sub
+
+	Private Sub ReviewGridView_CurrentCellDirtyStateChanged(sender As System.Object, e As System.EventArgs) Handles ReviewGridView.CurrentCellDirtyStateChanged
+		Dim cell = ReviewGridView.CurrentCell
+		Dim colIndex = cell.ColumnIndex
+		Dim rowIndex = cell.RowIndex
+		If (colIndex = 3) Then
+			Dim checkCell As DataGridViewCheckBoxCell = CType(ReviewGridView.Rows(rowIndex).Cells("failCol"), DataGridViewCheckBoxCell)
+			checkCell.Value = False
+		End If
+		If (colIndex = 4) Then
+			Dim checkCell As DataGridViewCheckBoxCell = CType(ReviewGridView.Rows(rowIndex).Cells("passCol"), DataGridViewCheckBoxCell)
+			checkCell.Value = False
 		End If
 	End Sub
 End Class

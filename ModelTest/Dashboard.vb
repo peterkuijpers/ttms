@@ -1,5 +1,7 @@
 ﻿
 Public Class Dashboard
+	Implements IUpdateCallback
+
 	Private loggedIn As Boolean
 	Private DotsOps As IOperation
 	Private CatsOps As IOperation
@@ -18,8 +20,11 @@ Public Class Dashboard
 		' Add any initialization after the InitializeComponent() call.
 		Dim p As New Program()
 		p.portal.ShowPortalForm(Me)
+		PollingDb.SetSubscriber(Me)
+		PollingDb.StartPolling()
 
 	End Sub
+
 	Private Sub Dashboard_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
 		' Login before anything else
 		Me.Enabled = False
@@ -39,20 +44,30 @@ Public Class Dashboard
 		thisUser = Database.LoadUser(id)
 		Dim department As New Department
 		department = Database.LoadDepartment(thisUser)
-		thisUser.Department = department
-		DepartmentLbl.Text = department.Description
+		thisUser.department = department
+		DepartmentLbl.Text = department.description
 
 		Dim lvl As New Userlevel
 		lvl = Database.LoadLevel(thisUser)
 		thisUser.userlevel = lvl
 		LevelLbl.Text = lvl.fulldescription
 		ShowUserDetails(thisUser)
-		ShowNotifications(thisUser.Id)
+		ShowNotifications(thisUser.id)
 		ShowUserAdminBtn(thisUser.admin)
 
 	End Sub
+	''' <summary>
+	''' Called when polling has detected an database update
+	''' </summary>
+	''' <remarks></remarks>
+	Public Sub UpdateCallback() Implements IUpdateCallback.UpdateCallback
+		If (Not IsNothing(thisUser)) Then
+			If Me.InvokeRequired Then
+				Me.Invoke(New MethodInvoker(AddressOf ShowNotifications))
+			End If
+		End If
 
-
+	End Sub
 	Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
 		MessageBox.Show(Me, "User Admin")
 	End Sub
@@ -115,25 +130,36 @@ Public Class Dashboard
 		thisUser = Database.LoadUser(id)
 		Dim department As New Department
 		department = Database.LoadDepartment(thisUser)
-		thisUser.Department = department
-		DepartmentLbl.Text = department.Description
+		thisUser.department = department
+		DepartmentLbl.Text = department.description
 
 		Dim lvl As New Userlevel
 		lvl = Database.LoadLevel(thisUser)
 		thisUser.userlevel = lvl
 		LevelLbl.Text = lvl.fulldescription
 		ShowUserDetails(thisUser)
-		ShowNotifications(thisUser.Id)
+		ShowNotifications(thisUser.id)
 		ShowUserAdminBtn(thisUser.admin)
 
 	End Sub
 
 	Private Sub ShowUserDetails(thisuser As User)
-		UserNameLbl.Text = thisuser.Firstname + " " + thisuser.Surname
+		UserNameLbl.Text = thisuser.firstname + " " + thisuser.surname
 
 	End Sub
 
 	Private Sub GetUserDetails(id As Integer)
+
+	End Sub
+
+	Private Sub ShowNotifications()
+		Dim userid = thisUser.id
+		Dim notesAdapt = New MySqlDataSetTableAdapters.notificationTableAdapter()
+		Dim notesTable = New MySqlDataSet.notificationDataTable()
+		notesTable = notesAdapt.GetDataByUserId(userid)
+
+		NotificationsGridView.DataSource = notesTable
+		NotificationsGridView.Refresh()
 
 	End Sub
 
@@ -162,7 +188,7 @@ Public Class Dashboard
 		Dim ncrId = DirectCast(row.Cells.Item("ncr_id").Value, Integer)
 
 		CatsOps.ShowPluginForm(thisUser, ncrId)
-		ShowNotifications(thisUser.Id)
+		ShowNotifications(thisUser.id)
 	End Sub
 
 	Private Sub ShowUserAdminBtn(is_admin As Boolean)

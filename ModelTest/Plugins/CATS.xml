@@ -90,6 +90,35 @@ CATS
  Called when the action/status control has a new status
  </summary>
 	<remarks></remarks>
+</member><member name="M:CATS.CcControl.HandleAction(CATS.CcStatus.Actions,System.Int32)">
+	<summary>
+ Handle the action
+ </summary>
+	<param name="action"></param>
+	<param name="newUserid"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CcControl.PlanGridView_RowValidated(System.Object,System.Windows.Forms.DataGridViewCellEventArgs)">
+	<summary>
+ Update the row  in the database
+ and check if all actions are completed which indicates execution of cc is finished
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
+</member><member name="M:CATS.CcControl.CheckExecutionCompleted">
+	<summary>
+ If all action items are completed than the cc should move from status execution to verifying
+ </summary>
+	<remarks></remarks>
+</member><member name="M:CATS.CcControl.ReviewGridView_RowValidating(System.Object,System.Windows.Forms.DataGridViewCellCancelEventArgs)">
+	<summary>
+ Validating verification row:
+ if Pass: must have review_by, review_date
+ if Fail: must have review_by, review_date and comment
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+	<remarks></remarks>
 </member><member name="M:CATS.CcStatus.#ctor">
 	<summary>
  Constructor

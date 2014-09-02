@@ -40,19 +40,6 @@ Partial Class CcControl
 		Me.ccIdCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.CcBindingSource = New System.Windows.Forms.BindingSource(Me.components)
 		Me.ReviewGridView = New System.Windows.Forms.DataGridView()
-		Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-		Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-		Me.DataGridViewComboBoxColumn1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.CalendarColumn3 = New Calendar.CalendarColumn()
-		Me.CalendarColumn4 = New Calendar.CalendarColumn()
-		Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.ReviewByCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
-		Me.ReviewDateCal = New Calendar.CalendarColumn()
-		Me.DataGridViewTextBoxColumn17 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-		Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
 		Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
 		Me.NcrSubjectTb = New System.Windows.Forms.TextBox()
@@ -61,7 +48,6 @@ Partial Class CcControl
 		Me.NcrIdTb = New System.Windows.Forms.TextBox()
 		Me.Label3 = New System.Windows.Forms.Label()
 		Me.StatusTb = New System.Windows.Forms.TextBox()
-		Me.CcStatusCntr = New CATS.CcStatusControl()
 		Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.CalendarColumn1 = New Calendar.CalendarColumn()
@@ -69,6 +55,20 @@ Partial Class CcControl
 		Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.CcStatusCntr = New CATS.CcStatusControl()
+		Me.idCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.seqCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.actionCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.passCol = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+		Me.failCol = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+		Me.actionByIdCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.dueDateCol = New Calendar.CalendarColumn()
+		Me.CompletionDateCol = New Calendar.CalendarColumn()
+		Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.ReviewByCol = New System.Windows.Forms.DataGridViewComboBoxColumn()
+		Me.ReviewDateCol = New Calendar.CalendarColumn()
+		Me.CommentCol = New System.Windows.Forms.DataGridViewTextBoxColumn()
+		Me.DataGridViewTextBoxColumn20 = New System.Windows.Forms.DataGridViewTextBoxColumn()
 		Me.TableLayoutPanel1.SuspendLayout()
 		CType(Me.PlanGridView, System.ComponentModel.ISupportInitialize).BeginInit()
 		CType(Me.CcBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +97,6 @@ Partial Class CcControl
 		'
 		'PlanGridView
 		'
-		Me.PlanGridView.AllowUserToAddRows = False
 		Me.PlanGridView.AllowUserToDeleteRows = False
 		Me.PlanGridView.AllowUserToResizeColumns = False
 		Me.PlanGridView.AllowUserToResizeRows = False
@@ -218,7 +217,7 @@ Partial Class CcControl
 		Me.ReviewGridView.AllowUserToResizeRows = False
 		Me.ReviewGridView.AutoGenerateColumns = False
 		Me.ReviewGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-		Me.ReviewGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.DataGridViewComboBoxColumn1, Me.CalendarColumn3, Me.CalendarColumn4, Me.DataGridViewTextBoxColumn14, Me.ReviewByCol, Me.ReviewDateCal, Me.DataGridViewTextBoxColumn17, Me.DataGridViewTextBoxColumn20})
+		Me.ReviewGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.idCol, Me.seqCol, Me.actionCol, Me.passCol, Me.failCol, Me.actionByIdCol, Me.dueDateCol, Me.CompletionDateCol, Me.DataGridViewTextBoxColumn14, Me.ReviewByCol, Me.ReviewDateCol, Me.CommentCol, Me.DataGridViewTextBoxColumn20})
 		Me.ReviewGridView.DataSource = Me.CcBindingSource
 		Me.ReviewGridView.Dock = System.Windows.Forms.DockStyle.Fill
 		Me.ReviewGridView.Location = New System.Drawing.Point(13, 182)
@@ -226,127 +225,6 @@ Partial Class CcControl
 		Me.ReviewGridView.RowHeadersVisible = False
 		Me.ReviewGridView.Size = New System.Drawing.Size(965, 147)
 		Me.ReviewGridView.TabIndex = 2
-		'
-		'DataGridViewTextBoxColumn11
-		'
-		Me.DataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-		Me.DataGridViewTextBoxColumn11.DataPropertyName = "id"
-		Me.DataGridViewTextBoxColumn11.HeaderText = "id"
-		Me.DataGridViewTextBoxColumn11.MinimumWidth = 30
-		Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-		Me.DataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-		Me.DataGridViewTextBoxColumn11.Visible = False
-		Me.DataGridViewTextBoxColumn11.Width = 30
-		'
-		'DataGridViewTextBoxColumn12
-		'
-		Me.DataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-		Me.DataGridViewTextBoxColumn12.DataPropertyName = "seq"
-		Me.DataGridViewTextBoxColumn12.HeaderText = "Seq"
-		Me.DataGridViewTextBoxColumn12.MinimumWidth = 30
-		Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-		Me.DataGridViewTextBoxColumn12.ReadOnly = True
-		Me.DataGridViewTextBoxColumn12.Width = 30
-		'
-		'DataGridViewTextBoxColumn13
-		'
-		Me.DataGridViewTextBoxColumn13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-		Me.DataGridViewTextBoxColumn13.DataPropertyName = "action"
-		Me.DataGridViewTextBoxColumn13.FillWeight = 50.0!
-		Me.DataGridViewTextBoxColumn13.HeaderText = "Action"
-		Me.DataGridViewTextBoxColumn13.MinimumWidth = 50
-		Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-		Me.DataGridViewTextBoxColumn13.ReadOnly = True
-		'
-		'DataGridViewTextBoxColumn18
-		'
-		Me.DataGridViewTextBoxColumn18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-		Me.DataGridViewTextBoxColumn18.DataPropertyName = "passed"
-		Me.DataGridViewTextBoxColumn18.FalseValue = "0"
-		Me.DataGridViewTextBoxColumn18.HeaderText = "Pass"
-		Me.DataGridViewTextBoxColumn18.MinimumWidth = 40
-		Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
-		Me.DataGridViewTextBoxColumn18.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.DataGridViewTextBoxColumn18.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		Me.DataGridViewTextBoxColumn18.TrueValue = "1"
-		Me.DataGridViewTextBoxColumn18.Width = 40
-		'
-		'DataGridViewTextBoxColumn19
-		'
-		Me.DataGridViewTextBoxColumn19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-		Me.DataGridViewTextBoxColumn19.DataPropertyName = "failed"
-		Me.DataGridViewTextBoxColumn19.FalseValue = "0"
-		Me.DataGridViewTextBoxColumn19.HeaderText = "Fail"
-		Me.DataGridViewTextBoxColumn19.MinimumWidth = 40
-		Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
-		Me.DataGridViewTextBoxColumn19.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.DataGridViewTextBoxColumn19.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		Me.DataGridViewTextBoxColumn19.TrueValue = "1"
-		Me.DataGridViewTextBoxColumn19.Width = 40
-		'
-		'DataGridViewComboBoxColumn1
-		'
-		Me.DataGridViewComboBoxColumn1.DataPropertyName = "actionby_id"
-		Me.DataGridViewComboBoxColumn1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox
-		Me.DataGridViewComboBoxColumn1.HeaderText = "Action By"
-		Me.DataGridViewComboBoxColumn1.Name = "DataGridViewComboBoxColumn1"
-		Me.DataGridViewComboBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.DataGridViewComboBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		Me.DataGridViewComboBoxColumn1.Visible = False
-		'
-		'CalendarColumn3
-		'
-		Me.CalendarColumn3.DataPropertyName = "duedate"
-		Me.CalendarColumn3.HeaderText = "Due Date"
-		Me.CalendarColumn3.Name = "CalendarColumn3"
-		Me.CalendarColumn3.Visible = False
-		'
-		'CalendarColumn4
-		'
-		Me.CalendarColumn4.DataPropertyName = "completiondate"
-		Me.CalendarColumn4.HeaderText = "Completion Date"
-		Me.CalendarColumn4.Name = "CalendarColumn4"
-		Me.CalendarColumn4.Visible = False
-		'
-		'DataGridViewTextBoxColumn14
-		'
-		Me.DataGridViewTextBoxColumn14.DataPropertyName = "status"
-		Me.DataGridViewTextBoxColumn14.HeaderText = "Status"
-		Me.DataGridViewTextBoxColumn14.MinimumWidth = 100
-		Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
-		Me.DataGridViewTextBoxColumn14.Visible = False
-		'
-		'ReviewByCol
-		'
-		Me.ReviewByCol.DataPropertyName = "reviewer_id"
-		Me.ReviewByCol.HeaderText = "Review By"
-		Me.ReviewByCol.Name = "ReviewByCol"
-		Me.ReviewByCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.ReviewByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		'
-		'ReviewDateCal
-		'
-		Me.ReviewDateCal.DataPropertyName = "reviewdate"
-		Me.ReviewDateCal.HeaderText = "Review Date"
-		Me.ReviewDateCal.Name = "ReviewDateCal"
-		Me.ReviewDateCal.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-		Me.ReviewDateCal.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-		'
-		'DataGridViewTextBoxColumn17
-		'
-		Me.DataGridViewTextBoxColumn17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-		Me.DataGridViewTextBoxColumn17.DataPropertyName = "reviewcomment"
-		Me.DataGridViewTextBoxColumn17.FillWeight = 50.0!
-		Me.DataGridViewTextBoxColumn17.HeaderText = "Comment"
-		Me.DataGridViewTextBoxColumn17.MinimumWidth = 100
-		Me.DataGridViewTextBoxColumn17.Name = "DataGridViewTextBoxColumn17"
-		'
-		'DataGridViewTextBoxColumn20
-		'
-		Me.DataGridViewTextBoxColumn20.DataPropertyName = "cc_id"
-		Me.DataGridViewTextBoxColumn20.HeaderText = "cc_id"
-		Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
-		Me.DataGridViewTextBoxColumn20.Visible = False
 		'
 		'TableLayoutPanel2
 		'
@@ -452,15 +330,6 @@ Partial Class CcControl
 		Me.StatusTb.Size = New System.Drawing.Size(215, 23)
 		Me.StatusTb.TabIndex = 5
 		'
-		'CcStatusCntr
-		'
-		Me.CcStatusCntr.BackColor = System.Drawing.SystemColors.ActiveCaption
-		Me.CcStatusCntr.Dock = System.Windows.Forms.DockStyle.Fill
-		Me.CcStatusCntr.Location = New System.Drawing.Point(628, 3)
-		Me.CcStatusCntr.Name = "CcStatusCntr"
-		Me.CcStatusCntr.Size = New System.Drawing.Size(360, 73)
-		Me.CcStatusCntr.TabIndex = 2
-		'
 		'DataGridViewTextBoxColumn1
 		'
 		Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
@@ -509,6 +378,136 @@ Partial Class CcControl
 		Me.DataGridViewTextBoxColumn10.HeaderText = "cc_id"
 		Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
 		Me.DataGridViewTextBoxColumn10.Visible = False
+		'
+		'CcStatusCntr
+		'
+		Me.CcStatusCntr.BackColor = System.Drawing.SystemColors.ActiveCaption
+		Me.CcStatusCntr.Dock = System.Windows.Forms.DockStyle.Fill
+		Me.CcStatusCntr.Location = New System.Drawing.Point(628, 3)
+		Me.CcStatusCntr.Name = "CcStatusCntr"
+		Me.CcStatusCntr.Size = New System.Drawing.Size(360, 73)
+		Me.CcStatusCntr.TabIndex = 2
+		'
+		'idCol
+		'
+		Me.idCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.idCol.DataPropertyName = "id"
+		Me.idCol.HeaderText = "id"
+		Me.idCol.MinimumWidth = 30
+		Me.idCol.Name = "idCol"
+		Me.idCol.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+		Me.idCol.Visible = False
+		Me.idCol.Width = 30
+		'
+		'seqCol
+		'
+		Me.seqCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.seqCol.DataPropertyName = "seq"
+		Me.seqCol.HeaderText = "Seq"
+		Me.seqCol.MinimumWidth = 30
+		Me.seqCol.Name = "seqCol"
+		Me.seqCol.ReadOnly = True
+		Me.seqCol.Width = 30
+		'
+		'actionCol
+		'
+		Me.actionCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		Me.actionCol.DataPropertyName = "action"
+		Me.actionCol.FillWeight = 50.0!
+		Me.actionCol.HeaderText = "Action"
+		Me.actionCol.MinimumWidth = 50
+		Me.actionCol.Name = "actionCol"
+		Me.actionCol.ReadOnly = True
+		'
+		'passCol
+		'
+		Me.passCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.passCol.DataPropertyName = "passed"
+		Me.passCol.FalseValue = "0"
+		Me.passCol.HeaderText = "Pass"
+		Me.passCol.MinimumWidth = 40
+		Me.passCol.Name = "passCol"
+		Me.passCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.passCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		Me.passCol.TrueValue = "1"
+		Me.passCol.Width = 40
+		'
+		'failCol
+		'
+		Me.failCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+		Me.failCol.DataPropertyName = "failed"
+		Me.failCol.FalseValue = "0"
+		Me.failCol.HeaderText = "Fail"
+		Me.failCol.MinimumWidth = 40
+		Me.failCol.Name = "failCol"
+		Me.failCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.failCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		Me.failCol.TrueValue = "1"
+		Me.failCol.Width = 40
+		'
+		'actionByIdCol
+		'
+		Me.actionByIdCol.DataPropertyName = "actionby_id"
+		Me.actionByIdCol.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox
+		Me.actionByIdCol.HeaderText = "Action By"
+		Me.actionByIdCol.Name = "actionByIdCol"
+		Me.actionByIdCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.actionByIdCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		Me.actionByIdCol.Visible = False
+		'
+		'dueDateCol
+		'
+		Me.dueDateCol.DataPropertyName = "duedate"
+		Me.dueDateCol.HeaderText = "Due Date"
+		Me.dueDateCol.Name = "dueDateCol"
+		Me.dueDateCol.Visible = False
+		'
+		'CompletionDateCol
+		'
+		Me.CompletionDateCol.DataPropertyName = "completiondate"
+		Me.CompletionDateCol.HeaderText = "Completion Date"
+		Me.CompletionDateCol.Name = "CompletionDateCol"
+		Me.CompletionDateCol.Visible = False
+		'
+		'DataGridViewTextBoxColumn14
+		'
+		Me.DataGridViewTextBoxColumn14.DataPropertyName = "status"
+		Me.DataGridViewTextBoxColumn14.HeaderText = "Status"
+		Me.DataGridViewTextBoxColumn14.MinimumWidth = 100
+		Me.DataGridViewTextBoxColumn14.Name = "DataGridViewTextBoxColumn14"
+		Me.DataGridViewTextBoxColumn14.Visible = False
+		'
+		'ReviewByCol
+		'
+		Me.ReviewByCol.DataPropertyName = "reviewer_id"
+		Me.ReviewByCol.HeaderText = "Review By"
+		Me.ReviewByCol.Name = "ReviewByCol"
+		Me.ReviewByCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.ReviewByCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		'
+		'ReviewDateCol
+		'
+		Me.ReviewDateCol.DataPropertyName = "reviewdate"
+		Me.ReviewDateCol.HeaderText = "Review Date"
+		Me.ReviewDateCol.Name = "ReviewDateCol"
+		Me.ReviewDateCol.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+		Me.ReviewDateCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+		'
+		'CommentCol
+		'
+		Me.CommentCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+		Me.CommentCol.DataPropertyName = "reviewcomment"
+		Me.CommentCol.FillWeight = 50.0!
+		Me.CommentCol.HeaderText = "Comment"
+		Me.CommentCol.MinimumWidth = 100
+		Me.CommentCol.Name = "CommentCol"
+		'
+		'DataGridViewTextBoxColumn20
+		'
+		Me.DataGridViewTextBoxColumn20.DataPropertyName = "cc_id"
+		Me.DataGridViewTextBoxColumn20.HeaderText = "cc_id"
+		Me.DataGridViewTextBoxColumn20.Name = "DataGridViewTextBoxColumn20"
+		Me.DataGridViewTextBoxColumn20.Visible = False
 		'
 		'CcControl
 		'
@@ -572,19 +571,6 @@ Partial Class CcControl
 	Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ReviewGridView As System.Windows.Forms.DataGridView
-	Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn13 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewCheckBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewCheckBoxColumn
-	Friend WithEvents DataGridViewComboBoxColumn1 As System.Windows.Forms.DataGridViewComboBoxColumn
-	Friend WithEvents CalendarColumn3 As Calendar.CalendarColumn
-	Friend WithEvents CalendarColumn4 As Calendar.CalendarColumn
-	Friend WithEvents DataGridViewTextBoxColumn14 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents ReviewByCol As System.Windows.Forms.DataGridViewComboBoxColumn
-	Friend WithEvents ReviewDateCal As Calendar.CalendarColumn
-	Friend WithEvents DataGridViewTextBoxColumn17 As System.Windows.Forms.DataGridViewTextBoxColumn
-	Friend WithEvents DataGridViewTextBoxColumn20 As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents IdTextCol As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents seqTextCol As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents actionTextCol As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -598,5 +584,19 @@ Partial Class CcControl
 	Friend WithEvents PassedDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents FailedDataGridViewTextBoxColumn As System.Windows.Forms.DataGridViewTextBoxColumn
 	Friend WithEvents ccIdCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents ReviewByIdCol As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents idCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents seqCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents actionCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents passCol As System.Windows.Forms.DataGridViewCheckBoxColumn
+	Friend WithEvents failCol As System.Windows.Forms.DataGridViewCheckBoxColumn
+	Friend WithEvents actionByIdCol As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents dueDateCol As Calendar.CalendarColumn
+	Friend WithEvents CompletionDateCol As Calendar.CalendarColumn
+	Friend WithEvents DataGridViewTextBoxColumn14 As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents ReviewByCol As System.Windows.Forms.DataGridViewComboBoxColumn
+	Friend WithEvents ReviewDateCol As Calendar.CalendarColumn
+	Friend WithEvents CommentCol As System.Windows.Forms.DataGridViewTextBoxColumn
+	Friend WithEvents DataGridViewTextBoxColumn20 As System.Windows.Forms.DataGridViewTextBoxColumn
 
 End Class

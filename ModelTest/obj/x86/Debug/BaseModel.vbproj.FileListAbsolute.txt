@@ -1,8 +1,4 @@
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\Resources\CompanyLogo.png
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.exe.config
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.exe
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.xml
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\Calendar.exe
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\MySql.Data.Entity.EF6.dll
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.Dashboard.resources
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.LoginForm.resources
@@ -11,7 +7,11 @@ C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\Ba
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.exe
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.pdb
-C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\Calendar.exe
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\Resources\CompanyLogo.png
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.exe.config
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.exe
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.pdb
+C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\BaseModel.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\Calendar.pdb
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\bin\Debug\Calendar.xml
 C:\Users\Peter.Kuijpers\Documents\VB2010Projects\TTMS\ModelTest\obj\x86\Debug\BaseModel.vbprojResolveAssemblyReference.cache
