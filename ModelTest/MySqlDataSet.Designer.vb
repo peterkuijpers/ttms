@@ -8047,7 +8047,7 @@ Namespace MySqlDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(2) {}
+            Me._commandCollection = New Global.MySql.Data.MySqlClient.MySqlCommand(3) {}
             Me._commandCollection(0) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        ccitem.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ccitem"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (cc_id = @ccId)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORD"& _ 
@@ -8063,7 +8063,7 @@ Namespace MySqlDataSetTableAdapters
             Me._commandCollection(1) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ccitem"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (cc_id = @c"& _ 
-                "c_id) AND (completiondate IS NULL)"
+                "c_id) AND completiondate  is null"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@cc_id"
@@ -8074,16 +8074,28 @@ Namespace MySqlDataSetTableAdapters
             Me._commandCollection(1).Parameters.Add(param)
             Me._commandCollection(2) = New Global.MySql.Data.MySqlClient.MySqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ccitem"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (id = @id) "& _ 
-                "AND (passed = 0) AND (failed = 0)"
+            Me._commandCollection(2).CommandText = "SELECT        COUNT(*) AS FailedItems"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ccitem"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (fail"& _ 
+                "ed = 1) AND (cc_id = @ccId)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.MySql.Data.MySqlClient.MySqlParameter()
+            param.ParameterName = "@ccId"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
+            param.IsNullable = true
+            param.SourceColumn = "cc_id"
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.MySql.Data.MySqlClient.MySqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT        COUNT(*) AS Expr1"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ccitem"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (cc_id = @i"& _ 
+                "d) AND (passed = 0) AND (failed = 0)"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.MySql.Data.MySqlClient.MySqlParameter()
             param.ParameterName = "@id"
             param.DbType = Global.System.Data.DbType.Int32
             param.MySqlDbType = Global.MySql.Data.MySqlClient.MySqlDbType.Int32
             param.IsNullable = true
-            param.SourceColumn = "id"
-            Me._commandCollection(2).Parameters.Add(param)
+            param.SourceColumn = "cc_id"
+            Me._commandCollection(3).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8170,9 +8182,9 @@ Namespace MySqlDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function GetTotalUncompleted(ByVal id As Integer) As Global.System.Nullable(Of Long)
+        Public Overloads Overridable Function GetTotalFailed(ByVal ccId As Integer) As Global.System.Nullable(Of Long)
             Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(2)
-            command.Parameters(0).Value = CType(id,Integer)
+            command.Parameters(0).Value = CType(ccId,Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -8191,6 +8203,33 @@ Namespace MySqlDataSetTableAdapters
                 Return New Global.System.Nullable(Of Long)()
             Else
                 Return New Global.System.Nullable(Of Long)(CType(returnValue,Long))
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function GetTotalUncompleted(ByVal id As Integer) As Object
+            Dim command As Global.MySql.Data.MySqlClient.MySqlCommand = Me.CommandCollection(3)
+            command.Parameters(0).Value = CType(id,Integer)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
             End If
         End Function
     End Class

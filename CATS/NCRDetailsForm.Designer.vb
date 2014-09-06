@@ -168,7 +168,7 @@ Partial Class NCRDetailsForm
 		Me.DescriptionTB.Multiline = True
 		Me.DescriptionTB.Name = "DescriptionTB"
 		Me.DescriptionTB.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.DescriptionTB.Size = New System.Drawing.Size(445, 315)
+		Me.DescriptionTB.Size = New System.Drawing.Size(445, 290)
 		Me.DescriptionTB.TabIndex = 29
 		'
 		'Label1
@@ -178,7 +178,7 @@ Partial Class NCRDetailsForm
 		Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.Label1.Location = New System.Drawing.Point(3, 200)
 		Me.Label1.Name = "Label1"
-		Me.Label1.Size = New System.Drawing.Size(94, 321)
+		Me.Label1.Size = New System.Drawing.Size(94, 296)
 		Me.Label1.TabIndex = 28
 		Me.Label1.Text = "Description"
 		Me.Label1.TextAlign = System.Drawing.ContentAlignment.TopRight

@@ -126,6 +126,7 @@ Public Class CatsListForm
 			DataGridView1.ClearSelection()
 			DataGridView1.Rows(curRowIndex).Selected = True
 		End If
+		DataGridView1.Refresh()
 
 	End Sub
 
@@ -160,12 +161,7 @@ Public Class CatsListForm
 		Reload()
 	End Sub
 
-	Private Sub DataGridView1_CellContentClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
-	End Sub
-
 	Private Sub DataGridView1_CellContentDoubleClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentDoubleClick
-
 		Dim id = CType(DataGridView1.Rows(e.RowIndex).Cells("IdColumn").Value, Integer)
 		Dim form = New NCRDetailsForm()
 		form.SetNcrDetails(id, catsUser)

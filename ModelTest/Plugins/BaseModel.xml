@@ -114,6 +114,10 @@ Row event argument class
 	<summary>
 Row event argument class
 </summary>
+</member><member name="T:BaseModel.MySqlDataSet">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
 </member><member name="T:BaseModel.MySqlDataSetTableAdapters.userTableAdapter">
 	<summary>
 Represents the connection and commands used to retrieve and save data.
@@ -281,6 +285,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 </member><member name="M:BaseModel.rqtsEntities.AddTologs(BaseModel.log)">
 	<summary>
  Deprecated Method for adding a new object to the logs EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+ </summary>
+</member><member name="T:BaseModel.rqtsEntities">
+	<summary>
+ No Metadata Documentation available.
  </summary>
 </member><member name="M:BaseModel.cc.Createcc(System.Int32,System.Int32)">
 	<summary>
@@ -558,6 +566,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
+</member><member name="T:BaseModel.Ncr">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
 </member><member name="M:BaseModel.Notification.CreateNotification(System.Int32,System.Int32,System.Int32,System.String,System.DateTime)">
 	<summary>
  Create a new Notification object.
@@ -584,6 +596,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.Notification.timestamp">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:BaseModel.Notification">
 	<summary>
  No Metadata Documentation available.
  </summary>
@@ -664,6 +680,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
 	<summary>
  No Metadata Documentation available.
  </summary>
+</member><member name="T:BaseModel.User">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
 </member><member name="M:BaseModel.Userlevel.CreateUserlevel(System.Int32)">
 	<summary>
  Create a new Userlevel object.
@@ -682,6 +702,10 @@ TableAdapterManager is used to coordinate TableAdapters in the dataset to enable
  No Metadata Documentation available.
  </summary>
 </member><member name="P:BaseModel.Userlevel.users">
+	<summary>
+ No Metadata Documentation available.
+ </summary>
+</member><member name="T:BaseModel.Userlevel">
 	<summary>
  No Metadata Documentation available.
  </summary>

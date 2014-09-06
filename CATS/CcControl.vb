@@ -1,5 +1,7 @@
 ﻿Imports BaseModel
 
+Public Delegate Sub Listener()
+
 Public Class CcControl
 	Dim users = DB.LoadUsers()
 	Dim curNcr As Ncr
@@ -11,13 +13,15 @@ Public Class CcControl
 	Dim ccTable = New MySqlDataSet.ccDataTable()
 	Dim ccAdapt = New MySqlDataSetTableAdapters.ccTableAdapter()
 
+	Dim listener As Listener
+
 	Public Sub New()
 		' This call is required by the designer.
 		InitializeComponent()
 		'
-		ActionByCmb.DataSource = users
-		ActionByCmb.ValueMember = "id"
-		ActionByCmb.DisplayMember = "userid"
+		PlanActionByCmb.DataSource = users
+		PlanActionByCmb.ValueMember = "id"
+		PlanActionByCmb.DisplayMember = "userid"
 
 		ReviewByCol.DataSource = users
 		ReviewByCol.ValueMember = "id"
@@ -44,27 +48,43 @@ Public Class CcControl
 		PlanGridView.AllowUserToAddRows = False
 		Select Case curCc.status_id
 			Case CcStatus.StatusType.Creating
-				seqTextCol.ReadOnly = False
-				actionTextCol.ReadOnly = False
-				ActionByCmb.ReadOnly = False
-				DueDateCal.ReadOnly = False
-				ComplDateCal.ReadOnly = True
 				ReviewGridView.Hide()
+				PlanComplDateCal.Visible = False
 				If (curUser.id = curCc.owner_id) Then
 					PlanGridView.AllowUserToAddRows = True
+					seqTextCol.ReadOnly = False
+					actionTextCol.ReadOnly = False
+					PlanActionByCmb.ReadOnly = False
+					PlanDueDateCal.ReadOnly = False
+					PlanComplDateCal.ReadOnly = True
+				Else
+					PlanGridView.Enabled = False
+					PlanGridView.AllowUserToAddRows = False
+					seqTextCol.ReadOnly = True
+					actionTextCol.ReadOnly = True
+					PlanActionByCmb.ReadOnly = True
+					PlanDueDateCal.ReadOnly = True
+					PlanComplDateCal.ReadOnly = True
 				End If
 			Case CcStatus.StatusType.SubmittedToApprover
+				PlanComplDateCal.Visible = False
 				PlanGridView.Enabled = False
-				PlanGridView.AllowUserToAddRows = False
-				ReviewGridView.Enabled = False
-				ReviewGridView.Hide()
-			Case CcStatus.StatusType.PlanExecution
 				PlanGridView.AllowUserToAddRows = False
 				seqTextCol.ReadOnly = True
 				actionTextCol.ReadOnly = True
-				ActionByCmb.ReadOnly = True
-				DueDateCal.ReadOnly = True
-				ComplDateCal.ReadOnly = False
+				PlanActionByCmb.ReadOnly = True
+				PlanDueDateCal.ReadOnly = True
+				PlanComplDateCal.ReadOnly = True
+				ReviewGridView.Hide()
+			Case CcStatus.StatusType.PlanExecution
+				'only enable completion date col
+				PlanComplDateCal.Visible = True
+				PlanGridView.AllowUserToAddRows = False
+				seqTextCol.ReadOnly = True
+				actionTextCol.ReadOnly = True
+				PlanActionByCmb.ReadOnly = True
+				PlanDueDateCal.ReadOnly = True
+				PlanComplDateCal.ReadOnly = False
 				ReviewGridView.Hide()
 			Case CcStatus.StatusType.SolutionVerification
 				PlanGridView.Enabled = False
@@ -137,38 +157,70 @@ Public Class CcControl
 	''' <param name="newUserid"></param>
 	''' <remarks></remarks>
 	Private Sub HandleAction(action As CcStatus.Actions, newUserid As Integer)
+		Dim newUser
 		Select Case action
 			Case CcStatus.Actions.Create
-				'CreateNewNcr()
+				UpdateLog(CcStatus.StatMessages()(CcStatus.StatusType.Creating), newUserid, curCc.id)
 			Case CcStatus.Actions.Submit
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.SubmittedToApprover)
 				DB.SetCcPlanApprover(curCc.id, newUserid)
 				'update user in db
 				DB.SetCcOwner(curCc.id, newUserid)
-				'NewSubmitNcr(userId)
+				Dim message = CcStatus.StatMessages()(CcStatus.StatusType.SubmittedToApprover)
+				If newUserid > 0 Then
+					newUser = DB.LoadUser(newUserid)
+					message += ", " & newUser.userid
+				End If
+				UpdateLog(message, curCc.id, curUser.id)
 			Case CcStatus.Actions.RejectByApprover
 				'RejectByApprover()
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Creating)
 				DB.SetCcPlanApprover(curCc.id, Nothing)
 				' reset owner back to ncr owner
 				DB.SetCcOwner(curCc.id, curNcr.owner_id)
+				Dim message = CcStatus.StatMessages()(CcStatus.StatusType.Creating)
+				If newUserid > 0 Then
+					newUser = DB.LoadUser(newUserid)
+					message += ", " & newUser.userid
+				End If
+				UpdateLog(message, curCc.id, curUser.id)
 			Case CcStatus.Actions.AcceptByApprover
-				'AcceptByApprover()
+				'AcceptByApprover(): Execution can start
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.PlanExecution)
 				DB.UpdateCcPlanApproveDate(curCc.id, DateTime.Now)
+				Dim message = CcStatus.StatMessages()(CcStatus.StatusType.PlanExecution)
+				UpdateLog(message, curCc.id, curUser.id)
 			Case CcStatus.Actions.ExecutionFinished
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.SolutionVerification)
 				DB.SetCcSolutionVerifier(curCc.id, newUserid)
 				DB.SetCcOwner(curCc.id, newUserid)
 				DB.UpdateCcCompletionDate(curCc.id, DateTime.Now)
+				Dim message = CcStatus.StatMessages()(CcStatus.StatusType.SolutionVerification)
+				If newUserid > 0 Then
+					newUser = DB.LoadUser(newUserid)
+					message += ", " & newUser.userid
+				End If
+				UpdateLog(message, curCc.id, curUser.id)
 			Case CcStatus.Actions.VerificationPassed
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Closed)
 				DB.UpdateCcVerificationDate(curCc.id, DateTime.Now)
+				Dim message = CcStatus.StatMessages()(CcStatus.StatusType.Closed)
+				If newUserid > 0 Then
+					newUser = DB.LoadUser(newUserid)
+					message += ", " & newUser.userid
+				End If
+				UpdateLog(message, curCc.id, curUser.id)
 			Case CcStatus.Actions.VerificationFailed
 				DB.UpdateCcStatus(curCc.id, CcStatus.StatusType.Creating)
 				DB.SetCcSolutionVerifier(curCc.id, Nothing)
 				'reset cc owner back to ncr owner
 				DB.SetCcOwner(curCc.id, curNcr.owner_id)
+				Dim message = CcStatus.StatMessages()(CcStatus.StatusType.Creating)
+				If newUserid > 0 Then
+					newUser = DB.LoadUser(newUserid)
+					message += ", " & newUser.userid
+				End If
+				UpdateLog(message, curCc.id, curUser.id)
 		End Select
 		ReloadCc(curCc.id)
 	End Sub
@@ -177,7 +229,10 @@ Public Class CcControl
 		Dim row = e.Row
 		row.Cells("SeqTextCol").Value = seqCounter
 		row.Cells("ccIdCol").Value = curNcr.id
-		seqCounter += 1
+		row.Cells("passedCol").Value = 0
+		row.Cells("failedCol").Value = 0
+		seqCounter = PlanGridView.RowCount + 1
+
 	End Sub
 
 	''' <summary>
@@ -224,11 +279,19 @@ Public Class CcControl
 	Private Sub ReviewGridView_RowValidated(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles ReviewGridView.RowValidated
 		ccItemAdapt.Update(ccItemTable)
 		Dim uncompleted = ccItemAdapt.GetTotalUncompleted(curCc.id)
-		If uncompleted = 0 Then
-			MessageBox.Show("Verification complete")
+		If uncompleted = 0 And curCc.status_id = CcStatus.StatusType.SolutionVerification Then
+			Dim failed = ccItemAdapt.GetTotalFailed(curCc.id)
+			Dim newStatus As Integer
+			If (failed > 0) Then
+				MessageBox.Show("Verificiation complete but one or more of the tasks were failed. CC is rejected")
+				newStatus = CcStatus.StatusType.Creating
+			Else
+				MessageBox.Show("Verification complete and all tasks passed. CC is closed")
+				newStatus = CcStatus.StatusType.Closed
+			End If
+			ccAdapt.UpdateStatus(newStatus, curCc.id)
+			ReloadCc(curCc.id)
 		End If
-
-
 	End Sub
 
 	''' <summary>
@@ -246,13 +309,13 @@ Public Class CcControl
 		Dim fail = CType(row.Cells("failCol").Value, Boolean)
 		If (pass) Then
 			If (IsDBNull(row.Cells("ReviewByCol")) Or IsDBNull(row.Cells("ReviewDateCol"))) Then
-				MessageBox.Show("For passed items please select Reviewer and Review date")
+				MessageBox.Show("For Passed items please select Reviewer and Review date")
 				valid = False
 			End If
 		End If
 		If (fail) Then
-			If (IsDBNull(row.Cells("ReviewByCol")) Or IsDBNull(row.Cells("ReviewDateCol")) Or IsDBNull(row.Cells("CommentCol"))) Then
-				MessageBox.Show("For passed items please select Reviewer, Review date and Comment")
+			If (IsDBNull(row.Cells("CommentCol").Value) Or IsDBNull(row.Cells("ReviewByCol").Value) Or IsDBNull(row.Cells("ReviewDateCol").Value)) Then
+				MessageBox.Show("For Failed items please select Reviewer, Review date and Comment")
 				valid = False
 			End If
 		End If
@@ -263,7 +326,7 @@ Public Class CcControl
 	End Sub
 
 	Private Sub ReviewGridView_CellValueChanged(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs)
-	
+
 	End Sub
 
 	Private Sub ReviewGridView_CurrentCellDirtyStateChanged(sender As System.Object, e As System.EventArgs) Handles ReviewGridView.CurrentCellDirtyStateChanged
@@ -278,5 +341,28 @@ Public Class CcControl
 			Dim checkCell As DataGridViewCheckBoxCell = CType(ReviewGridView.Rows(rowIndex).Cells("passCol"), DataGridViewCheckBoxCell)
 			checkCell.Value = False
 		End If
+	End Sub
+
+	Private Sub UpdateLog(logMessage As String, userId As Integer, ccId As Integer)
+		Dim logAdapt As New MySqlDataSetTableAdapters.logTableAdapter()
+		Dim logResult = logAdapt.InsertQuery(DateTime.Now, logMessage, ccId, userId)
+		If (Not IsNothing(listener)) Then
+			listener()
+		End If
+
+	End Sub
+
+
+	Private Sub UpdateNotes(noteMsg As String, userId As Integer, ccId As Integer)
+		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
+		' remove previous messages for this ncr
+		notesAdapt.DeleteAllNotificationsForNcr(ccId)
+		Dim notesResult = notesAdapt.InsertQuery(userId, ccId, noteMsg, DateTime.Now)
+		listener()
+	End Sub
+
+	'
+	Public Sub SetListener(listener As Listener)
+		Me.listener = listener
 	End Sub
 End Class

@@ -10,11 +10,11 @@
 	End Structure
 
 	Public Enum StatusType
-		Creating = 0
-		SubmittedToApprover = 1
-		PlanExecution = 2
-		SolutionVerification = 3
-		Closed = 4
+		Creating = 0   'Creating the CC Plan
+		SubmittedToApprover = 1	'CC Plan is submitted for approval
+		PlanExecution = 2		'CC Plan is approved and CC is now being executed
+		SolutionVerification = 3 'CC execution is finished and solution needs verification
+		Closed = 4				' CC solution has been verified so CC is now closed
 	End Enum
 
 	Public Shared CcStatusTypes As StatusType() = {
@@ -24,7 +24,7 @@
 	  StatusType.SolutionVerification,
 	  StatusType.Closed
 	}
-	Public Shared Property StatMessages As String() = {"CC is being Created", "CC Plan is submitted to Approver", "CC Plan Approved and Executing", "CC Solution Verification", "CC Verified and Closed"}
+	Public Shared Property StatMessages As String() = {"CC is being Created", "CC Plan is submitted for Approval", "CC Plan Execution", "CC Solution Verification", "CC Closed"}
 
 	Public Enum Actions
 		Create = 0
@@ -45,7 +45,7 @@
 	 Actions.VerificationPassed,
 	 Actions.VerificationFailed
 	}
-	Public Property ActionMessages As String() = {"CC Creating", "CC submitted to approver", "CC Plan Rejected by Approver", "CC Plan Accepted by Approver", "CC Execution finished", "CC Verification Passed", "CC Verification Failed"}
+	Public Property ActionMessages As String() = {"CC Creating", "CC submitted for Approval", "CC Plan Approval Rejected", "CC Plan Approval Accepted", "CC Execution finished", "CC Verification Passed", "CC Verification Failed"}
 	Public Shared Property ActionRequiresUsername As Boolean() = {False, True, False, False, True, False, False}
 
 	Private status

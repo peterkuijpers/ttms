@@ -16,6 +16,7 @@ Public Class NCRDetailsForm
 	''' <remarks></remarks>
 	Public Sub New()
 		InitializeComponent()
+		CcControl2.SetListener(AddressOf HandleCcControl_Change)
 	End Sub
 
 
@@ -307,6 +308,7 @@ Public Class NCRDetailsForm
 		Dim ccTable As MySqlDataSet.ccDataTable = New MySqlDataSet.ccDataTable()
 		Dim ccAdapt As MySqlDataSetTableAdapters.ccTableAdapter = New MySqlDataSetTableAdapters.ccTableAdapter()
 		ccAdapt.CreateById(curNcr.id, 0)
+
 		' set the owner to current user
 		ccAdapt.UpdateOwner(user.id, curNcr.id)
 		Dim notesAdapt As New MySqlDataSetTableAdapters.notificationTableAdapter()
@@ -433,7 +435,9 @@ Public Class NCRDetailsForm
 
 	End Sub
 
-	Private Sub CcControl2_Load(sender As System.Object, e As System.EventArgs) Handles CcControl2.Load
-
+	Public Sub HandleCcControl_Change()
+		NcrLogCtrl.RefreshLog(curNcr.id)
 	End Sub
+
+	
 End Class
